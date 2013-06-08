@@ -27,7 +27,7 @@ html, body {
 }
 
 #wrap #me #photoFrame #photo {
-    height: 400px;
+    max-height: 400px;
     display:block; margin:0 auto;
 }
 
