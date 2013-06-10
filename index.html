@@ -9,9 +9,6 @@
         <link rel="stylesheet" href="./css/bootstrap-responsive.min.css" type="text/css">
         <!-- Main style -->
         <link rel="stylesheet" href="./css/style.css" type="text/css">
-
-        <script src="./js/jquery-2.0.2.min.js"></script>
-        <script src="./js/bootstrap.min.js"></script>
     </head>
 
     <body>
@@ -33,9 +30,35 @@
                     </div>
                     <div id="me" class="span4">
                         <div id="photoFrame"><img id="photo" src="./img/me.png" alt="photo" align="center"></div>
-                        <p>
-                            I'm Nikita Tolkachev, a software developer in Minsk. I'm currently work in <a href="http://www.sam-solutions.by/">SaM Solutions</a>. You can find me as <i><b>edloidas</b></i> on most services. You can also send me an email at <i>edloidas@gmail.com</i>.
-                        </p>                        
+                        <hr/>
+                        <table id="info" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td><div class="icon profile" title="Name"></div></td>
+                                    <td>Tolkachev Nikita</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="icon residence" title="Residence"></div></td>
+                                    <td><a href="https://maps.google.ru/maps?q=minsk+belarus&hl=ru&ie=UTF8&sll=55.354135,40.297852&sspn=21.584819,57.084961&t=h&hnear=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA,+%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D1%8C&z=11&iwloc=A" title="Minsk on Google Maps">Minsk, Belarus</a></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="icon work" title="Workplace"></div></td>
+                                    <td><a href="http://www.sam-solutions.by/" title="Company website">SaM Solutions (Minsk office, Belarus)</a></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="icon email" title="Contact email"></div></td>
+                                    <td>edloidas@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="icon lang" title="Main languages"></div></td>
+                                    <td>Java, JavaScript, Haskell</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr/>
+                        <article>
+                            I'm Nikita Tolkachev, a software developer in Minsk. I'm currently work in <a href="http://www.sam-solutions.by/">SaM Solutions</a>. You can find me as <i><b>edloidas</b></i> on most services.
+                        </article>                        
                     </div>
                 </div>
             </div>
@@ -43,9 +66,12 @@
         </div>
         <footer>
             <div class="container">
-                <div class="row">© 2013 <a href="http://edloidas.github.io" target="_blank">edloidas</a> personal page.
+                <div class="row">© 2013 <a href="http://edloidas.github.io" target="_blank">edloidas</a>
                 </div>
             </div>
         </footer>
+        
+        <!-- Scripts -->
+        <script src="./js/bootstrap.min.js"></script>
     </body>
 </html>
