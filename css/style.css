@@ -25,7 +25,13 @@ body {
     border-top: 1px solid silver;
 }
 
-#wrap #links, #wrap #me {
+#wrap #title {
+    
+    text-align: center;
+    font-size: 3em;
+}
+
+#wrap .links, #wrap #me {
     margin-top: 20px;
 }
 
@@ -38,29 +44,29 @@ body {
     display:block; margin:0 auto;
 }
 
-#wrap #links a {
+#wrap .links a {
     margin: 5px 0px;
     padding: 5px 0px 5px 10px;
     display: block;
     font-size: 1.2em;
 }
 
-#wrap #links a:hover {
+#wrap .links a:hover {
     background-color: rgba(99,99,99,0.1);
     text-decoration: none;
 }
 
-#wrap #links a:hover > small {
+#wrap .links a:hover > small {
     color: #333333;
 }
 
-#wrap #links a small {
+#wrap .links a small {
     font-size: 0.7em;
     color: silver;
     display: block;
 }
 
-#wrap #links a, #wrap #links a small {
+#wrap .links a, #wrap .links a small {
     -webkit-transition-duration: 0.3s;
 }
 
