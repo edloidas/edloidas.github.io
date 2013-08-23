@@ -1,20 +1,54 @@
 /**
- * EDLOIDAS PAGE
+ * EDLOIDAS DEVPAGE
  * CSS STYLE
- * 
+ *
  * @author edloidas
  * @link edloidas@gmail.com
  */
-html, body {
+html {
     height: 100%;
-    color: #666666;
+    color: whiteSmoke;
 }
 
 body {
-    background-image: url("../img/bg-light.png");
+    background-image: url("../img/hexagon.png");
 }
 
-#wrap {
+.container {
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.container h1 {
+    font-family: Impact, Charcoal, sans-serif
+}
+
+.resume {
+    margin: 40px 0;
+}
+
+.resume img {
+    border: 5px solid silver;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.resume .photo {
+    text-align: center;
+}
+
+.blueprint a {
+    margin: 5px 0px;
+    padding: 5px 0px 5px 10px;
+    display: block;
+    font-size: 1.2em;
+}
+
+/*#wrap {
     min-height: 100%;
     height: auto !important;
     height: 100%;
@@ -25,21 +59,21 @@ body {
     border-top: 1px solid silver;
 }
 
-#wrap #title {
-    
+#title {
+
     text-align: center;
     font-size: 3em;
 }
 
-#wrap .links, #wrap #me {
+#wrap .links, #me {
     margin-top: 20px;
 }
 
-#wrap #me #photoFrame {
+#photoFrame {
     margin: 0px auto;
 }
 
-#wrap #me #photoFrame #photo {
+#photo {
     max-height: 400px;
     display:block; margin:0 auto;
 }
@@ -70,11 +104,11 @@ body {
     -webkit-transition-duration: 0.3s;
 }
 
-#wrap #me #info tr td {
+#info tr td {
     padding: 2px 6px 2px 2px;
 }
 
-#wrap #me #info tr td .icon {
+#info tr td .icon {
     width: 14px;
     height: 14px;
     vertical-align: text-top;
@@ -82,27 +116,27 @@ body {
     background-repeat: no-repeat;
 }
 
-#wrap #me #info tr td .icon.profile {
+#info tr td .icon.profile {
     background-position: -168px 0px;
 }
 
-#wrap #me #info tr td .icon.residence {
+#info tr td .icon.residence {
     background-position: -24px -72px;
 }
 
-#wrap #me #info tr td .icon.work {
+#info tr td .icon.work {
     background-position: -288px -24px;
 }
 
-#wrap #me #info tr td .icon.email {
+#info tr td .icon.email {
     background-position: -72px 0px;
 }
 
-#wrap #me #info tr td .icon.lang {
+#info tr td .icon.lang {
     background-position: 0px -48px;
 }
 
-footer, #push { /** push need to separate wrap from footer */
+footer, #push {
     height: 40px;
 }
 
@@ -115,3 +149,4 @@ footer {
 footer .container .row {
     padding-top: 20px;
 }
+*/
