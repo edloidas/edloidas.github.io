@@ -1,20 +1,38 @@
 [
-    {"quote": "I never asked for this.",
-     "ref":   "Deus Ex Human Revolution"},
-    {"quote": "My vision is augmented.",
-     "ref":   "Deus Ex"},
-    {"quote": "What a shame...",
-     "ref":   "Deus Ex"},
-    {"quote": "He was a good man... What a rotten way to die.",
-     "ref":   "Deus Ex"},
-    {"quote": "He's Dead Jim.",
-     "ref":   "Star Trek"},
-    {"quote": "We'll bang, OK?",
-     "ref":   "Gamer Poop : Mass Effect"},
-    {"quote": "Double nice!",
-     "ref":   "Gamer Poop : Mass Effect"},
-    {"quote": "Grumpy wizards make toxic brew for the evil Queen and Jack.",
-     "ref":   "pangram"},
-    {"quote": "Lorem ipsum dolor sit amet.",
-     "ref":   ""},
+    {
+        "quote": "I never asked for this.",
+        "ref": "Deus Ex Human Revolution"
+    },
+    {
+        "quote": "My vision is augmented.",
+        "ref": "Deus Ex"
+    },
+    {
+        "quote": "What a shame...",
+        "ref": "Deus Ex"
+    },
+    {
+        "quote": "He was a good man... What a rotten way to die.",
+        "ref": "Deus Ex"
+    },
+    {
+        "quote": "He`s Dead Jim.",
+        "ref": "Star Trek"
+    },
+    {
+        "quote": "We`ll bang, OK?",
+        "ref": "Gamer Poop : Mass Effect"
+    },
+    {
+        "quote": "Double nice!",
+        "ref": "Gamer Poop : Mass Effect"
+    },
+    {
+        "quote": "Grumpy wizards make toxic brew for the evil Queen and Jack.",
+        "ref": "pangram"
+    },
+    {
+        "quote": "Lorem ipsum dolor sit amet.",
+        "ref": ""
+    }
 ]
