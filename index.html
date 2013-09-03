@@ -11,112 +11,37 @@
         <meta name="author" content="edloidas@gmail.com">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 
-        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
         <!-- Libraries -->
+        <!-- Use compiled less instead
+        <script src="lib/less.min.js"></script>-->
+
         <script src="lib/jquery.min.js"></script>
         <script src="lib/underscore.min.js"></script>
         <script src="lib/bootstrap.min.js"></script>
 
         <script src="lib/angular.min.js"></script>
         <script src="js/Controllers.js"></script>
-
     </head>
 
     <body ng-controller="HomeController">
-        <div class="container">
-            <header class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <h1 class="text-muted">/> edloidas devPage</h1>
-            </header>
 
-            <div class="row resume">
-                <div class="col-md-3 photo">
-                    <a href="{{links.profile}}">
-                        <img ng-src="{{avatar.source}}" width="{{avatar.width}}" height="{{avatar.height}}" alt="avatar">
-                    </a>
-                </div>
-                <div class="col-md-7"></div>
-            </div>
-        </div>
-<!--
-        <div id="wrap">
-            <div class="container">
-                <div class="row">
-                    <div id="links" class="span4 offset2 links">
-
-                        <h3>Edloidas</h3>
-                        <a href="http://edloidas.github.io/3jsxp">Three.JS XP<small>Project I'm working on.</small></a>
-
-
-                        <h3>Follow Me</h3>
-                        <a href="https://github.com/edloidas">GitHub<small>If you in that sort of things.</small></a>
-                        <a href="https://twitter.com/edloidas">Twitter<small>When there is not much to say.</small></a>
-                        <a href="http://vk.com/edloidas">VK<small>My main account at the VKontakte.</small></a>
-                        <a href="https://plus.google.com/100081532988366318441" rel="author">Google Plus<small>Yet another worthless thing.</small></a>
-
-                        <br/>
-                    </div>
-
-                    <div id="me" class="span4">
-                        <div id="photoFrame"><img id="photo" src="/img/me.png" alt="photo" align="center"></div>
-
-                        <hr/>
-
-                        <table id="info" width="100%">
-                            <tbody>
-                                <tr>
-                                    <td><div class="icon profile" title="Name"></div></td>
-                                    <td>Tolkachev Nikita</td>
-                                </tr>
-
-                                <tr>
-                                    <td><div class="icon residence" title="Residence"></div></td>
-                                    <td><a href="https://maps.google.ru/maps?q=minsk+belarus&hl=ru&ie=UTF8&sll=55.354135,40.297852&sspn=21.584819,57.084961&t=h&hnear=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA,+%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D1%8C&z=11&iwloc=A" title="Minsk on Google Maps">Minsk, Belarus</a></td>
-                                </tr>
-
-                                <tr>
-                                    <td><div class="icon work" title="Workplace"></div></td>
-                                    <td><a href="http://www.sam-solutions.by/" title="Company website">SaM Solutions (Minsk office, Belarus)</a></td>
-                                </tr>
-
-                                <tr>
-                                    <td><div class="icon email" title="Contact email"></div></td>
-                                    <td>edloidas@gmail.com</td>
-                                </tr>
-
-                                <tr>
-                                    <td><div class="icon lang" title="Main languages"></div></td>
-                                    <td>Java, JavaScript, Haskell</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <hr/>
-
-                        <article>
-                            I'm Nikita Tolkachev, a software developer in Minsk. I'm currently work in <a href="http://www.sam-solutions.by/">SaM Solutions</a>. You can find me as <i><b>edloidas</b></i> on most services.
-                        </article>
-                    </div>
-                </div>
-            </div>
-
-            <div id="push"></div>
+        <div class="quote">
+            <span title="{{profile.quoteRef}}">{{profile.quote}}<span>
         </div>
 
-        <footer>
-            <div class="container">
-                <div class="row">© 2013 <a href="http://edloidas.github.io" target="_blank">edloidas</a>
-                </div>
-            </div>
-        </footer>
- -->
+        <div class="logo">
+            <h1>{{profile.hello}}</h1>
+            <ul class="list-inline">
+                <li ng-repeat="link in links.social">
+                    <a class="{{link.class}}" href="{{link.url}}">{{link.name}}</a>
+                </li>
+            </ul>
+        </div>
+
     </body>
 </html>

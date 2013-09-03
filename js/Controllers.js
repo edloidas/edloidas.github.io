@@ -6,27 +6,36 @@
  * @link edloidas@gmail.com
  */
 
-function HomeController($scope) {
+function HomeController($scope, $http) {
     $scope.links = {
-        profile    : "http://edloidas.github.io",
-
-        github     : "https://github.com/edloidas",
-        twitter    : "https://twitter.com/edloidas",
-        // facebook   : "",
-        googleplus : "https://plus.google.com/100081532988366318441",
-        vkontakte  : "http://vk.com/edloidas",
-
-        work       : "http://www.sam-solutions.by"
+        profile: "http://edloidas.github.io",
+        work:    "http://sam-solutions.com",
+        social:  [
+            {name:  "GitHub",
+             class: "github",
+             url:   "https://github.com/edloidas"},
+            {name:  "Twitter",
+             class: "twitter",
+             url:   "https://twitter.com/edloidas"},
+            {name:  "VKontakte",
+             class: "vkontakte",
+             url:   "https://vk.com/edloidas"},
+            {name:  "Google+",
+             class: "googleplus",
+             url:   "https://plus.google.com/100081532988366318441"},
+        ]
     };
 
-    $scope.avatar = {
-        source : "img/fallout_like_me.png",
-        width  : 256, // px, preferable <= 256
-        height : 256, // px
+    $scope.profile = {
+        hello:     "Hello. I'm Nikita",
+        avatar:    "img/fallout_like_me.png",
+        quote :    "\"I never asked for this.\"",
+        quoteRef : "Deus Ex Human Revolution"
     };
 
-    $scope.resume = [
-        {"title" : "Name",
-         "data" : "Tolkachev Nikita"}
-    ];
+    $http.get('data/quotes.json').success(function(data) {
+        var i = Math.floor(Math.random() * data.length);
+        profile.quote = "\"" + data[i].quote + "\"";
+        profile.quoteRef = data[i].ref;
+    });
 }

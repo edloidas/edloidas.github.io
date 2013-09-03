@@ -1,0 +1,149 @@
+/**
+ * EDLOIDAS DEVPAGE
+ * CSS STYLE
+ *
+ * @author edloidas
+ * @link edloidas@gmail.com
+ */
+
+/*
+-------------------------------------------------------------------------------
+LESS
+-------------------------------------------------------------------------------
+*/
+@color-dark:   #333;
+@color-gray6:  #666;
+@color-gray9:  #999;
+@color-white:  #F5F5F5; // whiteSmoke
+@color-blue:   #87CEEB; // skyBlue
+@color-red:    #FF1493; // deepPink
+@color-green:  #ADFF2F; // greenYellow
+@color-orange: #FF8C00; // orange
+@color-yellow: #F0E68C; // khaki
+
+@color-logo-github:     #F5F5F5; // whiteSmoke
+@color-logo-twitter:    #87CEEB; // skyBlue
+@color-logo-vkontakte:  #2a6496; // ?
+@color-logo-googleplus: #d14836; // ?
+
+@color-border: rgba(255, 255, 255, 0.1);
+
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius:    @radius;
+    -ms-border-radius:     @radius;
+    -o-border-radius:      @radius;
+    border-radius:         @radius;
+}
+
+.transition(@time: 0.3s) {
+    transition: @time;
+    -webkit-transition: @time;
+}
+
+/*
+-------------------------------------------------------------------------------
+FONTS
+-------------------------------------------------------------------------------
+*/
+// http://fontfabric.com/archive-free-font/
+@font-face {
+    font-family: "Archive";
+    src: url(../fonts/Archive.otf) format("truetype");
+}
+
+// http://www.google.com/fonts#UsePlace:use/Collection:Source+Sans+Pro
+@font-face {
+    font-family: "SourceSansPro";
+    src: url(../fonts/SourceSansPro-Regular.ttf);
+}
+
+/*
+-------------------------------------------------------------------------------
+CSS
+-------------------------------------------------------------------------------
+*/
+html {
+    height: 100%;
+}
+
+.quote {
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    padding: 5px 0;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 1.0em;
+    font-family: 'Archive';
+    color: @color-gray6;
+    -webkit-box-shadow: 0px 2px 2px @color-dark;
+    -moz-box-shadow:    0px 2px 2px @color-dark;
+    box-shadow:         0px 2px 2px @color-dark;
+    border: 1px solid @color-border;
+}
+
+.logo {
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    margin-top: -50px;
+    top: 50%;
+    background: @color-dark;
+    font-family: 'Archive';
+    text-align: center;
+    color: @color-white;
+    cursor: default;
+
+    h1 {
+        font-size: 3.5em;
+        font-family: 'Archive';
+        margin: 0 0 20px;
+    }
+    a {
+        text-decoration: none;
+        font-size: 1.2em;
+        color: #222;
+        text-shadow: 0px 2px 3px #444;
+        .transition;
+        &.github:hover {
+            color: @color-logo-github;
+        }
+        &.twitter:hover {
+            color: @color-logo-twitter;
+        }
+        &.vkontakte:hover {
+            color: @color-logo-vkontakte;
+        }
+        &.googleplus:hover {
+            color: @color-logo-googleplus;
+        }
+    }
+}
+
+body {
+    background: @color-dark;
+    color: @color-white;
+}
+
+
+/*
+-------------------------------------------------------------------------------
+CLEARFIX
+-------------------------------------------------------------------------------
+*/
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf { /* IE 6/7 */
+    *zoom: 1;
+}
