@@ -35,7 +35,9 @@ function HomeController($scope, $http) {
 
     $http.get('data/quotes.json').success(function(data) {
         var i = Math.floor(Math.random() * data.length);
-        profile.quote = "\"" + data[i].quote + "\"";
-        profile.quoteRef = data[i].ref;
+        var quotes = data;
+        console.log(data);
+        profile.quote = "\"" + quotes[i].quote + "\"";
+        profile.quoteRef = quotes[i].ref;
     });
 }
