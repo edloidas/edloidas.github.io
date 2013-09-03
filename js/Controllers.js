@@ -29,8 +29,8 @@ function HomeController($scope, $http) {
     $scope.profile = {
         hello:     "Hello. I'm Nikita",
         avatar:    "img/fallout_like_me.png",
-        quote :    "\"I never asked for this.\"",
-        quoteRef : "Deus Ex Human Revolution"
+        quote :    "\"...\"",
+        quoteRef : ""
     };
 
     $http.get('data/quotes.json').success(function(data) {

@@ -1,38 +1,142 @@
 [
     {
         "quote": "I never asked for this.",
-        "ref": "Deus Ex Human Revolution"
+        "ref":   "Deus Ex Human Revolution"
+    },
+    {
+        "quote": "Who we are is but a stepping stone to what we can become.",
+        "ref":   "Deus Ex Human Revolution"
     },
     {
         "quote": "My vision is augmented.",
-        "ref": "Deus Ex"
+        "ref":   "Deus Ex"
     },
     {
         "quote": "What a shame...",
-        "ref": "Deus Ex"
+        "ref":   "Deus Ex"
     },
     {
         "quote": "He was a good man... What a rotten way to die.",
-        "ref": "Deus Ex"
+        "ref":   "Deus Ex"
     },
     {
         "quote": "He`s Dead Jim.",
-        "ref": "Star Trek"
+        "ref":   "Star Trek"
     },
     {
         "quote": "We`ll bang, OK?",
-        "ref": "Gamer Poop : Mass Effect"
+        "ref":   "Gamer Poop : Mass Effect"
     },
     {
         "quote": "Double nice!",
-        "ref": "Gamer Poop : Mass Effect"
+        "ref":   "Gamer Poop : Mass Effect"
     },
     {
         "quote": "Grumpy wizards make toxic brew for the evil Queen and Jack.",
-        "ref": "pangram"
+        "ref":   "pangram"
     },
     {
         "quote": "Lorem ipsum dolor sit amet.",
-        "ref": ""
+        "ref":   ""
+    },
+    {
+        "quote": "There is no spoon.",
+        "ref":   "The Matrix"
+    },
+    {
+        "quote": "I know kung-fu.",
+        "ref":   "The Matrix"
+    },
+    {
+        "quote": "People are always asking me if I know Tyler Durden.",
+        "ref":   "Fight Club"
+    },
+    {
+        "quote": "Per Aspera ad Astra.",
+        "ref":   ""
+    },
+    {
+        "quote": "E = mc^2",
+        "ref":   ""
+    },
+    {
+        "quote": "42",
+        "ref":   "The Hitchhiker`s Guide to the Galaxy"
+    },
+    {
+        "quote": "So long, and thanks for all the fish.",
+        "ref":   "The Hitchhiker`s Guide to the Galaxy"
+    },
+    {
+        "quote": "1337",
+        "ref":   ""
+    },
+    {
+        "quote": "xkcd",
+        "ref":   ""
+    },
+    {
+        "quote": "War. War never changes.",
+        "ref":   "Fallout"
+    },
+    {
+        "quote": "Stop right there, criminal scum!",
+        "ref":   "The Elder Scrolls"
+    },
+    {
+        "quote": "M`aiq knows much, and tells some.",
+        "ref":   "The Elder Scrolls"
+    },
+    {
+        "quote": "We failed once. We failed twice. We must fail AGAIN!",
+        "ref":   "Gamer Poop : Oblivion"
+    },
+    {
+        "quote": "1 frag left",
+        "ref":   "Quake"
+    },
+    {
+        "quote": "iddqd",
+        "ref":   "DOOM"
+    },
+    {
+        "quote": "idkfa",
+        "ref":   "DOOM"
+    },
+    {
+        "quote": "Rise and shine, Mister Freeman, rise and... shine.",
+        "ref":   "Half-Life 2"
+    },
+    {
+        "quote": " The right man in the wrong place can make all the difference.",
+        "ref":   "Half-Life 2"
+    },
+    {
+        "quote": "Friendship is magic.",
+        "ref":   "MLP"
+    },
+    {
+        "quote": "Would you kindly?",
+        "ref":   "Bioshock"
+    },
+    {
+        "quote": "Bring us the girl, and wipe away the debt.",
+        "ref":   "Bioshock Infinite"
+    },
+    {
+        "quote": "Trust me, I`m an engineer.",
+        "ref":   ""
+    },
+    {
+        "quote": "I'm sorry, Dave. I'm afraid I can't do that.",
+        "ref":   "2001: A Space Odyssey"
+    },
+    {
+        "quote": "In the grim darkness of far future there is only war!",
+        "ref":   "Warhammer 40000"
+    },
+    {
+        "quote": "Play Dwarf Fortress ☺",
+        "ref":   "Urist McDwarf"
     }
 ]
