@@ -35,6 +35,14 @@ function HomeController($scope, $http) {
 
     $http.get('data/quotes.json').success(function(data) {
         var i = Math.floor(Math.random() * data.length);
+
+        if(typeof(Storage) !== "undefined") {
+            while (data.length > 1 && i === parseInt(localStorage.devpage_quote)) {
+                i = Math.floor(Math.random() * data.length);
+            }
+            localStorage.devpage_quote = i;
+        }
+
         $scope.profile.quote = "\"" + data[i].quote + "\"";
         $scope.profile.quoteRef = data[i].ref;
     });

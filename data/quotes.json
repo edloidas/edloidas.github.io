@@ -20,11 +20,11 @@
         "ref":   "Deus Ex"
     },
     {
-        "quote": "He`s Dead Jim.",
+        "quote": "He’s Dead Jim.",
         "ref":   "Star Trek"
     },
     {
-        "quote": "We`ll bang, OK?",
+        "quote": "We’ll bang, OK?",
         "ref":   "Gamer Poop : Mass Effect"
     },
     {
@@ -61,11 +61,11 @@
     },
     {
         "quote": "42",
-        "ref":   "The Hitchhiker`s Guide to the Galaxy"
+        "ref":   "The Hitchhiker’s Guide to the Galaxy"
     },
     {
         "quote": "So long, and thanks for all the fish.",
-        "ref":   "The Hitchhiker`s Guide to the Galaxy"
+        "ref":   "The Hitchhiker’s Guide to the Galaxy"
     },
     {
         "quote": "1337",
@@ -84,7 +84,7 @@
         "ref":   "The Elder Scrolls"
     },
     {
-        "quote": "M`aiq knows much, and tells some.",
+        "quote": "M’aiq knows much, and tells some.",
         "ref":   "The Elder Scrolls"
     },
     {
@@ -124,11 +124,11 @@
         "ref":   "Bioshock Infinite"
     },
     {
-        "quote": "Trust me, I`m an engineer.",
+        "quote": "Trust me, I’m an engineer.",
         "ref":   ""
     },
     {
-        "quote": "I'm sorry, Dave. I'm afraid I can't do that.",
+        "quote": "I’m sorry, Dave. I'm afraid I can't do that.",
         "ref":   "2001: A Space Odyssey"
     },
     {
@@ -138,5 +138,41 @@
     {
         "quote": "Play Dwarf Fortress ☺",
         "ref":   "Urist McDwarf"
+    },
+    {
+        "quote": "Losing is fun!",
+        "ref":   "Dwarf Fortress"
+    },
+    {
+        "quote": "Pour magma on it.",
+        "ref":   "Dwarf Fortress"
+    },
+    {
+        "quote": "And now for something completely different.",
+        "ref":   "Monty Python"
+    },
+    {
+        "quote": "It’s...",
+        "ref":   "Monty Python"
+    },
+    {
+        "quote": "’Tis but a scratch.",
+        "ref":   "Monty Python"
+    },
+    {
+        "quote": "Always look on the bright side of life!",
+        "ref":   "Monty Python"
+    },
+    {
+        "quote": "Use the Force, Luke.",
+        "ref":   "Star Wars"
+    },
+    {
+        "quote": "They’re taking the hobbits to Isengard!",
+        "ref":   "The Lord of the Rings"
+    },
+    {
+        "quote": "Fly, you fools!",
+        "ref":   "The Lord of the Rings"
     }
 ]
