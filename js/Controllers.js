@@ -10,6 +10,8 @@ function HomeController($scope, $http) {
     $scope.links = {
         profile: "http://edloidas.github.io",
         work:    "http://sam-solutions.com",
+        resume: "data/curriculum_vitae.pdf",
+        project: "https://github.com/edloidas/dark-ages",
         social:  [
             {name:  "GitHub",
              class: "github",
@@ -27,10 +29,21 @@ function HomeController($scope, $http) {
     };
 
     $scope.profile = {
+        nickname:  "edloidas",
+        name:      "Nikita",
+        surname:   "Tolkachev",
         hello:     "Hello. I'm Nikita",
         avatar:    "img/fallout_like_me.png",
         quote :    "\"...\"",
-        quoteRef : ""
+        quoteRef:  "",
+        work :     "SaM Solutions",
+        location:  "Minsk, Belarus",
+        interests: ["JavaScript", "AI", "Haskell", "WebGL", "3Dgraphics"]
+    };
+
+    $scope.project = {
+        name:         "Dark Ages",
+        description : "It was conceived as a role-playing game in a fantasy/steampunk setting with a mixed 2D/3D graphics and world generation."
     };
 
     $http.get('data/quotes.json').success(function(data) {

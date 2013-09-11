@@ -69,36 +69,42 @@ html {
     height: 100%;
 }
 
+body {
+    background: @color-dark;
+    color: @color-white;
+}
+
 .quote {
-    z-index: 2;
+    z-index: 3;
     position: fixed;
     width: 100%;
     padding: 5px 0;
     top: 0;
     left: 0;
+    background: @color-dark;
     text-align: center;
     font-size: 1.0em;
-    font-family: 'Archive';
+    font-family: "Archive", Tahoma, Geneva, sans-serif;
     color: @color-gray6;
     border: 1px solid @color-border;
 }
 
 .logo {
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     width: 100%;
     height: 100px;
-    margin-top: -50px;
+    margin: -50px 0 20px;
     top: 50%;
     background: @color-dark;
-    font-family: 'Archive';
+    font-family: "Archive", Tahoma, Geneva, sans-serif;
     text-align: center;
     color: @color-white;
     cursor: default;
 
     h1 {
         font-size: 3.5em;
-        font-family: 'Archive';
+        font-family: "Archive", monospace;
         margin: 0 0 2px;
     }
     a {
@@ -145,12 +151,19 @@ html {
     }
 }
 
-body {
-    background: @color-dark;
-    color: @color-white;
+.projects.hidden {
+    display: none;
 }
 
-
+.projects {
+    font-family: "SourceSansPro", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    h1, h2, h3 {
+        font-family: "Archive", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .glyphicon:after {
+        content: "\00a0";
+    }
+}
 /*
 -------------------------------------------------------------------------------
 CLEARFIX
