@@ -22,9 +22,9 @@ function HomeController( $scope, $http ) {
             {name:  "VKontakte",
              class: "vkontakte",
              url:   "https://vk.com/edloidas"},
-            {name:  "Google+",
-             class: "googleplus",
-             url:   "https://plus.google.com/100081532988366318441"},
+            {name:  "Steam",
+             class: "steam",
+             url:   "http://steamcommunity.com/id/edloidas"},
         ]
     };
 
