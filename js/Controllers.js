@@ -6,7 +6,7 @@
  * @link edloidas@gmail.com
  */
 
-function HomeController($scope, $http) {
+function HomeController( $scope, $http ) {
     $scope.links = {
         profile: "http://edloidas.github.io",
         work:    "http://sam-solutions.com",
@@ -42,16 +42,16 @@ function HomeController($scope, $http) {
     };
 
     $scope.project = {
-        name:         "Dark Ages",
-        description : "It was conceived as a role-playing game in a fantasy/steampunk setting with a mixed 2D/3D graphics and world generation."
+        name:         "Dawn of Aegis",
+        description : "It was conceived as RPG/Simulator hybrid in space setting with a mixed 2D/3D graphics ( HTML/WebGL to be specific )."
     };
 
-    $http.get('data/quotes.json').success(function(data) {
-        var i = Math.floor(Math.random() * data.length);
+    $http.get( 'data/quotes.json' ).success( function( data ) {
+        var i = Math.floor( Math.random() * data.length );
 
-        if(typeof(Storage) !== "undefined") {
-            while (data.length > 1 && i === parseInt(localStorage.devpage_quote)) {
-                i = Math.floor(Math.random() * data.length);
+        if ( typeof( Storage ) !== "undefined" ) {
+            while ( data.length > 1 && i === parseInt( localStorage.devpage_quote ) ) {
+                i = Math.floor( Math.random() * data.length );
             }
             localStorage.devpage_quote = i;
         }
