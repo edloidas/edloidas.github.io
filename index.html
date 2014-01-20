@@ -47,14 +47,14 @@
                     <h3>About Me</h3>
                     <p>Hello, I'm {{profile.name}} {{profile.surname}}. Also known as <a href="{{links.profile}}">{{profile.nickname}}</a>.
                         <br>I am a <b>Java</b> developer at <a href="{{links.work}}">{{profile.work}}</a> {{profile.location}}. I have a big interest in <b ng-repeat="interest in profile.interests">{{interest}}<span ng-show="!$last">, </span></b>. You can also see my full info, by accesing a PDF file below.</p>
-                    <p><a class="btn btn-primary" href="{{links.resume}}"><span class="glyphicon glyphicon-download"></span>Download PDF</a></p>
+                    <p><a class="btn btn-primary" href="{{links.resume}}"><span class="glyphicon glyphicon-download"></span> Download PDF</a></p>
                 </div>
                 <div class="col-lg-4">
                     <h3>{{project.name}}</h3>
                     <p>Here is the project I currently work on. I try to give it my spare time when it's possible.
                         <br>{{project.description}}
                         <br>You can visit project's page on GitHub below.</p>
-                    <p><a class="btn btn-primary" href="{{links.project}}"><span class="glyphicon glyphicon-folder-open"></span>View details</a></p>
+                    <p><a class="btn btn-primary" href="{{links.project}}"><span class="glyphicon glyphicon-eye-open"></span> View details</a></p>
                 </div>
             </div>
         </div>
