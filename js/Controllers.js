@@ -11,7 +11,7 @@ function HomeController( $scope, $http ) {
         profile: "http://edloidas.github.io",
         work:    "http://sam-solutions.com",
         resume: "data/curriculum_vitae.pdf",
-        project: "https://github.com/edloidas/dark-ages",
+        project: "https://github.com/edloidas/dawn-of-aegis",
         social:  [
             {name:  "GitHub",
              class: "github",
