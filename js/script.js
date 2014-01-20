@@ -5,19 +5,35 @@
  * @author edloidas
  * @link edloidas@gmail.com
  */
+function showInfo() {
+    $( '.quote' ).css( 'position', 'static' );
+    $( '.logo' ).css( 'position', 'static' );
+    $( '.logo' ).css( 'margin-top', '20px' );
+    $( '.linewrap' ).css( 'max-width', '100%' );
+    $( '.projects' ).removeClass( 'hidden' );
+}
 
-$('.devpage').click(function () {
-    if ($('.projects').hasClass('hidden')) {
-        $('.quote').css('position', 'static');
-        $('.logo').css('position', 'static');
-        $('.logo').css('margin-top', '20px');
-        $('.linewrap').css('max-width', '100%');
-        $('.projects').removeClass('hidden');
+function hideInfo() {
+    $( '.quote' ).css( 'position', 'fixed' );
+    $( '.logo' ).css( 'position', 'fixed' );
+    $( '.logo' ).css( 'margin-top', '-50px' );
+    $( '.linewrap' ).css( 'max-width', '400px' );
+    $( '.projects' ).addClass( 'hidden' );
+}
+
+function toggleInfo() {
+    if ( $( '.projects' ).hasClass( 'hidden' ) ) {
+        showInfo();
     } else {
-        $('.quote').css('position', 'fixed');
-        $('.logo').css('position', 'fixed');
-        $('.logo').css('margin-top', '-50px');
-        $('.linewrap').css('max-width', '400px');
-        $('.projects').addClass('hidden');
+        hideInfo();
     }
-});
+}
+
+$( '.devpage' ).click( toggleInfo );
+
+/*
+After page load
+*/
+if ( window.location.hash === '#devpage' ) {
+    toggleInfo();
+}
