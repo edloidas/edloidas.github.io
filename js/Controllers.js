@@ -10,7 +10,7 @@ function HomeController( $scope, $http ) {
     $scope.links = {
         profile: "http://edloidas.github.io",
         work:    "http://sam-solutions.com",
-        resume: "data/curriculum_vitae.pdf",
+        resume:  "https://dl.dropboxusercontent.com/u/40688668/CV.pdf",
         project: "https://github.com/edloidas/dawn-of-aegis",
         social:  [
             {name:  "GitHub",
