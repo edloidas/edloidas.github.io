@@ -9,7 +9,7 @@
 function HomeController( $scope, $http ) {
     $scope.links = {
         profile: "http://edloidas.github.io",
-        work:    "http://sam-solutions.com",
+        work:    "http://www.scnsoft.com",
         resume:  "https://dl.dropboxusercontent.com/u/40688668/CV.pdf",
         project: "https://github.com/edloidas/dawn-of-aegis",
         social:  [
@@ -36,9 +36,10 @@ function HomeController( $scope, $http ) {
         avatar:    "img/fallout_like_me.png",
         quote :    "\"...\"",
         quoteRef:  "",
-        work :     "SaM Solutions",
+        work :     "ScienceSoft",
         location:  "Minsk, Belarus",
-        interests: ["JavaScript", "AI", "Haskell", "WebGL", "3Dgraphics"]
+        interests: ["JavaScript", "AI", "WebGL", "3Dgraphics"],
+        language:  "Java / JavaScript"
     };
 
     $scope.project = {
