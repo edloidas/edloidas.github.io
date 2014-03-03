@@ -92,6 +92,10 @@
         "ref":   "Gamer Poop : Oblivion"
     },
     {
+        "quote": "Intriguing, but highly disturbing.",
+        "ref":   "Gamer Poop : Skyrim"
+    },
+    {
         "quote": "1 frag left",
         "ref":   "Quake"
     },
@@ -174,5 +178,33 @@
     {
         "quote": "Fly, you fools!",
         "ref":   "The Lord of the Rings"
+    },
+    {
+        "quote": "Carpe Diem",
+        "ref":   "\"Seize the day\" - Latin quote"
+    },
+    {
+        "quote": "Gondor has no King. Gondor needs no King.",
+        "ref":   "The Lord of the Rings: The Fellowship of the Ring"
+    },
+    {
+        "quote": "Oglaf",
+        "ref":   "Best web comics ever."
+    },
+    {
+        "quote": "Hail to the King, baby.",
+        "ref":   "Army of Darkness"
+    },
+    {
+        "quote": "Mathematical!",
+        "ref":   "Adventure Time"
+    },
+    {
+        "quote": "See you space cowboy...",
+        "ref":   "Cowboy Bebop"
+    },
+    {
+        "quote": "Be Forever Yorozuya",
+        "ref":   "Gintama"
     }
 ]
