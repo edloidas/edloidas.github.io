@@ -1,5 +1,9 @@
 [
     {
+        "quote": "Поехали!",
+        "ref":   "Юрий Гагарин"
+    },
+    {
         "quote": "I never asked for this.",
         "ref":   "Deus Ex Human Revolution"
     },
@@ -20,7 +24,7 @@
         "ref":   "Deus Ex"
     },
     {
-        "quote": "He’s Dead Jim.",
+        "quote": "He's Dead, Jim.",
         "ref":   "Star Trek"
     },
     {
