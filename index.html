@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="edloidas">
     <head>
         <meta charset="utf-8">
 
@@ -37,7 +37,7 @@
                 <a id="devpage"  class="viewmode" ng-click="toggleView()" href="#devpage" >devpage</a>
                 <a id="homepage" class="viewmode" ng-click="toggleView()" href="#">home</a>
             </div>
-            <ul class="list-inline">
+            <ul class="links list-inline">
                 <li ng-repeat="link in links.social">
                     <a class="{{link.class}}" href="{{link.url}}">{{link.name}}</a>
                 </li>

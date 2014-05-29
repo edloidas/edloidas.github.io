@@ -6,7 +6,10 @@
  * @link edloidas@gmail.com
  */
 
-function HomeController( $scope, $http ) {
+var edloidas = angular.module( 'edloidas', [] );
+
+edloidas.controller( 'HomeController', function ( $scope, $http ) {
+
     $scope.links = {
         profile: "http://edloidas.github.io",
         work:    "http://www.scnsoft.com",
@@ -43,7 +46,6 @@ function HomeController( $scope, $http ) {
     };
 
     $scope.viewMode = (window.location.hash === "#devpage") ? "dev" : "";
-    console.log($scope.viewMode);
 
     $scope.project = {
         name:         "Dawn of Aegis",
@@ -67,4 +69,4 @@ function HomeController( $scope, $http ) {
         $scope.profile.quote = "\"" + data[i].quote + "\"";
         $scope.profile.quoteRef = data[i].ref;
     });
-}
+});
