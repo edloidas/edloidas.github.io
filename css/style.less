@@ -21,7 +21,7 @@ LESS
 @color-orange: #FF8C00; // orange
 @color-yellow: #F0E68C; // khaki
 
-@color-logo-devpage:    #ADFF2F; // greenYellow
+@color-logo-viewmode:    #ADFF2F; // greenYellow
 @color-logo-github:     #F5F5F5; // whiteSmoke
 @color-logo-twitter:    #5EC8E8; // ?
 @color-logo-vkontakte:  #4E729A; // ?
@@ -126,12 +126,12 @@ body {
         &.steam:hover, &.steam:focus {
             color: @color-logo-steam;
         }
-        &.devpage {
+        &.viewmode {
             font-size: 1.0em;
             padding: 0 12px;
         }
-        &.devpage:hover, &.devpage:focus {
-            color: @color-logo-devpage;
+        &.viewmode:hover, &.viewmode:focus {
+            color: @color-logo-viewmode;
         }
 
     }
@@ -152,7 +152,7 @@ body {
     }
 }
 
-.projects.hidden {
+.projects {
     display: none;
 }
 
@@ -161,6 +161,32 @@ body {
     h1, h2, h3 {
         font-family: "Archive", 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
+}
+
+#homepage {
+    display: none;
+}
+
+.dev {
+    .quote, .logo {
+        position: static;
+    }
+    .logo {
+        margin-top: 20px;
+    }
+    .linewrap {
+        max-width: 100%;
+    }
+    .projects {
+        display: block;
+    }
+    #homepage {
+        display: inline-block;
+    }
+    #devpage {
+        display: none;
+    }
+
 }
 /*
 -------------------------------------------------------------------------------

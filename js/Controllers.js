@@ -42,10 +42,17 @@ function HomeController( $scope, $http ) {
         language:  "Java / JavaScript"
     };
 
+    $scope.viewMode = (window.location.hash === "#devpage") ? "dev" : "";
+    console.log($scope.viewMode);
+
     $scope.project = {
         name:         "Dawn of Aegis",
         description : "It was conceived as RPG/Simulator hybrid in space setting with a mixed 2D/3D graphics ( HTML/WebGL to be specific )."
     };
+
+    $scope.toggleView = function () {
+        $scope.viewMode = $scope.viewMode ? "" : "dev";
+    }
 
     $http.get( 'data/quotes.json' ).success( function( data ) {
         var i = Math.floor( Math.random() * data.length );
