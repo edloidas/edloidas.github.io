@@ -11,31 +11,26 @@
         <meta name="author" content="edloidas@gmail.com">
 
         <!-- Styles -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-
         <link rel="stylesheet" type="text/css" href="css/style.css">
 
         <!-- Libraries -->
-        <script src="lib/jquery.min.js"></script>
-        <script src="lib/underscore.min.js"></script>
-        <script src="lib/bootstrap.min.js"></script>
-
         <script src="lib/angular.min.js"></script>
         <script src="js/Controllers.js"></script>
     </head>
 
     <body ng-controller="HomeController" class="{{viewMode}}">
 
-        <div class="quote">
-            <span title="{{profile.quoteRef}}">{{profile.quote}}</span>
-        </div>
+        <div id="bg"></div>
 
-        <div class="logo">
+        <div id="logo">
             <h1>{{profile.hello}}</h1>
             <div class="linewrap">
-                <a id="devpage"  class="viewmode" ng-click="toggleView()" href="#devpage" >devpage</a>
-                <a id="homepage" class="viewmode" ng-click="toggleView()" href="#">home</a>
+                <div class="limiter">
+                    <div class="line">
+                        <a id="dev"  class="viewmode" ng-click="toggleView()" href="#dev" >devpage</a>
+                        <a id="home" class="viewmode" ng-click="toggleView()" href="#">home</a>
+                    </div>
+                </div>
             </div>
             <ul class="links list-inline">
                 <li ng-repeat="link in links.social">
@@ -44,22 +39,22 @@
             </ul>
         </div>
 
-        <div class="projects container">
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <h3>About Me</h3>
-                    <p>Hello, I'm {{profile.name}} {{profile.surname}}. Also known as <a href="{{links.profile}}">{{profile.nickname}}</a>.
-                        <br>I am a <b>{{profile.language}}</b> developer at <a href="{{links.work}}">{{profile.work}}</a> {{profile.location}}. I have a big interest in <b ng-repeat="interest in profile.interests">{{interest}}<span ng-show="!$last">, </span></b>. You can also see my full info, by accesing a PDF file below.</p>
-                    <p><a class="btn btn-primary" href="{{links.resume}}"><span class="glyphicon glyphicon-download"></span> Download PDF</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h3>{{project.name}}</h3>
-                    <p>Here is the project I currently work on. I try to give it my spare time when it's possible.
-                        <br>{{project.description}}
-                        <br>You can visit project's page on GitHub below.</p>
-                    <p><a class="btn btn-primary" href="{{links.project}}"><span class="glyphicon glyphicon-eye-open"></span> View details</a></p>
-                </div>
-            </div>
+        <div id="projects">
+            <article>
+                <h3>About Me</h3>
+                <p>Hello, I'm {{profile.name}} {{profile.surname}}. Also known as <a href="{{links.profile}}">{{profile.nickname}}</a>.
+                    <br>I am a <b>{{profile.language}}</b> developer at <a href="{{links.work}}">{{profile.work}}</a> {{profile.location}}. I have a big interest in <b ng-repeat="interest in profile.interests">{{interest}}<span ng-show="!$last">, </span></b>. You can also see my full info, by accesing a PDF file below.</p>
+                <p><a class="btn" href="{{links.resume}}">Download PDF</a></p>
+            </article>
+            <article>
+                <h3>{{project.name}}</h3>
+                <p>Here is the project I currently work on. I try to give it my spare time when it's possible.
+                    <br>{{project.description}}
+                    <br>You can visit project's page on GitHub below.</p>
+                <p><a class="btn" href="{{links.project}}">View details</a></p>
+            </article>
         </div>
+
+        <div id="quote"><span title="{{profile.quoteRef}}">{{profile.quote}}</span></div>
     </body>
 </html>

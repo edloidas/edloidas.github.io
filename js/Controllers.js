@@ -45,11 +45,11 @@ edloidas.controller( 'HomeController', function ( $scope, $http ) {
         language:  "Java / JavaScript"
     };
 
-    $scope.viewMode = (window.location.hash === "#devpage") ? "dev" : "";
+    $scope.viewMode = (window.location.hash === "#dev") ? "dev" : "";
 
     $scope.project = {
         name:         "Dawn of Aegis",
-        description : "It was conceived as RPG/Simulator hybrid in space setting with a mixed 2D/3D graphics ( HTML/WebGL to be specific )."
+        description : "It was conceived as RPG in space setting with a mixed 2D/3D graphics ( HTML as UI and WebGL to be specific )."
     };
 
     $scope.toggleView = function () {

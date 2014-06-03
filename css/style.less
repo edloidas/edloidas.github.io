@@ -6,7 +6,7 @@
  * @link edloidas@gmail.com
  */
 
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Droid+Serif|Oswald|Inconsolata);
+@import url( http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Droid+Serif|Oswald|Inconsolata );
 
 /*
 -------------------------------------------------------------------------------
@@ -16,6 +16,8 @@ LESS
 @color-dark:   #333;
 @color-gray6:  #666;
 @color-gray9:  #999;
+
+// Template colors
 @color-white:  #F5F5F5; // whiteSmoke
 @color-blue:   #87CEEB; // skyBlue
 @color-red:    #FF1493; // deepPink
@@ -33,6 +35,12 @@ LESS
 @color-border:      rgba(255, 255, 255, 0.1);
 @color-logo-shadow: #000;
 @color-text-shadow: #444;
+@color-links:       #708090; // slateGrey
+@color-bg-hue: 210;
+
+@font-size: 14px;
+@font-plus:  3px;
+// actual row height is ~+3px for each 1em
 
 .rounded-corners (@radius: 5px) {
     -webkit-border-radius: @radius;
@@ -47,75 +55,65 @@ LESS
     -webkit-transition: @time;
 }
 
-/*
--------------------------------------------------------------------------------
-FONTS
--------------------------------------------------------------------------------
-*/
-// http://fontfabric.com/archive-free-font/
-@font-face {
-    font-family: "Archive";
-    src: url(../fonts/Archive.otf) format("truetype");
+.background-gradient(@h: 210) {
+    background: hsl( @h, 30%, 0% ) radial-gradient( hsl( @h, 30%, 20% ), hsl( @h, 30%, 0% ));
+}
+
+.background-gradient2(@h: 210) {
+    background: hsl( @h, 30%, 0% ) radial-gradient( hsl( @h, 30%, 20% ), hsl( @h, 30%, 0% ), hsl( @h, 30%, 0% ));
 }
 
 /*
--------------------------------------------------------------------------------
-CSS
--------------------------------------------------------------------------------
+---------------------------------------
+DEFAULT
+---------------------------------------
 */
-html {
+html, body {
+    position: absolute;
     height: 100%;
+    width: 100%;
 }
 
 body {
-    background: @color-dark;
-    color: @color-white;
+    margin: 0;
+    font-size: @font-size;
+    overflow: hidden;
 }
 
-.quote {
-    z-index: 3;
-    position: fixed;
+#bg {
+    position: absolute;
     width: 100%;
-    padding: 5px 0;
-    top: 0;
-    left: 0;
-    background: @color-dark;
-    text-align: center;
-    font-size: 1.0em;
-    font-family: "Oswald", Impact, Charcoal, sans-serif;
-    color: @color-gray6;
-    border: 1px solid @color-border;
+    height: 100%;
+    .background-gradient(@color-bg-hue);
+    z-index: -1;
 }
 
-.logo {
-    z-index: 2;
+#logo {
     position: fixed;
     width: 100%;
-    height: 100px;
-    margin: -50px 0 20px;
     top: 50%;
-    background: @color-dark;
+    margin: -(10.5 * @font-size + 6 * @font-plus) 0 0;
     text-align: center;
     text-transform: uppercase;
     color: @color-white;
     cursor: default;
 
-    h1 {
-        margin: 0 0 20px;
-        font: bold 3.5em Verdana, Geneva, sans-serif;
-
-        text-shadow: @color-white - #333 0 0 1px,
-                     @color-white 0 -1px 2px,
-                     @color-white 0 -2px 2px,
-                     @color-white 0 -3px 3px,
-                     @color-logo-shadow 0 15px 20px;
+    h1 { // height: 6 * @font-size + 4 * 3px
+        margin: 0.25em 0;
+        font: bold 4em Verdana, Geneva, sans-serif;
+        text-shadow: 0  0    1px @color-white - #333,
+                     0 -1px  2px @color-white,
+                     0 -3px  2px @color-white,
+                     0 15px 20px @color-logo-shadow;
     }
+
     a {
         text-decoration: none;
-        font: bold 1.2em "Oswald", Impact, Charcoal, sans-serif;
-        color: #222;
-        text-shadow: 0px 2px 3px @color-text-shadow;
-        .transition;
+        font: bold 1em "Oswald", Impact, Charcoal, sans-serif;
+        color: hsl( 210, 30%, 10% );
+        // text-shadow: 0px 2px 3px @color-text-shadow;
+        text-shadow: 0px 2px 3px hsl( @color-bg-hue, 30%, 25% );
+        .transition();
         &.github:hover, &.github:focus {
             color: @color-logo-github;
         }
@@ -135,100 +133,142 @@ body {
         &.viewmode:hover, &.viewmode:focus {
             color: @color-logo-viewmode;
         }
-
-    }
-    .linewrap {
-        max-width: 480px;
-        margin: 0px auto 25px;
-        height: 0.75em;
-        text-align:center;
-        border-bottom: 1px solid #222;
-        -webkit-box-shadow: 0px 1px 0px @color-text-shadow;
-        -moz-box-shadow:    0px 1px 0px @color-text-shadow;
-        box-shadow:         0px 1px 0px @color-text-shadow;
-    }
-    .linewrap a {
-        display: inline-block;
-        position: relative;
-        background: @color-dark;
     }
 }
 
-.projects {
+#home, #dev {
+    min-width: 4em;
+}
+
+#home {
     display: none;
-    .btn {
-        font-size: inherit;
-    }
 }
 
-.projects {
-    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-    h3 {
-        font-family: "Oswald", Impact, Charcoal, sans-serif;
+#quote {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 5px 0;
+    color: hsl( 210, 30%, 25% );
+    font: bold 1em "Oswald", Impact, Charcoal, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0px 2px 3px hsl( @color-bg-hue, 30%, 5% ), 0px 0px 10px hsl( @color-bg-hue, 10%, 35% );
+    cursor: default;
+    opacity: 0.8;
+}
+
+#projects {
+    display: none;
+    width: 50em;
+    max-width: 700px;
+    margin: auto;
+    color: @color-white;
+    font-size: 1.2em;
+
+    article:not(:last-child) {
+        padding-bottom: 10px;
+    }
+    h3 { // height: 6 * @font-size + 4 * 3px
+        font-family: "Oswald",Impact,Charcoal,sans-serif;
         text-transform: uppercase;
-        text-shadow: @color-white - #333 0 0 1px,
-                     @color-white 0 -1px 1px,
-                     @color-logo-shadow 0 5px 15px;
+        text-shadow: #c2c2c2 0 0 1px, #f5f5f5 0 -1px 1px,#000 0 5px 15px;
+    }
+    p, a {
+        font-family: "Source Sans Pro",Impact,Charcoal,sans-serif;
+    }
+    a {
+        color: @color-links;
     }
 }
 
-#homepage {
-    display: none;
+.linewrap {
+    line-height: 0.5;
+    text-align: center;
+    overflow: hidden;
+    margin: auto;
+
+    .limiter {
+        overflow: hidden;
+        margin: 0 10px;
+        padding: 0.5em 0;
+
+        .line {
+            display: inline-block;
+            position: relative;
+            &:before, &:after {
+                height: 0px;
+                content: "";
+                position: absolute;
+                border-top: 1px solid hsl( @color-bg-hue, 30%, 10% );
+                border-bottom: 1px solid hsl( @color-bg-hue, 30%, 25% );
+                top: 0;
+                width: 10em;
+                margin: 0.7em 5px 0;
+            }
+            &:before {
+                right: 100%;
+            }
+            &:after {
+                left: 100%;
+            }
+        }
+    }
 }
 
+
+
+ul.list-inline {
+    list-style: none;
+    margin: 0.5em 0 1em;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        padding-right: 5px;
+        padding-left: 5px;
+        &:first-child {
+            padding-left: 0;
+        }
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+}
+
+
+
+/*
+---------------------------------------
+DEV VIEW
+---------------------------------------
+*/
 .dev {
-    .quote, .logo {
-        position: static;
-    }
-    .logo {
-        margin: 20px 0 40px;
-    }
-    .linewrap {
-        max-width: 100%;
-    }
-    .projects {
+    #home, #projects {
         display: block;
     }
-    #homepage {
-        display: inline-block;
-    }
-    #devpage, .links {
+    #dev, #quote, .links {
         display: none;
     }
-
-}
-
-/*
--------------------------------------------------------------------------------
-MEDIA
--------------------------------------------------------------------------------
-*/
-@media all and (min-width: 960px) {
-    body {
-        font-size: 1.5em;
+    .linewrap {
+        .limiter {
+            margin: 0;
+        }
+        .line {
+            &:before, &:after {
+                width: 100em;
+            }
+        }
     }
-
-}
-
-@media all and (min-width: 1200px) {
-    body {
-        font-size: 2em;
+    #bg {
+        width: 200%;
+        height: 200%;
+        left: -50%;
+        top: -100%;
+        .background-gradient2(@color-bg-hue);
     }
-
-}
-
-/*
--------------------------------------------------------------------------------
-CLEARFIX
--------------------------------------------------------------------------------
-*/
-.cf {
-    *zoom: 1;
-    &:before, &:after {
-        content: " ";
-        display: table;
-    }
-    &:after {
-        clear: both;
+    #logo {
+        position: static;
+        margin: 0;
     }
 }
