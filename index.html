@@ -7,52 +7,15 @@
 
         <link rel="shortcut icon" href="img/favicon.png" type="image/png">
 
-        <meta name="description" content="My personal page.">
+        <meta name="description" content="Mikita Taukachou. The goodfellow.">
         <meta name="author" content="edloidas@gmail.com">
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="css/style.css">
 
         <!-- Libraries -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-        <script src="js/Controllers.js"></script>
     </head>
 
-    <body ng-controller="HomeController" class="{{viewMode}}">
-
-        <div id="bg"></div>
-
-        <div id="logo">
-            <h1>{{profile.hello}}</h1>
-            <div class="linewrap">
-                <div class="limiter">
-                    <div class="line">
-                        <a id="dev"  class="viewmode" ng-click="toggleView()" href="#dev" >devpage</a>
-                        <a id="home" class="viewmode" ng-click="toggleView()" href="#">home</a>
-                    </div>
-                </div>
-            </div>
-            <ul class="links list-inline">
-                <li ng-repeat="link in links.social">
-                    <a class="{{link.class}}" href="{{link.url}}">{{link.name}}</a>
-                </li>
-            </ul>
-        </div>
-
-        <div id="projects">
-            <article>
-                <h2>About me</h2>
-                <p>Hello, I'm {{profile.name}} {{profile.surname}}. Also known as <b>{{profile.nickname}}</b>.
-                    <br><br>I am a <b>{{profile.language}}</b> developer at <a href="{{links.work}}">{{profile.work}}</a> {{profile.location}}. I have a big interest in <b ng-repeat="interest in profile.interests">{{interest}}<span ng-show="!$last">, </span></b>. You can also <a class="btn" href="{{links.resume}}">download CV as PDF</a> to see my full info.</p>
-            </article>
-            <article>
-                <h2>{{project.name}}</h2>
-                <p>Here is the project I currently work on. I try to give it my spare time when it's possible.
-                    <br><br>{{project.description}}
-                    <br><br>You can visit <a class="btn" href="{{links.project}}">project's page</a> on GitHub below.</p>
-            </article>
-        </div>
-
-        <div id="quote"><span title="{{profile.quoteRef}}">{{profile.quote}}</span></div>
+    <body>
     </body>
 </html>
