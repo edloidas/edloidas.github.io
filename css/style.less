@@ -1,3 +1,4 @@
+// out: style.css, sourcemap: false, compress: true
 /**
  * EDLOIDAS DEVPAGE
  * CSS STYLE
@@ -6,7 +7,8 @@
  * @link edloidas@gmail.com
  */
 
-@import url( http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Droid+Serif|Oswald|Inconsolata );
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Droid+Serif|Oswald|Inconsolata );
+
 
 /*
 -------------------------------------------------------------------------------
@@ -24,6 +26,7 @@ LESS
 @color-green:  #ADFF2F; // greenYellow
 @color-orange: #FF8C00; // orange
 @color-yellow: #F0E68C; // khaki
+@color-ash:    #EEE; // ?
 
 @color-logo-viewmode:   #ADFF2F; // greenYellow
 @color-logo-github:     #F5F5F5; // whiteSmoke
@@ -38,9 +41,12 @@ LESS
 @color-links:       #708090; // slateGrey
 @color-bg-hue: 210;
 
-@font-size: 14px;
-@font-plus:  3px;
+@font-size: 16px;
+@font-plus: 3px;
 // actual row height is ~+3px for each 1em
+
+@font-family-main: Oswald, Impact, Charcoal, sans-serif;
+@font-family-text: "Source Sans Pro", Inconsolata, sans-serif;
 
 .rounded-corners (@radius: 5px) {
     -webkit-border-radius: @radius;
@@ -92,15 +98,15 @@ body {
     position: fixed;
     width: 100%;
     top: 50%;
-    margin: -(10.5 * @font-size + 6 * @font-plus) 0 0;
+    margin: -( 10 * @font-size ) 0 0;
     text-align: center;
-    text-transform: uppercase;
     color: @color-white;
     cursor: default;
 
     h1 { // height: 6 * @font-size + 4 * 3px
         margin: 0.25em 0;
         font: bold 4em Verdana, Geneva, sans-serif;
+        text-transform: uppercase;
         text-shadow: 0  0    1px @color-white - #333,
                      0 -1px  2px @color-white,
                      0 -3px  2px @color-white,
@@ -109,8 +115,8 @@ body {
 
     a {
         text-decoration: none;
-        font: bold 1em "Oswald", Impact, Charcoal, sans-serif;
-        color: hsl( 210, 30%, 10% );
+        font: bold 1.4em @font-family-main;
+        color: hsl( 220, 20%, 10% );
         // text-shadow: 0px 2px 3px @color-text-shadow;
         text-shadow: 0px 2px 3px hsl( @color-bg-hue, 30%, 25% );
         .transition();
@@ -127,7 +133,6 @@ body {
             color: @color-logo-steam;
         }
         &.viewmode {
-            font-size: 1.0em;
             padding: 0 12px;
         }
         &.viewmode:hover, &.viewmode:focus {
@@ -148,14 +153,13 @@ body {
     position: fixed;
     width: 100%;
     bottom: 0;
-    padding: 5px 0;
+    padding: 10px 0;
     color: hsl( 210, 30%, 25% );
-    font: bold 1em "Oswald", Impact, Charcoal, sans-serif;
-    text-transform: uppercase;
+    font: bold 1.5em @font-family-text;
     text-align: center;
     text-shadow: 0px 2px 3px hsl( @color-bg-hue, 30%, 5% ), 0px 0px 10px hsl( @color-bg-hue, 10%, 35% );
     cursor: default;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 #projects {
@@ -163,19 +167,18 @@ body {
     width: 50em;
     max-width: 700px;
     margin: auto;
-    color: @color-white;
-    font-size: 1.2em;
+    color: @color-ash;
+    font-size: 1.25em;
 
     article:not(:last-child) {
-        padding-bottom: 10px;
+        padding-bottom: 1em;
     }
-    h3 { // height: 6 * @font-size + 4 * 3px
-        font-family: "Oswald",Impact,Charcoal,sans-serif;
-        text-transform: uppercase;
+    h2 { // height: 6 * @font-size + 4 * 3px
+        font-family: @font-family-text;
         text-shadow: #c2c2c2 0 0 1px, #f5f5f5 0 -1px 1px,#000 0 5px 15px;
     }
     p, a {
-        font-family: "Source Sans Pro",Impact,Charcoal,sans-serif;
+        font-family: @font-family-text;
     }
     a {
         color: @color-links;
@@ -191,7 +194,7 @@ body {
     .limiter {
         overflow: hidden;
         margin: 0 10px;
-        padding: 0.5em 0;
+        padding: 1em 0;
 
         .line {
             display: inline-block;
@@ -203,8 +206,8 @@ body {
                 border-top: 1px solid hsl( @color-bg-hue, 30%, 10% );
                 border-bottom: 1px solid hsl( @color-bg-hue, 30%, 25% );
                 top: 0;
-                width: 10em;
-                margin: 0.7em 5px 0;
+                width: 13em;
+                margin: 1em 5px 0;
             }
             &:before {
                 right: 100%;
@@ -225,8 +228,8 @@ ul.list-inline {
 
     li {
         display: inline-block;
-        padding-right: 5px;
-        padding-left: 5px;
+        padding-right: 1em;
+        padding-left: 1em;
         &:first-child {
             padding-left: 0;
         }

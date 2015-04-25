@@ -35,7 +35,7 @@ edloidas.controller( 'HomeController', function ( $scope, $http ) {
         nickname:  "edloidas",
         name:      "Nikita",
         surname:   "Tolkachev",
-        hello:     "Hello. I'm Nikita",
+        hello:     "Hello. I'm Mikita",
         avatar:    "img/fallout_like_me.png",
         quote :    "\"...\"",
         quoteRef:  "",
