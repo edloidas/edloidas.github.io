@@ -15,13 +15,22 @@
 @font-main: @sspro, Arial, sans-serif;
 
 @color-quote: DimGray; // #696969
+@color-more-underline: Gray; // #808080
+
+@color-link: SteelBlue;
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,300italic,400italic,700italic|Droid+Serif|Oswald|Inconsolata );
 
-html, body {
+html, body, #background {
   width: 100%;
   height: 100%;
   margin: 0;
+  overflow: hidden;
+}
+
+#background {
+  position: absolute;
+  opacity: 0.15;
 }
 
 .main {
@@ -37,12 +46,19 @@ html, body {
   text-align: center;
 
   .name {
-    margin: 10px;
+    margin: 10px 0 20px;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .quote {
-
+    .speech {
+      &:before {
+        content: "—";
+        position: absolute;
+        margin-left: -1em;
+      }
+    }
   }
 
   .about, .more {
@@ -52,6 +68,7 @@ html, body {
 
   .more a {
     text-decoration: none;
+    border-bottom: 1px solid @color-more-underline;
   }
 
   .more a, .about {
@@ -60,6 +77,12 @@ html, body {
 
   .links {
     list-style: none;
+    margin: 30px 0 10px;
     padding: 0;
+    line-height: 1.5em;
+
+    a {
+      color: @color-link;
+    }
   }
 }

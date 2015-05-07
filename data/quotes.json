@@ -12,10 +12,6 @@
         "ref":   "Deus Ex Human Revolution"
     },
     {
-        "quote": "My vision is augmented.",
-        "ref":   "Deus Ex"
-    },
-    {
         "quote": "What a shame...",
         "ref":   "Deus Ex"
     },
@@ -48,7 +44,7 @@
         "ref":   "The Matrix"
     },
     {
-        "quote": "I know kung-fu.",
+        "quote": "I know Kung Fu.",
         "ref":   "The Matrix"
     },
     {
@@ -56,15 +52,7 @@
         "ref":   "The Matrix"
     },
     {
-        "quote": "People are always asking me if I know Tyler Durden.",
-        "ref":   "Fight Club"
-    },
-    {
         "quote": "Per Aspera ad Astra.",
-        "ref":   ""
-    },
-    {
-        "quote": "E = mc^2",
         "ref":   ""
     },
     {
@@ -80,24 +68,12 @@
         "ref":   ""
     },
     {
-        "quote": "xkcd",
-        "ref":   ""
-    },
-    {
         "quote": "War. War never changes.",
         "ref":   "Fallout"
     },
     {
         "quote": "Stop right there, criminal scum!",
         "ref":   "The Elder Scrolls"
-    },
-    {
-        "quote": "M’aiq knows much, and tells some.",
-        "ref":   "The Elder Scrolls"
-    },
-    {
-        "quote": "We failed once. We failed twice. We must fail AGAIN!",
-        "ref":   "Gamer Poop : Oblivion"
     },
     {
         "quote": "Intriguing, but highly disturbing.",
@@ -124,10 +100,6 @@
         "ref":   "Half-Life 2"
     },
     {
-        "quote": "Friendship is magic.",
-        "ref":   "MLP"
-    },
-    {
         "quote": "Would you kindly?",
         "ref":   "Bioshock"
     },
@@ -140,20 +112,8 @@
         "ref":   ""
     },
     {
-        "quote": "I’m sorry, Dave. I'm afraid I can't do that.",
-        "ref":   "2001: A Space Odyssey"
-    },
-    {
         "quote": "In the grim darkness of far future there is only war!",
         "ref":   "Warhammer 40000"
-    },
-    {
-        "quote": "Play Dwarf Fortress ☺",
-        "ref":   "Urist McDwarf"
-    },
-    {
-        "quote": "Losing is fun!",
-        "ref":   "Dwarf Fortress"
     },
     {
         "quote": "Pour magma on it.",
@@ -172,16 +132,8 @@
         "ref":   "Monty Python"
     },
     {
-        "quote": "Always look on the bright side of life!",
-        "ref":   "Monty Python"
-    },
-    {
-        "quote": "Use the Force, Luke.",
+        "quote": "May the Force be with you.",
         "ref":   "Star Wars"
-    },
-    {
-        "quote": "They’re taking the hobbits to Isengard!",
-        "ref":   "The Lord of the Rings"
     },
     {
         "quote": "Fly, you fools!",
@@ -196,23 +148,11 @@
         "ref":   "The Lord of the Rings: The Fellowship of the Ring"
     },
     {
-        "quote": "Oglaf",
-        "ref":   "Best web comics ever."
-    },
-    {
         "quote": "Hail to the King, baby.",
         "ref":   "Army of Darkness"
     },
     {
-        "quote": "Mathematical!",
-        "ref":   "Adventure Time"
-    },
-    {
         "quote": "See you space cowboy...",
         "ref":   "Cowboy Bebop"
-    },
-    {
-        "quote": "Be Forever Yorozuya",
-        "ref":   "Gintama"
     }
 ]
