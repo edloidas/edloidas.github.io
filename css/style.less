@@ -7,8 +7,9 @@
  * @link edloidas@gmail.com
  */
 
-@main-width: 480px;
+@main-width:  480px;
 @main-height: 300px;
+@small-width: 320px;
 
 @font-size: 20px;
 @sspro: "Source Sans Pro";
@@ -19,7 +20,13 @@
 
 @color-link: SteelBlue;
 
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,300italic,400italic,700italic|Droid+Serif|Oswald|Inconsolata );
+/*
+ * Source Sans Pro - Landing page
+ * Inconsolata     - Code
+ * Droid Serif     - Articles
+ * Oswald          - Headers
+ */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,400italic|Droid+Serif|Oswald|Inconsolata );
 
 html, body, #background {
   width: 100%;
@@ -30,7 +37,7 @@ html, body, #background {
 
 #background {
   position: absolute;
-  opacity: 0.15;
+  opacity: 0.25;
 }
 
 .main {
@@ -84,5 +91,16 @@ html, body, #background {
     a {
       color: @color-link;
     }
+  }
+}
+
+
+/*
+ * Fixes for the small screens.
+ */
+@media screen and (max-width: 480px) {
+  .main {
+    width: @small-width;
+    margin-left: -@small-width/2;
   }
 }
