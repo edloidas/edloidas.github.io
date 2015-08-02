@@ -13,6 +13,11 @@ function App() {
 
 
   function init() {
+    // Check if the basic URL includes link to the section
+    onHashChange();
+
+    //
+
     self.background = document.getElementById( 'background' );
 
     self.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
@@ -37,6 +42,7 @@ function App() {
     //
 
     window.addEventListener( 'resize', debounce( onWindowResize, 64 ), false );
+    window.addEventListener( 'hashchange', onHashChange, false );
   }
 
   function onWindowResize() {
@@ -44,6 +50,15 @@ function App() {
     self.camera.updateProjectionMatrix();
 
     self.renderer.setSize( window.innerWidth, window.innerHeight );
+  }
+
+  function onHashChange() {
+    var hash   = window.location.hash,
+        regexp = /^#kung-fu$|^#skills$|^#timeline$/;
+
+    if ( hash.length === 0 || hash.search( regexp ) === 0 ) {
+      document.body.className = hash.slice( 1 );
+    }
   }
 
   function animate() {

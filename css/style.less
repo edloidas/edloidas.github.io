@@ -36,13 +36,38 @@ html, body, #background {
   margin: 0;
 }
 
+body {
+  &.kung-fu, &.skills, &.timeline {
+    overflow-y: auto;
+
+    #main {
+      display: none;
+    }
+
+    #kung-fu {
+      display: block;
+    }
+  }
+
+  &.timeline {
+    #skills {
+      display: none;
+    }
+
+    #timeline {
+      display: block;
+    }
+  }
+}
+
 #background {
   position: absolute;
+  z-index: -1;
 
   opacity: 0.25;
 }
 
-.main {
+#main {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -104,6 +129,15 @@ html, body, #background {
       color: @color-link;
     }
   }
+}
+
+#kung-fu, #timeline {
+  display: none;
+}
+
+#kung-fu {
+  max-width: 800px;
+  margin: 40px auto;
 }
 
 
