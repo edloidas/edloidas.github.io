@@ -1,6 +1,8 @@
 function App() {
   if ( !(this instanceof App) ) return new App();
 
+  var self = this;
+
   this.background = null;
 
   this.camera   = null;
@@ -11,26 +13,26 @@ function App() {
 
 
   function init() {
-    this.background = document.getElementById( 'background' );
+    self.background = document.getElementById( 'background' );
 
-    this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-    this.renderer.setPixelRatio( window.devicePixelRatio );
-    this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.renderer.setClearColor( 0xffffff );
-    background.appendChild( this.renderer.domElement );
+    self.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+    self.renderer.setPixelRatio( window.devicePixelRatio );
+    self.renderer.setSize( window.innerWidth, window.innerHeight );
+    self.renderer.setClearColor( 0xffffff );
+    background.appendChild( self.renderer.domElement );
 
     //
 
-    this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    this.camera.position.z = 400;
+    self.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+    self.camera.position.z = 400;
 
-    this.scene = new THREE.Scene();
+    self.scene = new THREE.Scene();
 
     var geometry = new THREE.IcosahedronGeometry( 100, 0 );
     var material = new THREE.MeshBasicMaterial( { color: 0x808080, wireframe: true } );
-    this.mesh = new THREE.Mesh( geometry, material );
+    self.mesh = new THREE.Mesh( geometry, material );
 
-    this.scene.add( this.mesh );
+    self.scene.add( self.mesh );
 
     //
 
@@ -38,19 +40,19 @@ function App() {
   }
 
   function onWindowResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
+    self.camera.aspect = window.innerWidth / window.innerHeight;
+    self.camera.updateProjectionMatrix();
 
-    this.renderer.setSize( window.innerWidth, window.innerHeight );
+    self.renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
   function animate() {
     requestAnimationFrame( animate );
 
-    this.mesh.rotation.x += 0.002;
-    this.mesh.rotation.y += 0.005;
+    self.mesh.rotation.x += 0.002;
+    self.mesh.rotation.y += 0.005;
 
-    this.renderer.render( scene, camera );
+    self.renderer.render( self.scene, self.camera );
   }
 
   this.run = function () {
