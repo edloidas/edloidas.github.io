@@ -54,7 +54,7 @@ function App() {
 
   function onHashChange() {
     var hash   = window.location.hash,
-        regexp = /^#kung-fu$|^#skills$|^#timeline$/;
+        regexp = /^#kung-fu$|^#skills$|^#timeline$|^#$/;
 
     if ( hash.length === 0 || hash.search( regexp ) === 0 ) {
       document.body.className = hash.slice( 1 );

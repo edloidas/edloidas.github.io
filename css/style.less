@@ -7,18 +7,26 @@
  * @link edloidas@gmail.com
  */
 
-@main-width:  480px;
-@main-height: 300px;
-@small-width: 320px;
+@main-width:    480px;
+@main-height:   300px;
+@small-width:   320px;
+@kung-fu-width: 800px;
+
+@nav-size: 48px;
 
 @font-size: 20px;
 @sspro: "Source Sans Pro";
 @font-main: @sspro, Arial, sans-serif;
+@font-header: Oswald, Impact, Arial, sans-serif;
 
 @color-quote: DimGray;       // #696969
 @color-more-underline: Gray; // #808080
 
+@color-nav: #444444;
+
 @color-link: SteelBlue;
+
+@bg-main: White; // #FFFFFF
 
 /*
  * Source Sans Pro - Landing page
@@ -49,7 +57,17 @@ body {
     }
   }
 
+  &.kung-fu, &.skills {
+    #kung-fu nav .skills {
+      border-bottom: 5px solid @color-link;
+    }
+  }
+
   &.timeline {
+    #kung-fu nav .timeline {
+      border-bottom: 5px solid @color-link;
+    }
+
     #skills {
       display: none;
     }
@@ -136,8 +154,62 @@ body {
 }
 
 #kung-fu {
-  max-width: 800px;
+  max-width: @kung-fu-width;
   margin: 40px auto;
+
+  nav {
+    position: fixed;
+    top: 0px;
+
+    display: flex;
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: @kung-fu-width;
+    height: @nav-size + 10px;
+    padding: 10px @nav-size 0 0;
+
+    background: @bg-main;
+
+    flex-flow: row nowrap;
+
+    a {
+      display: inline-block;
+
+      transition: 0.1s;
+    }
+
+    .home {
+      width: @nav-size;
+      height: @nav-size;
+
+      background: url(../img/icons/arrow-left2.svg) center no-repeat;
+      background-size: @nav-size/2;
+    }
+
+    .skills, .timeline {
+      box-sizing: border-box;
+      width: @nav-size;
+      margin: 0 2px;
+
+      text-align: center;
+      text-decoration: none;
+
+      color: @color-nav;
+      border-bottom: 3px solid @color-more-underline;
+
+      font-family: @font-header;
+      font-size: @font-size;
+      font-weight: 400;
+      line-height: @nav-size - 2px;
+
+      flex: 1 0 auto;
+
+      &:hover, &:active {
+        border-bottom-width: 5px;
+      }
+    }
+  }
 }
 
 
