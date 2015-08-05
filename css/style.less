@@ -154,6 +154,8 @@ body {
 }
 
 #kung-fu {
+  position: relative;
+
   max-width: @kung-fu-width;
   margin: @nav-size + 20px auto 20px;
 
@@ -171,6 +173,7 @@ body {
     padding: 10px @nav-size 10px 0;
 
     background: @bg-main;
+    box-shadow: 0 10px 10px @bg-main;
 
     flex-flow: row nowrap;
 
@@ -219,8 +222,8 @@ body {
   padding: 20px 0;
 
   ul {
-    margin: 0 0 0 30px;
-    padding: 5px 0 0 30px;
+    margin: 0 0 0 23px;
+    padding: 5px 48px 0 22px;
 
     list-style: none;
 
@@ -251,6 +254,12 @@ body {
         }
 
         p {
+          &.tldr:before {
+            content: "TL;DR: ";
+
+            font-weight: bold;
+          }
+
           a {
             color: @color-link;
           }
@@ -272,7 +281,7 @@ body {
 
         width: 25px;
         height: 25px;
-        margin: 0 0 0 -44px;
+        margin: 0 0 0 -36px;
 
         content: " ";
 
