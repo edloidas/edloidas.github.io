@@ -18,6 +18,7 @@
 @sspro: "Source Sans Pro";
 @font-main: @sspro, Arial, sans-serif;
 @font-header: Oswald, Impact, Arial, sans-serif;
+@font-text: "Droid Serif", Arial, sans-serif;
 
 @color-quote: DimGray;       // #696969
 @color-more-underline: Gray; // #808080
@@ -237,7 +238,7 @@ body {
 
 
         h3 {
-          margin: -31px 0 0;
+          margin: -35px 0 0;
 
           span {
             color: @color-quote;
@@ -250,10 +251,16 @@ body {
         time {
           color: @color-quote;
 
-          font-size: 0.75em;
+          font-size: 0.8em;
+        }
+
+        h3, time {
+          font-family: @font-header;
         }
 
         p {
+          font-family: @font-text;
+
           &.tldr:before {
             content: "TL;DR: ";
 
