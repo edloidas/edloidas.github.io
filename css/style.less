@@ -155,10 +155,11 @@ body {
 
 #kung-fu {
   max-width: @kung-fu-width;
-  margin: 40px auto;
+  margin: @nav-size + 20px auto 20px;
 
   nav {
     position: fixed;
+    z-index: 1;
     top: 0px;
 
     display: flex;
@@ -166,8 +167,8 @@ body {
     box-sizing: border-box;
     width: 100%;
     max-width: @kung-fu-width;
-    height: @nav-size + 10px;
-    padding: 10px @nav-size 0 0;
+    height: @nav-size + 20px;
+    padding: 10px @nav-size 10px 0;
 
     background: @bg-main;
 
@@ -212,12 +213,83 @@ body {
   }
 }
 
+#timeline {
+  max-width: @kung-fu-width - 200px;
+  margin: 0 auto;
+  padding: 20px 0;
+
+  ul {
+    margin: 0 0 0 30px;
+    padding: 5px 0 0 30px;
+
+    list-style: none;
+
+    border-left: 3px solid @color-nav;
+
+    li {
+      article {
+        padding: 5px 0;
+
+        font-size: @font-size;
+
+
+        h3 {
+          margin: -31px 0 0;
+
+          span {
+            color: @color-quote;
+            &:before {
+              content: "— ";
+            }
+          }
+        }
+
+        time {
+          color: @color-quote;
+
+          font-size: 0.75em;
+        }
+
+        p {
+          a {
+            color: @color-link;
+          }
+        }
+      }
+
+      &:first-child {
+        margin: 10px 0;
+      }
+
+      &:not(:first-child) {
+        margin: 40px 0 0 0;
+      }
+
+      &:before {
+        position: relative;
+
+        display: block;
+
+        width: 25px;
+        height: 25px;
+        margin: 0 0 0 -44px;
+
+        content: " ";
+
+        border-radius: 13px;
+        background: url(../img/icons/radio-unchecked.svg) @bg-main center no-repeat;
+        background-size: 19px;
+      }
+    }
+  }
+}
+
 
 /*
  * Fixes for the small screens.
  */
 @media screen and ( max-width: 480px ) {
-  .main {
+  #main {
     width: @small-width;
     margin-left: -@small-width/2;
   }
