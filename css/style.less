@@ -12,7 +12,8 @@
 @small-width:   320px;
 @kung-fu-width: 800px;
 
-@nav-size: 48px;
+@nav-size:    48px;
+@avatar-size: 160px;
 
 @font-size: 20px;
 @sspro: "Source Sans Pro";
@@ -21,13 +22,15 @@
 @font-text: "Droid Serif", Arial, sans-serif;
 
 @color-quote: DimGray;       // #696969
+@color-subtext: Gray;        // #808080
 @color-more-underline: Gray; // #808080
 
 @color-nav: #444444;
 
 @color-link: SteelBlue;
 
-@bg-main: White; // #FFFFFF
+@bg-main: White;       // #FFFFFF
+@bg-touch: WhiteSmoke; // #F5F5F5
 
 /*
  * Source Sans Pro - Landing page
@@ -47,7 +50,7 @@ html, body, #background {
 
 body {
   &.kung-fu, &.skills, &.timeline {
-    overflow-y: auto;
+    overflow-y: scroll;
 
     #main {
       display: none;
@@ -81,7 +84,7 @@ body {
 
 #background {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
 
   opacity: 0.25;
 }
@@ -99,7 +102,7 @@ body {
 
   font-family: @font-main;
   font-size: @font-size;
-  font-weight: 400;
+  font-weight: normal;
 
   .name {
     margin: 10px 0 20px;
@@ -108,8 +111,8 @@ body {
     text-transform: uppercase;
   }
 
-  .quote {
-    .speech {
+  .speech {
+    .phrase {
       &:before {
         position: absolute;
 
@@ -157,8 +160,11 @@ body {
 #kung-fu {
   position: relative;
 
+  width: 100%;
   max-width: @kung-fu-width;
   margin: @nav-size + 20px auto 20px;
+
+  font-size: @font-size;
 
   nav {
     position: fixed;
@@ -189,7 +195,13 @@ body {
       height: @nav-size;
 
       background: url(../img/icons/arrow-left2.svg) center no-repeat;
+      background-color: @bg-main;
       background-size: @nav-size/2;
+
+      &:active {
+        border-radius: 24px;
+        background-color: @bg-touch;
+      }
     }
 
     .skills, .timeline {
@@ -204,8 +216,6 @@ body {
       border-bottom: 3px solid @color-more-underline;
 
       font-family: @font-header;
-      font-size: @font-size;
-      font-weight: 400;
       line-height: @nav-size - 2px;
 
       flex: 1 0 auto;
@@ -217,9 +227,63 @@ body {
   }
 }
 
-#timeline {
-  max-width: @kung-fu-width - 200px;
+#skills, #timeline {
   margin: 0 auto;
+
+  h3, time {
+    font-family: @font-header;
+    font-weight: normal;
+  }
+
+  a {
+    color: @color-link;
+  }
+}
+
+#skills {
+  max-width: @kung-fu-width - @nav-size * 2;
+  padding: 20px @nav-size;
+
+  font-family: @font-text;
+
+  .avatar {
+    display: block;
+
+    height: @avatar-size;
+    margin: 0 auto;
+
+    border-radius: @avatar-size / 2;
+  }
+
+  q {
+    display: block;
+
+    margin: 30px 0;
+
+    text-align: center;
+
+    color: @color-quote;
+
+    font-family: @font-main;
+    font-weight: 200;
+  }
+
+  article {
+    line-height: 1.5;
+
+    p {
+      margin: 10px 0;
+    }
+
+    h3 {
+      margin: 30px 0 0;
+    }
+  }
+
+}
+
+#timeline {
+  max-width: @kung-fu-width - 200px;
   padding: 20px 0;
 
   ul {
@@ -241,7 +305,7 @@ body {
           margin: -35px 0 0;
 
           span {
-            color: @color-quote;
+            color: @color-subtext;
             &:before {
               content: "— ";
             }
@@ -254,21 +318,14 @@ body {
           font-size: 0.8em;
         }
 
-        h3, time {
-          font-family: @font-header;
-        }
-
         p {
           font-family: @font-text;
+          line-height: 1.5;
 
           &.tldr:before {
             content: "TL;DR: ";
 
             font-weight: bold;
-          }
-
-          a {
-            color: @color-link;
           }
         }
       }
