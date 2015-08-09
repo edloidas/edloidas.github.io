@@ -83,8 +83,7 @@ body {
 }
 
 #background {
-  position: absolute;
-  z-index: 0;
+  z-index: -1;
 
   opacity: 0.25;
 }
@@ -159,6 +158,7 @@ body {
 
 #kung-fu {
   position: relative;
+  top: -100%;
 
   width: 100%;
   max-width: @kung-fu-width;
@@ -180,7 +180,7 @@ body {
     padding: 10px @nav-size 10px 0;
 
     background: @bg-main;
-    box-shadow: 0 10px 10px @bg-main;
+    box-shadow: 0 6px 8px @bg-main;
 
     flex-flow: row nowrap;
 
