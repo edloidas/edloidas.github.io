@@ -21,16 +21,16 @@
 @font-header: Oswald, Impact, Arial, sans-serif;
 @font-text: "Droid Serif", Arial, sans-serif;
 
-@color-quote: DimGray;       // #696969
-@color-subtext: Gray;        // #808080
-@color-more-underline: Gray; // #808080
+@color-quote: DimGray;
+@color-subtext: Gray;
+@color-more-underline: Gray;
 
 @color-nav: #444444;
 
 @color-link: SteelBlue;
 
-@bg-main: White;       // #FFFFFF
-@bg-touch: WhiteSmoke; // #F5F5F5
+@bg-main: White;
+@bg-touch: LightGray;
 
 /*
  * Source Sans Pro - Landing page
@@ -343,14 +343,16 @@ body {
 
         display: block;
 
+        box-sizing: border-box;
         width: 25px;
         height: 25px;
         margin: 0 0 0 -36px;
 
         content: " ";
 
+        border: 3px solid @color-subtext;
         border-radius: 13px;
-        background: url(../img/icons/radio-unchecked.svg) @bg-main center no-repeat;
+        background-color: @bg-main;
         background-size: 19px;
       }
     }
