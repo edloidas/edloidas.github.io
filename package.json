@@ -1,0 +1,100 @@
+{
+  "name": "edloidas",
+  "version": "2.0.0",
+  "description": "Edloidas personal page",
+  "keywords": [
+    "hero page",
+    "landing page",
+    "blog",
+    "edloidas.github.com",
+    "gulp",
+    "webpack"
+  ],
+  "homepage": "https://github.com/edloidas/edloidas.github.com",
+  "bugs": {
+    "url": "https://github.com/edloidas/edloidas.github.com/issues",
+    "email": "edloidas@gmail.com"
+  },
+  "license": "MIT",
+  "author": "Mikita Taukachou <edloidas@gmail.com> (http://edloidas.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edloidas/edloidas.github.com.git"
+  },
+  "scripts": {
+    "gulp": "gulp",
+    "development": "gulp",
+    "production": "gulp build:production",
+    "clean": "rm -r index.html js styles",
+    "publish": "clean"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "babel-preset-stage-0": "*",
+    "babel-plugin-syntax-class-properties": "*",
+    "babel-plugin-transform-class-properties": "*",
+
+    "webpack": "*",
+
+    "lodash": "*",
+
+    "gulp": "*",
+    "gulp-babel": "*",
+    "gulp-util": "*",
+    "gulp-notify": "*",
+    "gulp-sequence": "*",
+    "gulp-watch": "*",
+    "gulp-changed": "*",
+    "gulp-if": "*",
+    "gulp-data": "*",
+
+    "require-dir": "*",
+    "run-sequence": "*",
+
+    "del": "*",
+    "path": "*",
+    "fs": "*",
+
+    "gulp-jade": "*",
+    "gulp-htmlmin": "*",
+
+    "gulp-postcss": "*",
+    "postcss-import": "*",
+    "postcss-mixins": "*",
+    "postcss-simple-vars": "*",
+    "postcss-nested": "*",
+    "postcss-calc": "*",
+    "autoprefixer": "*",
+    "css-mqpacker": "*",
+    "cssnano": "*",
+    "postcss-discard-comments": "*",
+    "gulp-sourcemaps": "*",
+
+    "gulp-imagemin": "*",
+    "gulp-svgstore": "*",
+
+    "browser-sync": "*",
+
+    "mocha": "*",
+    "should": "*",
+    "coveralls": "*",
+    "mocha-lcov-reporter": "*",
+    "istanbul": "*",
+
+    "tern": "*",
+
+    "eslint": "*",
+    "eslint-plugin-react": "*",
+    "babel-eslint": "*",
+    "eslint-config-airbnb": "*"
+  },
+  "engines": {
+    "node": ">= 5.1.0",
+    "npm": ">= 3.3.12"
+  }
+}

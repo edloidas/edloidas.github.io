@@ -1,0 +1,30 @@
+# Directories
+
+node_modules/
+public/
+
+
+# Files #
+
+.publish
+npm-debug.log
+
+.DS_Store
+Desktop.ini
+
+
+# Jetstream
+
+gulp/tasks
+gulp/util
+
+.babelrc
+.csscomb.json
+.eslintignore
+.eslintrc
+.tern-project
+.travis.yml
+appveyor.yml
+gulpfile.babel.js
+gulpfile.js
+webpack.config.js
