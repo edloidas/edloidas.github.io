@@ -2,7 +2,7 @@ const CONFIG = {
   gulpTasks: 'gulp/tasks/',
   root: {
     src: 'src',
-    dest: 'public',
+    dest: '',
   },
   tasks: {
     js: {
@@ -51,6 +51,7 @@ const CONFIG = {
     },
     clean: {
       dest: [ 'js', 'styles' ],
+      cleanDot: true,
     },
   },
 };
