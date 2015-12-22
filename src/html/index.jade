@@ -6,3 +6,25 @@ html( lang="en" )
   include ./shared/head.jade
     
   body
+    div
+      h1 #{personal.name} #{personal.surname}
+
+      p #{personal.position} at&#32;
+        a( href="#{links.company}" ) #{personal.company}
+
+      p 3d graphics enthusiast
+
+      p
+        a(href="mailto:#{personal.email}") #{personal.email}
+
+    div
+      //- List for a links category
+      mixin list( links )
+        ul
+          each link in links
+            li 
+              a( href = link.url, title = link.title ) #{link.name}
+
+      +list( links.info )
+      +list( links.accounts )
+      +list( links.projects )
