@@ -1,6 +1,30 @@
 <!DOCTYPE html>
-html(lang="en")
+html( lang="en" )
   head
-    meta(charset="UTF-8")
+    meta( charset="UTF-8" )
+    meta( name="viewport", content="width=device-width, initial-scale=1.0" )
+
     title edloidas
+    
+    link( rel="shortcut icon", href="img/favicon.png" type="image/png" )
+
+    link( rel="profile", href="https://plus.google.com/100081532988366318441" )
+    link( rel="publisher", href="https://plus.google.com/100081532988366318441" )
+    
+    meta( name="description", content="Mikita Taukachou. JavaScript &amp; 3d graphics." )
+    
+    //- Open Graph and Twitter
+    mixin preview( graph, type )
+      meta( property="#{graph}:#{type}", content="website" )
+      meta( property="#{graph}:title", content="Mikita Taukachou" )
+      meta( property="#{graph}:image", content="https://www.gravatar.com/avatar/baeb8c35c5030b4973a46e320ac3af5c" )
+      meta( property="#{graph}:description", content="Mikita Taukachou. A 24-year old web developer and 3D graphics enthusiast from Minsk, Belarus." )
+      
+    +preview( "og", "type" )
+    +preview( "twitter", "card" )
+
+    link( rel="stylesheet", type="text/css", href="styles/style.css" )
+    
+    script( src="js/app.js", defer )
+    
   body
