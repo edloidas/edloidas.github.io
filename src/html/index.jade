@@ -6,24 +6,24 @@ html( lang="en" )
   include ./shared/head.jade
     
   body
-    div
-      h1 #{personal.name} #{personal.surname}
+    div.meta
+      h1.meta__name #{personal.name} #{personal.surname}
 
-      p #{personal.position} at&#32;
-        a( href="#{links.company}" ) #{personal.company}
+      p.meta__position #{personal.position} at&#32;
+        a( href="#{links.company}" ).meta__company #{personal.company}
 
-      p 3d graphics enthusiast
+      p.meta__title 3d graphics enthusiast
 
-      p
+      p.meta__email
         a(href="mailto:#{personal.email}") #{personal.email}
 
-    div
+    div.links
       //- List for a links category
       mixin list( links )
-        ul
+        ul.links__group
           each link in links
-            li 
-              a( href = link.url, title = link.title ) #{link.name}
+            li.links__entry
+              a( href = link.url, title = link.title ).links__link #{link.name}
 
       +list( links.info )
       +list( links.accounts )
