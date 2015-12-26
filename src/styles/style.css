@@ -1,0 +1,90 @@
+@import "_fonts.css";
+
+@import "normalize.css/normalize";
+
+
+$font-size: 18px;
+
+$font-main: 'Roboto', Arial, sans-serif;
+$font-mono: 'RobotoMono', Arial, sans-serif;
+
+$width: 400px;
+$links-width: 115px;
+
+
+@define-mixin noOverflow {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/*
+Google Material Design color pallet
+
+Colors:
+  Primary - LightBlue: 100, 500, 700
+  Accent - Deep Orange: A400
+
+  BG - Grey: 200
+  Text (light) - White
+  Text (dark) - Black
+*/
+
+$color-primary1:   #B3E5FC;
+$color-primary2:   #03A9F4;
+$color-primary3:   #0288D1;
+$color-accent:     #FF3D00;
+
+$color-bg1:        #EEEEEE;
+$color-bg2:        #FFFFFF;
+
+$color-text-light: #FFFFFF;
+$color-text-dark:  #000000;
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: $color-bg2;
+
+  font-family: $font-main;
+  font-size: $font-size;
+  color: $color-text-dark;
+}
+
+.meta, .links {
+  max-width: $width;
+  margin: 0 auto;
+}
+
+.meta {
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.links__group {
+  background: $color-bg1;
+}
+
+.links__title {
+  text-align: center;
+}
+
+.links__list {
+  margin: 0;
+  padding: 0;
+
+  min-width: $links-width;
+
+  text-transform: lowercase;
+  list-style: none;
+}

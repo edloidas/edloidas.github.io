@@ -30,7 +30,8 @@ gulpfile.js
 webpack.config.js
 
 # re
-index.html
-js/
-styles/
-img/
+/index.html
+/js/
+/styles/
+/img/
+/fonts/

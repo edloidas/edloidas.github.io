@@ -19,12 +19,14 @@ html( lang="en" )
 
     div.links
       //- List for a links category
-      mixin list( links )
-        ul.links__group
-          each link in links
-            li.links__entry
-              a( href = link.url, title = link.title ).links__link #{link.name}
+      mixin list( links, title )
+        div.links__group
+          h4.links__title #{title}
+          ul.links__list
+            each link in links
+              li.links__entry
+                a( href = link.url, title = link.title ).links__link #{link.name}
 
-      +list( links.info )
-      +list( links.accounts )
-      +list( links.projects )
+      +list( links.info, "Info" )
+      +list( links.accounts, "Find Me" )
+      +list( links.projects, "Projects" )
