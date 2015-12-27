@@ -53,6 +53,10 @@ body {
   color: $color-text-dark;
 }
 
+a {
+  color: $color-primary3;
+}
+
 .meta, .links {
   max-width: $width;
   margin: 0 auto;
