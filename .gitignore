@@ -28,10 +28,3 @@ appveyor.yml
 gulpfile.babel.js
 gulpfile.js
 webpack.config.js
-
-# re
-/index.html
-/js/
-/styles/
-/img/
-/fonts/
