@@ -10,51 +10,39 @@ $font-mono: 'RobotoMono', Arial, sans-serif;
 
 $width: 520px;
 $links-width: 142px;
+$links-width-mobile: 280px;
 
 
-@define-mixin noOverflow {
-  overflow: hidden;
-  white-space: nowrap;
-}
+$color-bg: #F5F5F5;
+$color-bg-gradient: linear-gradient( 135deg, #160C23, #7B6762 );
 
-/*
-Google Material Design color pallet
+$color-bg-group: rgba( 255, 255, 255, .03 );
+$color-bg-group-accent: rgba( 255, 255, 255, .05 );
 
-Colors:
-  Primary - LightBlue: 100, 500, 700
-  Accent - Deep Orange: A400
+$color-links:  #B0C4DE;
 
-  BG - Grey: 200
-  Text (light) - White
-  Text (dark) - Black
-*/
-
-$color-primary1:   #B3E5FC;
-$color-primary2:   #03A9F4;
-$color-primary3:   #0288D1;
-$color-accent:     #FF3D00;
-
-$color-bg1:        #EEEEEE;
-$color-bg2:        #FFFFFF;
-
-$color-text-light: #FFFFFF;
-$color-text-dark:  #000000;
+$color-text:   #A9A9A9;
 
 html, body {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+html {
+  position: absolute;
 }
 
 body {
-  background: $color-bg2;
+  background: $color-bg;
+  background: $color-bg-gradient no-repeat;
 
   font-family: $font-main;
   font-size: $font-size;
-  color: $color-text-dark;
+  color: $color-text;
 }
 
 a {
-  color: $color-primary3;
+  color: $color-links;
 }
 
 .meta, .links {
@@ -100,7 +88,18 @@ a {
 
 .links__group {
   margin: 10px;
-  background: $color-bg1;
+
+  background: $color-bg-group;
+
+  transition: 0.2s background-color;
+
+  &:hover {
+    margin: 5px;
+    border: 5px solid transparent;
+
+    background: $color-bg-group-accent;
+  }
+
 }
 
 .links__title {
@@ -109,7 +108,7 @@ a {
 
 .links__list {
   margin: 0;
-  padding: 0 15px 10px;
+  padding: 0 15px 20px;
 
   min-width: $links-width;
   box-sizing: border-box;
@@ -122,5 +121,11 @@ a {
 @media screen and ( max-width: 363px ) {
   .meta {
     padding-top: 20px;
+  }
+
+  .links__list {
+    padding-right: 80px;
+    padding-left: 80px;
+    min-width: $links-width-mobile;
   }
 }
