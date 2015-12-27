@@ -8,8 +8,8 @@ $font-size: 18px;
 $font-main: 'Roboto', Arial, sans-serif;
 $font-mono: 'RobotoMono', Arial, sans-serif;
 
-$width: 400px;
-$links-width: 115px;
+$width: 520px;
+$links-width: 142px;
 
 
 @define-mixin noOverflow {
@@ -56,22 +56,46 @@ body {
 .meta, .links {
   max-width: $width;
   margin: 0 auto;
+  padding: 20px;
+
+  overflow-x: hidden;
 }
 
 .meta {
+  padding-top: 100px;
+
   text-align: center;
+}
+
+.meta__name {
+  margin-top: 0;
+
+  text-transform: uppercase;
+}
+
+.meta__title, .meta__position {
+  margin: 5px 0;
+}
+
+.meta__email {
+  margin-bottom: 0;
+}
+
+.meta__title, .meta__position, .meta__email {
+  text-transform: lowercase;
 }
 
 .links {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: stretch;
   align-content: stretch;
 }
 
 .links__group {
+  margin: 10px;
   background: $color-bg1;
 }
 
@@ -81,10 +105,18 @@ body {
 
 .links__list {
   margin: 0;
-  padding: 0;
+  padding: 0 15px 10px;
 
   min-width: $links-width;
+  box-sizing: border-box;
 
   text-transform: lowercase;
   list-style: none;
+}
+
+
+@media screen and ( max-width: 363px ) {
+  .meta {
+    padding-top: 20px;
+  }
 }
