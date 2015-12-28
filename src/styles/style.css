@@ -9,7 +9,7 @@ $font-main: 'Roboto', Arial, sans-serif;
 $font-mono: 'RobotoMono', Arial, sans-serif;
 
 $width: 520px;
-$links-width: 142px;
+$links-width: 144px;
 $links-width-mobile: 280px;
 
 
@@ -69,11 +69,14 @@ a {
   margin: 5px 0;
 }
 
-.meta__email {
+.meta__cv {
   margin-bottom: 0;
+  a {
+    color: $color-text;
+  }
 }
 
-.meta__title, .meta__position, .meta__email {
+.meta__title, .meta__position, .meta__email, .meta__cv {
   text-transform: lowercase;
 }
 
@@ -117,15 +120,26 @@ a {
   list-style: none;
 }
 
+.links__entry {
+  padding: 1px 0;
+}
 
-@media screen and ( max-width: 363px ) {
+
+@media screen and ( max-width: 380px ) {
   .meta {
     padding-top: 20px;
   }
 
+  .links__group {
+    width: 100%;
+  }
+
   .links__list {
-    padding-right: 80px;
+    width: $links-width;
+    margin-left: auto;
+    margin-right: auto;
+    /*padding-right: 80px;
     padding-left: 80px;
-    min-width: $links-width-mobile;
+    min-width: $links-width-mobile;*/
   }
 }

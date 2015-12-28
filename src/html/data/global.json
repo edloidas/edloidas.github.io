@@ -9,19 +9,13 @@
   },
   "links": {
     "company": "https://enonic.com",
-    "info": [
+    "cv": "#",
+    "accounts": [
       {
         "name": "Blog",
         "url": "#",
         "title": "Blog about JavaScript and 3d"
       },
-      {
-        "name": "CV",
-        "url": "#",
-        "title": "Curriculum vitae"
-      }
-    ],
-    "accounts": [
       {
         "name": "GitHub",
         "url": "https://github.com/edloidas",
@@ -35,11 +29,6 @@
       {
         "name": "LinkedIn",
         "url": "https://www.linkedin.com/in/edloidas",
-        "title": ""
-      },
-      {
-        "name": "VK",
-        "url": "https://vk.com/edloidas",
         "title": ""
       }
     ],
