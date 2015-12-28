@@ -28,10 +28,6 @@ html, body {
   min-height: 100%;
 }
 
-html {
-  position: absolute;
-}
-
 body {
   background: $color-bg;
   background: $color-bg-gradient no-repeat;
