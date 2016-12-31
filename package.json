@@ -1,14 +1,12 @@
 {
   "name": "edloidas",
   "version": "2.1.2",
-  "description": "Edloidas personal page",
+  "description": "edloidas personal page",
   "keywords": [
     "hero page",
     "landing page",
     "blog",
-    "edloidas.github.com",
-    "gulp",
-    "webpack"
+    "edloidas.github.com"
   ],
   "homepage": "https://github.com/edloidas/edloidas.github.com",
   "bugs": {
@@ -22,68 +20,12 @@
     "url": "https://github.com/edloidas/edloidas.github.com.git"
   },
   "scripts": {
-    "gulp": "gulp",
-    "development": "gulp",
-    "production": "gulp build:production",
-    "clean": "rm -r index.html js styles img fonts",
-    "publish": "clean"
   },
   "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "*",
-    "babel-cli": "*",
-    "babel-core": "*",
-    "babel-eslint": "*",
-    "babel-loader": "*",
-    "babel-plugin-syntax-class-properties": "*",
-    "babel-plugin-transform-class-properties": "*",
-    "babel-preset-es2015": "*",
-    "babel-preset-react": "*",
-    "babel-preset-stage-0": "*",
-    "browser-sync": "*",
-    "coveralls": "*",
-    "css-mqpacker": "*",
-    "cssnano": "*",
-    "del": "*",
-    "eslint": "*",
-    "eslint-config-airbnb": "*",
-    "eslint-plugin-react": "*",
-    "fs": "*",
-    "gulp": "*",
-    "gulp-babel": "*",
-    "gulp-changed": "*",
-    "gulp-data": "*",
-    "gulp-htmlmin": "*",
-    "gulp-if": "*",
-    "gulp-imagemin": "*",
-    "gulp-jade": "*",
-    "gulp-notify": "*",
-    "gulp-postcss": "*",
-    "gulp-sequence": "*",
-    "gulp-sourcemaps": "*",
-    "gulp-svgstore": "*",
-    "gulp-util": "*",
-    "gulp-watch": "*",
-    "istanbul": "*",
-    "lodash": "*",
-    "mocha": "*",
-    "mocha-lcov-reporter": "*",
-    "normalize.css": "^3.0.3",
-    "path": "*",
-    "postcss-calc": "*",
-    "postcss-discard-comments": "*",
-    "postcss-import": "*",
-    "postcss-mixins": "*",
-    "postcss-nested": "*",
-    "postcss-simple-vars": "*",
-    "require-dir": "*",
-    "run-sequence": "*",
-    "should": "*",
-    "tern": "*",
-    "webpack": "*"
   },
   "engines": {
-    "node": ">= 5.1.0",
-    "npm": ">= 3.3.12"
+    "node": ">= 7.3.0",
+    "npm": ">= 3.10.10"
   }
 }
