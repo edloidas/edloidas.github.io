@@ -24,7 +24,8 @@
     "spellcheck": "yaspeller README.md ./public/",
     "lint": "eslint ./src/*.js",
     "styles": "stylelint ./src/**/*.css",
-    "test": "yarn lint && yarn styles && yarn spellcheck"
+    "test": "yarn lint && yarn styles && yarn spellcheck",
+    "precommit": "yarn test"
   },
   "dependencies": {},
   "devDependencies": {
