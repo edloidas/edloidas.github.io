@@ -1,0 +1,23 @@
+{
+  "lang": "en",
+  "ignoreUrls": true,
+  "findRepeatWords": true,
+  "ignoreCapitalization": true,
+  "excludeFiles": [
+    ".git",
+    "node_modules",
+    "public"
+  ],
+  "fileExtensions": [
+    ".md",
+    ".html"
+  ],
+  "dictionary": [
+    "edloidas",
+    "Mikita",
+    "Taukachou",
+    "GitHub",
+    "LinkedIn",
+    "enonic"
+  ]
+}

@@ -1,4 +1,8 @@
-edloidas.github.io
-==================
+edloidas
+========
 
-This is the data for my personal website.
+> Hero page sources.
+
+## License ##
+
+[MIT](LICENSE) © [Mikita Taukachou](https://edloidas.com)
