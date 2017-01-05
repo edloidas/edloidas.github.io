@@ -4,8 +4,10 @@ Uses $NODE_ENV, `production` or `development` (also default)
 */
 const path = require('path');
 const R = require('ramda');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const uglifyConfig = require('./util/config/uglify');
 const extractConfig = require('./util/config/extract');
 const htmlConfig = require('./util/config/html');
 const isProd = require('./util/env').prod;
@@ -65,6 +67,16 @@ function addPugSupport(cfg) {
 
 
 // =====================
+// Uglifies code in production
+// =====================
+function addJSSupport(cfg) {
+  const plugin = new UglifyJsPlugin(uglifyConfig);
+
+  return (isDev ? R.clone : addPlugin(plugin))(cfg);
+}
+
+
+// =====================
 // Add support for the css bundle
 // - CSS file needs to be required from JS entry
 // - ExtractTextPlugin extracts css from JS to a separate file
@@ -111,6 +123,7 @@ function addPostCSSSupport(cfg) {
 function makeConfig(cfg) {
   return R.pipe(
     addPugSupport,
+    addJSSupport,
     addPostCSSSupport
   )(cfg);
 }

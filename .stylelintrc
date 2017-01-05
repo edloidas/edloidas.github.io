@@ -3,7 +3,7 @@
   "rules": {
     "indentation": 2,
     "unit-whitelist": [
-      [ "em", "rem", "%", "s" ],
+      [ "em", "rem", "%", "s", "deg" ],
       {
         "ignoreProperties": {
           "px": [ "background-position" ]
