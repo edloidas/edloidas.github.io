@@ -6,15 +6,15 @@ html( lang="en" )
       h1.meta__name #{data.personal.name} #{data.personal.surname}
 
       p.meta__position #{data.personal.position} at&#32;
-        a( href="#{data.links.company}" ).meta__company #{data.personal.company}
+        a( href=data.links.company ).meta__company.link #{data.personal.company}
 
       p.meta__title 3d graphics enthusiast
 
       p.meta__email
-        a(href="mailto:#{data.personal.email}") #{data.personal.email}
+        a(href="mailto:"+data.personal.email).link #{data.personal.email}
 
       p.meta__cv
-        a(href="#{data.links.cv}") Curriculum Vitae
+        a(href=data.links.cv).link Curriculum Vitae
 
     div.links
       //- List for a links category
@@ -24,7 +24,7 @@ html( lang="en" )
           ul.links__list
             each link in links
               li.links__entry
-                a( href = link.url, title = link.title ).links__link #{link.name}
+                a( href = link.url, title = link.title ).links__link.link #{link.name}
 
       +list( data.links.accounts, "Find Me" )
       +list( data.links.projects, "Projects" )

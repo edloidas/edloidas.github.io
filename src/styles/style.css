@@ -1,9 +1,52 @@
 @import "normalize.css";
+@import "colors.css";
+@import "fonts.css";
 
 html,
 body {
   min-width: 100%;
   min-height: 100%;
   margin: 0;
-  background-color: grey;
+}
+
+body {
+  background: $gradient__blue;
+  /* stylelint-disable unit-whitelist */
+  font-size: 24px;
+  /* stylelint-enable */
+}
+
+.meta {
+  &__name {
+    font-family: $font__title;
+    color: $color__red;
+    text-transform: uppercase;
+  }
+
+  &__position,
+  &__title,
+  &__email,
+  &__cv {
+    font-family: $font__info;
+    color: $color__white;
+  }
+}
+
+.links {
+  &__title {
+    font-family: $font__title;
+    color: $color__white;
+  }
+
+  &__entry {
+    font-family: $font__info;
+  }
+}
+
+.link {
+  color: $color__blue;
+
+  &:active {
+    color: $color__grey;
+  }
 }
