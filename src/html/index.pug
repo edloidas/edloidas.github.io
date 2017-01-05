@@ -1,0 +1,30 @@
+html( lang="en" )
+  include ./head.pug
+
+  body
+    div.meta
+      h1.meta__name #{data.personal.name} #{data.personal.surname}
+
+      p.meta__position #{data.personal.position} at&#32;
+        a( href="#{data.links.company}" ).meta__company #{data.personal.company}
+
+      p.meta__title 3d graphics enthusiast
+
+      p.meta__email
+        a(href="mailto:#{data.personal.email}") #{data.personal.email}
+
+      p.meta__cv
+        a(href="#{data.links.cv}") Curriculum Vitae
+
+    div.links
+      //- List for a links category
+      mixin list( links, title )
+        div.links__group
+          h4.links__title #{title}
+          ul.links__list
+            each link in links
+              li.links__entry
+                a( href = link.url, title = link.title ).links__link #{link.name}
+
+      +list( data.links.accounts, "Find Me" )
+      +list( data.links.projects, "Projects" )

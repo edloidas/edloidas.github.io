@@ -7,6 +7,8 @@ temp/
 
 # Files #
 
+index.html
+
 npm-debug.log
 yarn-error.log
 
