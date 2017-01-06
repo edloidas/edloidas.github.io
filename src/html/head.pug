@@ -1,39 +1,48 @@
 head
   - const production = self.htmlWebpackPlugin.options.production
   - const data = self.htmlWebpackPlugin.options.data
-  - const name = `${data.personal.name} ${data.personal.surname}`
-  - const about = `${name} Front end developer and 3D graphics enthusiast from ${data.personal.location}.`
+  - const fullname = `${data.personal.name} ${data.personal.surname}`
+  - const about = `${fullname} Front end developer and 3D graphics enthusiast from ${data.personal.location}.`
+
+  //- Common Open Graph and Twitter properties
+  - const attr = (name, value) => { const a = {}; a[name] = value; return a; }
+  mixin preview( graph, type, meta, content )
+    meta( content=content )&attributes(attr(meta, `${graph} ${type}`))
+    meta( content=fullname )&attributes(attr(meta, `${graph}:title`))
+    meta( content=data.personal.avatar )&attributes(attr(meta, `${graph}:image`))
+    meta( content=about )&attributes(attr(meta, `${graph}:description`))
+
   meta( charset="UTF-8" )
   meta( name="viewport", content="width=device-width, initial-scale=1.0" )
 
   title edloidas
 
+  //- Main Meta Tags
+  meta( name="description", content=`${fullname}, ${data.personal.position}.` )
+  meta( name="robots", content="index, follow" )
+  meta( name="author", content=fullname )
+
   link( rel="shortcut icon", href="src/img/favicon.png" type="image/png" )
 
-  link( rel="profile", href="https://plus.google.com/100081532988366318441" )
-  link( rel="publisher", href="https://plus.google.com/100081532988366318441" )
+  //- Meta Google+
+  link( rel="profile", href=data.links.google )
+  link( rel="publisher", href=data.links.google )
 
-  //- Common Open Graph and Twitter properties
-  - const attr = (name, value) => { const a = {}; a[name] = value; return a; }
-  mixin preview( graph, type, meta, content )
-    meta( content=content )&attributes(attr(meta, graph + ':' + type))
-    meta( content=name )&attributes(attr(meta, graph + ':title'))
-    meta( content=data.personal.avatar )&attributes(attr(meta, graph + ':image'))
-    meta( content=about )&attributes(attr(meta, graph + ':description'))
-
+  //- Meta Open Graph
   +preview( "og", "type", "property", "profile" )
-  meta( property="og:url", content="https://edloidas.com" )
-  meta( property="profile:first_name", content="Mikita" )
-  meta( property="profile:last_name", content="Taukachou" )
-  meta( property="profile:username", content="edloidas" )
-  meta( property="profile:gender", content="male" )
+  meta( property="og:url", content=data.links.site )
+  meta( property="profile:first_name", content=data.personal.name )
+  meta( property="profile:last_name", content=data.personal.surname )
+  meta( property="profile:username", content=data.personal.nickname )
+  meta( property="profile:gender", content=data.personal.gender )
 
+  //- Meta Twitter Card
   +preview( "twitter", "card", "name", "summary" )
-  meta( name="twitter:site", content="@edloidas" )
+  meta( name="twitter:site", content=`@${data.personal.nickname}` )
 
+  //- Sources
   - const cssPath = `${production ? 'public/' : '' }style.css`
   - const jsPath = `${production ? 'public/' : '' }app.js`
   if production
     link( rel="stylesheet", type="text/css", href=cssPath )
-
   script( src=jsPath, defer )

@@ -2,6 +2,8 @@ module.exports = {
   personal: {
     name: 'Mikita',
     surname: 'Taukachou',
+    nickname: 'edloidas',
+    gender: 'male',
     email: 'edloidas@gmail.com',
     location: 'Minsk, Belarus',
     position: 'front-end developer',
@@ -9,6 +11,8 @@ module.exports = {
     avatar: 'https://www.gravatar.com/avatar/baeb8c35c5030b4973a46e320ac3af5c',
   },
   links: {
+    site: 'https://edloidas.com',
+    google: 'https://plus.google.com/100081532988366318441',
     company: 'https://enonic.com',
     cv: '#',
     accounts: [
