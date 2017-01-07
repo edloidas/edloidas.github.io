@@ -1,6 +1,12 @@
 @import "normalize.css";
 @import "colors.css";
 @import "fonts.css";
+@import "icons.css";
+
+/* stylelint-disable unit-whitelist */
+$meta__width: 300px;
+$border__radius: 5px;
+/* stylelint-enable */
 
 html,
 body {
@@ -9,44 +15,126 @@ body {
   margin: 0;
 }
 
-body {
-  background: $gradient__blue;
+html {
   /* stylelint-disable unit-whitelist */
-  font-size: 24px;
+  font-size: 16px;
   /* stylelint-enable */
 }
 
-.meta {
-  &__name {
-    font-family: $font__title;
-    color: $color__red;
-    text-transform: uppercase;
-  }
+body {
+  background: $color__bg;
+}
 
-  &__position,
-  &__title,
-  &__email,
-  &__cv {
-    font-family: $font__info;
-    color: $color__white;
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.link {
+  color: $color__link;
+}
+
+.name {
+  display: inline-block;
+  background-color: $color__text;
+  border-radius: $border__radius;
+  box-sizing: border-box;
+  width: 300px;
+  margin-top: 20px;
+  padding: 10px 5px;
+  font-family: $font__title;
+  font-size: 3rem;
+  font-weight: bold;
+  color: $color__bg;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.meta,
+.links {
+  font-family: $font__text;
+  font-size: 1.5rem;
+  color: $color__text;
+}
+
+.meta {
+  text-align: center;
+
+  &__about {
+    line-height: 1.25em;
   }
 }
 
 .links {
-  &__title {
-    font-family: $font__title;
-    color: $color__white;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: $meta__width;
 
   &__entry {
-    font-family: $font__info;
+    display: inline-block;
+    position: relative;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc($meta__width/2);
+    padding: 5px 5px 5px calc($icon__size+10px);
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: $color__shadow.1;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    position: absolute;
+    top: 7px;
+    left: 5px;
+    width: $icon__size;
+    height: $icon__size;
+    border-radius: $border__radius;
+    filter: invert(4%);
+
+    &--github {
+      background-image: $icon__github;
+    }
+
+    &--twitter {
+      background-image: $icon__twitter;
+    }
+
+    &--telegram {
+      background-image: $icon__telegram;
+    }
+
+    &--steam {
+      background-image: $icon__steam;
+    }
   }
 }
 
-.link {
-  color: $color__blue;
+@media (max-width: 480px) {
+  .container {
+    overflow: auto;
+  }
 
-  &:active {
-    color: $color__grey;
+  .name {
+    width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+  }
+}
+
+/*
+TODO:
+Croll on small devices rotated
+*/
+@media (max-width: 360px) {
+  html {
+    font-size: 12px;
   }
 }

@@ -2,13 +2,8 @@
 Color pallet
 stylelint-disable declaration-block-semicolon-newline-after
 */
-$color__blue--dark: #08131c;
-$color__blue:       #08637e;
-$color__red:        #b82739;
-$color__yellow:     #f3c333;
-$color__black:      #1d1f21;
-$color__white:      #f5f5f5;
-$color__grey:       #969896;
 
-$gradient__purple: linear-gradient(135deg, #160c23, #7b6762) no-repeat;
-$gradient__blue:   linear-gradient(135deg, #01040d, #00161e) no-repeat;
+$color__bg:     #882220;
+$color__text:   #f5f5f5;
+$color__link:   #b0c4de;
+$color__shadow: #111111;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Play|Jura');
+@import url('https://fonts.googleapis.com/css?family=Play:400,700|Jura');
 
 $font__title: 'Play', sans-serif;
-$font__info: 'Jura', sans-serif;
+$font__text: 'Jura', sans-serif;

@@ -2,11 +2,20 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "indentation": 2,
+    "number-leading-zero": "never",
+    "color-hex-length": "long",
     "unit-whitelist": [
-      [ "em", "rem", "%", "s", "deg" ],
+      [ "em", "rem", "%", "s", "deg", "px" ],
       {
         "ignoreProperties": {
-          "px": [ "background-position" ]
+          "px": [
+            "background-position",
+            "border-radius",
+            "width",
+            "height",
+            "padding",
+            "margin"
+          ]
         }
       }
     ]

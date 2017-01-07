@@ -13,6 +13,7 @@ const postcssConfig = {
     'postcss-mixins': {},
     'postcss-simple-vars': {},
     'postcss-nested': {},
+    'postcss-color-alpha': {},
     'postcss-calc': {},
     autoprefixer: { browsers: [
       '>1%',
