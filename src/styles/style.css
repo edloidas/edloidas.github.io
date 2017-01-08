@@ -3,11 +3,9 @@
 @import "fonts.css";
 @import "icons.css";
 
-/* stylelint-disable unit-whitelist */
 $font__size: 16px;
 $meta__width: 300px;
 $border__radius: 5px;
-/* stylelint-enable */
 
 html,
 body {
@@ -43,7 +41,7 @@ body {
   background-color: $color__text;
   box-sizing: border-box;
   margin-top: 20px;
-  padding: .2em .15em;
+  padding: 0.2em 0.15em;
   border-radius: $border__radius;
   font-family: $font__title;
   font-size: 3rem;
@@ -84,6 +82,7 @@ body {
     box-sizing: border-box;
     border-radius: 3px;
 
+    /* stylelint-disable number-leading-zero */
     &:hover {
       background-color: $color__shadow.1;
     }
@@ -91,6 +90,7 @@ body {
     &:active {
       background-color: $color__shadow.2;
     }
+    /* stylelint-enable */
   }
 
   &__icon {
