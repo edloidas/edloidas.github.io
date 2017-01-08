@@ -23,6 +23,7 @@ html {
 
 body {
   background: $color__bg;
+  padding-bottom: 30px;
 }
 
 .container {
@@ -117,6 +118,19 @@ body {
   }
 }
 
+/*
+Mobile devices, rotated (landscape), normal view
+
+*/
+@media (max-height: 420px) and (orientation: landscape) {
+  .container {
+    overflow: auto;
+  }
+}
+
+/*
+Mobile devices, minimized view
+*/
 @media (max-width: 480px) {
   .container {
     overflow: auto;
@@ -130,8 +144,7 @@ body {
 }
 
 /*
-TODO:
-Croll on small devices rotated
+Mobile devices, iPhone 5 and smaller
 */
 @media (max-width: 360px) {
   html {
