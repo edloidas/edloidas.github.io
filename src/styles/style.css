@@ -41,10 +41,10 @@ body {
 .name {
   display: inline-block;
   background-color: $color__text;
-  border-radius: $border__radius;
   box-sizing: border-box;
   margin-top: 20px;
   padding: .2em .15em;
+  border-radius: $border__radius;
   font-family: $font__title;
   font-size: 3rem;
   font-weight: bold;
@@ -70,9 +70,9 @@ body {
 
 .links {
   display: flex;
+  width: $meta__width;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: $meta__width;
 
   &__entry {
     display: inline-block;
@@ -82,9 +82,14 @@ body {
     flex-basis: calc($meta__width / 2);
     padding: 5px 5px 5px calc($icon__size + 10px);
     box-sizing: border-box;
+    border-radius: 3px;
 
     &:hover {
       background-color: $color__shadow.1;
+    }
+
+    &:active {
+      background-color: $color__shadow.2;
     }
   }
 
