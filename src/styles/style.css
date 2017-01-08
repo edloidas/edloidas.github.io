@@ -4,6 +4,7 @@
 @import "icons.css";
 
 /* stylelint-disable unit-whitelist */
+$font__size: 16px;
 $meta__width: 300px;
 $border__radius: 5px;
 /* stylelint-enable */
@@ -16,9 +17,7 @@ body {
 }
 
 html {
-  /* stylelint-disable unit-whitelist */
-  font-size: 16px;
-  /* stylelint-enable */
+  font-size: $font__size;
 }
 
 body {
@@ -32,7 +31,7 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .link {
@@ -44,9 +43,8 @@ body {
   background-color: $color__text;
   border-radius: $border__radius;
   box-sizing: border-box;
-  width: 300px;
   margin-top: 20px;
-  padding: 10px 5px;
+  padding: .2em .15em;
   font-family: $font__title;
   font-size: 3rem;
   font-weight: bold;
@@ -81,8 +79,8 @@ body {
     position: relative;
     flex-grow: 1;
     flex-shrink: 1;
-    flex-basis: calc($meta__width/2);
-    padding: 5px 5px 5px calc($icon__size+10px);
+    flex-basis: calc($meta__width / 2);
+    padding: 5px 5px 5px calc($icon__size + 10px);
     box-sizing: border-box;
 
     &:hover {
@@ -119,23 +117,9 @@ body {
 }
 
 /*
-Mobile devices, rotated (landscape), normal view
-
-*/
-@media (max-height: 420px) and (orientation: landscape) {
-  .container {
-    overflow: auto;
-  }
-}
-
-/*
 Mobile devices, minimized view
 */
 @media (max-width: 480px) {
-  .container {
-    overflow: auto;
-  }
-
   .name {
     width: 100%;
     margin-top: 0;
@@ -148,6 +132,37 @@ Mobile devices, iPhone 5 and smaller
 */
 @media (max-width: 360px) {
   html {
-    font-size: 12px;
+    font-size: calc($font__size - 2px);
+  }
+
+  .links__icon {
+    top: 5px;
+  }
+}
+
+/*
+Large screens, scale x1.5
+*/
+@media (min-width: 1921px) {
+  html {
+    font-size: calc($font__size * 1.5);
+  }
+
+  .name {
+    margin-top: 40px;
+  }
+
+  .links {
+    width: 440px;
+
+    &__entry {
+      padding-left: calc($icon__size * 1.5 + 10px);
+    }
+
+    &__icon {
+      top: 13px;
+      left: 10px;
+      transform: scale(1.5);
+    }
   }
 }
