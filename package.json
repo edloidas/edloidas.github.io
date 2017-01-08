@@ -1,6 +1,6 @@
 {
   "name": "edloidas",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "edloidas personal page",
   "keywords": [
     "hero page",
@@ -26,7 +26,7 @@
     "fix": "eslint --fix ./src/*.js || exit 0",
     "styles": "stylelint ./src/**/*.css",
     "test": "yarn lint && yarn styles",
-    "precommit": "yarn test",
+    "precommit": "yarn test && rimraf ./public/app.js",
     "prod": "yarn run clean && cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress --open --content-base ./"
   },
