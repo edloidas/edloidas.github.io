@@ -2,12 +2,12 @@ head
   - const production = self.htmlWebpackPlugin.options.production
   - const data = self.htmlWebpackPlugin.options.data
   - const fullname = `${data.personal.name} ${data.personal.surname}`
-  - const about = `${fullname} Front end developer and 3D graphics enthusiast from ${data.personal.location}.`
+  - const about = `${fullname}. Front end developer and 3D graphics enthusiast from ${data.personal.location}.`
 
   //- Common Open Graph and Twitter properties
   - const attr = (name, value) => { const a = {}; a[name] = value; return a; }
   mixin preview( graph, type, meta, content )
-    meta( content=content )&attributes(attr(meta, `${graph} ${type}`))
+    meta( content=content )&attributes(attr(meta, `${graph}:${type}`))
     meta( content=fullname )&attributes(attr(meta, `${graph}:title`))
     meta( content=data.personal.avatar )&attributes(attr(meta, `${graph}:image`))
     meta( content=about )&attributes(attr(meta, `${graph}:description`))
