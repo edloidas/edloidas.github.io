@@ -3,14 +3,14 @@ html( lang="en" )
 
   body.container
     div.name
-      | #{data.personal.name}<br/>
-      | #{data.personal.surname}
+      span.name__first-name #{data.personal.name}
+      span.name__last-name #{data.personal.surname}
 
     div.meta
       p.meta__about
         | #{data.personal.position} at&#32;
         a( href=data.links.company ).meta__company.link #{data.personal.company}<br/>
-        | &amp; 3d graphics enthusiast
+        | &amp; #{data.personal.hobby}
 
       p.meta__email
         a(href="mailto:"+data.personal.email).link #{data.personal.email}

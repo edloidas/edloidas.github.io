@@ -1,6 +1,5 @@
 head
-  - const production = self.htmlWebpackPlugin.options.production
-  - const data = self.htmlWebpackPlugin.options.data
+  - const title = data.personal.nickname
   - const fullname = `${data.personal.name} ${data.personal.surname}`
   - const about = `${fullname}. Front end developer and 3D graphics enthusiast from ${data.personal.location}.`
 
@@ -14,9 +13,9 @@ head
 
   meta( charset="UTF-8" )
   meta( name="viewport", content="width=device-width, initial-scale=1.0" )
-  meta( name="theme-color", content="#f5f5f5" )
+  meta( name="theme-color", content="#821717" )
 
-  title edloidas
+  title= title
 
   //- Main Meta Tags
   meta( name="description", content=`${fullname}, ${data.personal.position}.` )
@@ -42,8 +41,8 @@ head
   meta( name="twitter:site", content=`@${data.personal.nickname}` )
 
   //- Sources
-  - const cssPath = `${production ? 'public/' : '' }style.css`
-  - const jsPath = `${production ? 'public/' : '' }app.js`
-  if production
-    link( rel="stylesheet", type="text/css", href=cssPath )
+  - const cssPath = `${outDir}/style.css`
+  - const jsPath = `${outDir}/app.js`
+
+  link( rel="stylesheet", type="text/css", href=cssPath )
   //- script( src=jsPath, defer )

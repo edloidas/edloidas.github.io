@@ -5,7 +5,7 @@
 
 $font__size: 16px;
 $meta__width: 300px;
-$border__radius: 5px;
+$border__radius: 6px;
 
 html,
 body {
@@ -20,7 +20,6 @@ html {
 
 body {
   background: $color__bg;
-  padding-bottom: 30px;
 }
 
 .container {
@@ -38,10 +37,9 @@ body {
 
 .name {
   display: inline-block;
-  background-color: $color__text;
+  background-color: $color__hanko;
   box-sizing: border-box;
-  margin-top: 20px;
-  padding: 0.2em 0.15em;
+  padding: 0.25em;
   border-radius: $border__radius;
   font-family: $font__title;
   font-size: 3rem;
@@ -49,6 +47,21 @@ body {
   color: $color__bg;
   text-transform: uppercase;
   text-align: center;
+}
+
+.name__first-name,
+.name__last-name {
+  display: block;
+}
+
+.name__first-name {
+  letter-spacing: 0.25em;
+  margin-right: -0.25em;
+}
+
+.name__last-name {
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
 }
 
 .meta,
@@ -78,17 +91,18 @@ body {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: calc($meta__width / 2);
-    padding: 5px 5px 5px calc($icon__size + 10px);
+    padding: 0.25em 0.25em 0.25em 1.5em;
     box-sizing: border-box;
-    border-radius: 3px;
+    border-radius: $border__radius;
+    line-height: 1.5em;
 
     /* stylelint-disable number-leading-zero */
     &:hover {
-      background-color: $color__shadow.1;
+      background-color: $color__shadow--hover;
     }
 
     &:active {
-      background-color: $color__shadow.2;
+      background-color: $color__shadow--active;
     }
     /* stylelint-enable */
   }
@@ -96,11 +110,13 @@ body {
   &__icon {
     display: inline-block;
     position: absolute;
-    top: 7px;
-    left: 5px;
-    width: $icon__size;
-    height: $icon__size;
+    top: 0.5em;
+    left: 0.25em;
+    width: 1em;
+    height: 1em;
     border-radius: $border__radius;
+    background-color: $color__text;
+    background-repeat: no-repeat;
     filter: invert(4%);
 
     &--github {
@@ -122,17 +138,6 @@ body {
 }
 
 /*
-Mobile devices, minimized view
-*/
-@media (max-width: 480px) {
-  .name {
-    width: 100%;
-    margin-top: 0;
-    border-radius: 0;
-  }
-}
-
-/*
 Mobile devices, iPhone 5 and smaller
 */
 @media (max-width: 360px) {
@@ -142,6 +147,41 @@ Mobile devices, iPhone 5 and smaller
 
   .links__icon {
     top: 5px;
+  }
+}
+
+/*
+Mobile devices, minimized view
+*/
+@media (max-width: 480px) {
+  .container {
+    justify-content: start;
+  }
+
+  .name {
+    width: 100%;
+    margin-top: 0;
+    padding: 0.5em 0.25em;
+    border-radius: 0;
+  }
+}
+
+/*
+Mobile devices in landscape
+*/
+@media (max-height: 400px) {
+  .links {
+    width: 100%;
+    justify-content: center;
+
+    &__entry {
+      flex-grow: 0;
+    }
+  }
+
+  .meta__about,
+  .meta__email {
+    margin: 0.75em 0;
   }
 }
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Play:400,700|Jura');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Itim&display=swap');
 
-$font__title: 'Play', Arial, Helvetica, sans-serif;
-$font__text: 'Jura', monospace;
+$font__title: 'Permanent Marker', cursive;
+$font__text: 'Itim', cursive;
