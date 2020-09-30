@@ -3,7 +3,7 @@
   "rules": {
     "indentation": 2,
     "color-hex-length": "long",
-    "unit-whitelist": [
+    "unit-allowed-list": [
       [ "em", "rem", "%", "s", "deg", "px" ],
       {
         "ignoreProperties": {

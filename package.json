@@ -22,11 +22,11 @@
   "scripts": {
     "clean": "rimraf ./public/**/* index.html",
     "spellcheck": "yaspeller README.md ./public/",
-    "lint": "eslint ./src/*.js",
-    "fix": "eslint --fix ./src/*.js || exit 0",
+    "lint": "eslint ./src/js/**/*.js",
+    "fix": "eslint --fix ./src/js/**/*.js || exit 0",
     "styles": "stylelint ./src/**/*.css",
-    "test": "yarn lint && yarn styles",
-    "precommit": "yarn test && rimraf ./public/app.js",
+    "test": "npm run lint && npm run styles",
+    "precommit": "npm test && npm run clean && npm run prod",
     "prod": "npm run clean && cross-env NODE_ENV=production rollup -c rollup.config.js",
     "dev": "cross-env NODE_ENV=development rollup -c rollup.config.js --watch"
   },
