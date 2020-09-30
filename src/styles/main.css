@@ -5,7 +5,7 @@
 
 $font__size: 16px;
 $meta__width: 300px;
-$border__radius: 6px;
+$border__radius: 8px;
 
 html,
 body {
@@ -146,7 +146,10 @@ Mobile devices, iPhone 5 and smaller
   }
 
   .links__icon {
-    top: 5px;
+    top: 0.425em;
+    left: 0.2em;
+    width: 1.1em;
+    height: 1.1em;
   }
 }
 
@@ -182,6 +185,16 @@ Mobile devices in landscape
   .meta__about,
   .meta__email {
     margin: 0.75em 0;
+  }
+}
+
+/*
+Mobile devices in landscape with browser bar
+*/
+@media (max-height: 340px) {
+  .meta__about,
+  .meta__email {
+    margin: 0.5em 0;
   }
 }
 
