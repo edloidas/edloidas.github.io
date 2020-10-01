@@ -8,6 +8,7 @@ import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 
 import data from './src/data.json';
+import pkg from './package.json';
 
 const { prod: isProd, dev: isDev, outDir } = require('./util/env');
 
@@ -27,7 +28,7 @@ const plugins = isProd ? [
       path.resolve(__dirname, 'src'),
       path.resolve(__dirname, 'index.html'),
     ],
-    exts: ['html', 'pug', 'js', 'css', 'json'],
+    exts: ['html', 'pug', 'js', 'css', 'json', 'jpg'],
   }),
 ];
 
@@ -47,9 +48,11 @@ export default {
       name: 'emitPug',
       generateBundle() {
         fs.writeFileSync(path.join(__dirname, 'index.html'), pug.compileFile('src/html/index.pug')({
+          doctype: 'html',
           production: isProd,
           outDir,
           data,
+          pkg,
         }));
       },
     },

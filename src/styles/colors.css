@@ -3,9 +3,10 @@ Color pallet
 stylelint-disable declaration-block-semicolon-newline-after
 */
 
-$color__bg:             hsla(0, 0%, 96%, 1);
-$color__hanko:          hsla(0, 70%, 30%, 1);
-$color__text:           hsla(0, 10%, 25%, 1);
-$color__link:           hsla(210, 50%, 60%, 1);
-$color__shadow--hover:  hsla(0, 0%, 92%, 1);
-$color__shadow--active: hsla(0, 0%, 88%, 1);
+$color__bg:             hsla(240, 10%, 15%, 1);
+$color__title:          hsla(20, 70%, 50%, 1);
+$color__text:           hsla(220, 60%, 96%, 1);
+$color__icon:           hsla(230, 60%, 92%, 1);
+$color__link:           hsla(220, 25%, 65%, 1);
+$color__shadow--hover:  hsla(240, 10%, 18%, 1);
+$color__shadow--active: hsla(240, 10%, 22%, 1);

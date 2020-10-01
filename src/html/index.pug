@@ -1,8 +1,9 @@
+doctype html
 html( lang="en" )
   include ./head.pug
 
   body.container
-    div.name
+    header.name
       span.name__first-name #{data.personal.name}
       span.name__last-name #{data.personal.surname}
 
@@ -18,5 +19,8 @@ html( lang="en" )
     div.links
       each link in data.links.accounts
         a( href = link.url, title = link.title ).links__entry.link
-          div( class=`links__icon--${link.name.toLowerCase()}` ).links__icon
-          span.links__desc #{link.name}
+          svg.link__icon
+            use( xlink:href = `#${link.name.toLowerCase()}` )
+          span.link__desc #{link.name}
+
+    include svg

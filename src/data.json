@@ -6,8 +6,8 @@
     "gender": "male",
     "email": "edloidas@gmail.com",
     "location": "Minsk, Belarus",
-    "position": "front-end developer",
-    "company": "enonic",
+    "position": "Front-end developer",
+    "company": "Enonic",
     "avatar": "https://www.gravatar.com/avatar/baeb8c35c5030b4973a46e320ac3af5c",
     "hobby": "3D graphics enthusiast"
   },
@@ -22,12 +22,12 @@
         "url": "https://github.com/edloidas"
       },
       {
-        "name": "Twitter",
-        "url": "https://twitter.com/edloidas"
+        "name": "Instagram",
+        "url": "https://www.instagram.com/edloidas/"
       },
       {
-        "name": "Steam",
-        "url": "http://steamcommunity.com/id/edloidas"
+        "name": "Twitter",
+        "url": "https://twitter.com/edloidas"
       },
       {
         "name": "Telegram",

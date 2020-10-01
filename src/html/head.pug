@@ -41,7 +41,7 @@ head
   meta( name="twitter:site", content=`@${data.personal.nickname}` )
 
   //- Sources
-  - const cssPath = `${outDir}/style.css`
+  - const cssPath = `${outDir}/style.css?v=${pkg.version}`
   - const jsPath = `${outDir}/app.js`
 
   link( rel="stylesheet", type="text/css", href=cssPath )

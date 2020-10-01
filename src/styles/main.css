@@ -4,7 +4,7 @@
 @import "icons.css";
 
 $font__size: 16px;
-$meta__width: 300px;
+$meta__width: 328px;
 $border__radius: 8px;
 
 html,
@@ -23,6 +23,7 @@ body {
 }
 
 .container {
+  position: fixed;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -37,14 +38,12 @@ body {
 
 .name {
   display: inline-block;
-  background-color: $color__hanko;
   box-sizing: border-box;
-  padding: 0.25em;
   border-radius: $border__radius;
   font-family: $font__title;
   font-size: 3rem;
   font-weight: bold;
-  color: $color__bg;
+  color: $color__title;
   text-transform: uppercase;
   text-align: center;
 }
@@ -60,8 +59,8 @@ body {
 }
 
 .name__last-name {
-  font-size: 0.75em;
   letter-spacing: 0.1em;
+  margin-right: -0.1em;
 }
 
 .meta,
@@ -91,7 +90,7 @@ body {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: calc($meta__width / 2);
-    padding: 0.25em 0.25em 0.25em 1.5em;
+    padding: 0.25em 0.5em 0.25em 1.75em;
     box-sizing: border-box;
     border-radius: $border__radius;
     line-height: 1.5em;
@@ -106,35 +105,15 @@ body {
     }
     /* stylelint-enable */
   }
+}
 
-  &__icon {
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    left: 0.25em;
-    width: 1em;
-    height: 1em;
-    border-radius: $border__radius;
-    background-color: $color__text;
-    background-repeat: no-repeat;
-    filter: invert(4%);
-
-    &--github {
-      background-image: $icon__github;
-    }
-
-    &--twitter {
-      background-image: $icon__twitter;
-    }
-
-    &--telegram {
-      background-image: $icon__telegram;
-    }
-
-    &--steam {
-      background-image: $icon__steam;
-    }
-  }
+.link__icon {
+  position: absolute;
+  left: 0.375em;
+  top: 0.5em;
+  width: 1em;
+  height: 1em;
+  fill: $color__icon;
 }
 
 /*
@@ -145,7 +124,7 @@ Mobile devices, iPhone 5 and smaller
     font-size: calc($font__size - 2px);
   }
 
-  .links__icon {
+  .link__icon {
     top: 0.425em;
     left: 0.2em;
     width: 1.1em;
@@ -164,7 +143,7 @@ Mobile devices, minimized view
   .name {
     width: 100%;
     margin-top: 0;
-    padding: 0.5em 0.25em;
+    padding: 0.5em 0.25em 0;
     border-radius: 0;
   }
 }
@@ -179,6 +158,7 @@ Mobile devices in landscape
 
     &__entry {
       flex-grow: 0;
+      flex-basis: auto;
     }
   }
 
@@ -216,11 +196,11 @@ Large screens, scale x1.5
     &__entry {
       padding-left: calc($icon__size * 1.5 + 10px);
     }
+  }
 
-    &__icon {
-      top: 13px;
-      left: 10px;
-      transform: scale(1.5);
-    }
+  .link__icon {
+    top: 13px;
+    left: 10px;
+    transform: scale(1.5);
   }
 }
