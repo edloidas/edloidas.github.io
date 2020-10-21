@@ -186,21 +186,16 @@ Large screens, scale x1.5
     font-size: calc($font__size * 1.5);
   }
 
-  .name {
-    margin-top: 40px;
-  }
-
   .links {
-    width: 440px;
+    width: 512px;
 
     &__entry {
-      padding-left: calc($icon__size * 1.5 + 10px);
+      padding: 0.25em 0.5em 0.25em 2em;
     }
   }
 
   .link__icon {
-    top: 13px;
-    left: 10px;
+    left: 0.5em;
     transform: scale(1.5);
   }
 }
