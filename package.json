@@ -48,7 +48,7 @@
     "postcss-mixins": "^6.2.3",
     "postcss-nested": "^4.2.3",
     "postcss-simple-vars": "^5.0.2",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.26.10",
     "rollup-plugin-livereload": "^2.0.0",
