@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Ubuntu:wght@400&display=swap');
+@import "https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Ubuntu:wght@400&display=swap";
 
-$font__title: 'Permanent Marker', cursive;
-$font__text: 'Ubuntu', Arial, Helvetica, sans-serif;
+$font__title: "Permanent Marker", cursive;
+$font__text: "Ubuntu", arial, helvetica, sans-serif;

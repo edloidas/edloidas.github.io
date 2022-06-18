@@ -25,8 +25,7 @@ body {
 .container {
   position: fixed;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   overflow: auto;
@@ -87,9 +86,7 @@ body {
   &__entry {
     display: inline-block;
     position: relative;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: calc($meta__width / 2);
+    flex: 1 1 calc($meta__width / 2);
     padding: 0.25em 0.5em 0.25em 1.75em;
     box-sizing: border-box;
     border-radius: $border__radius;

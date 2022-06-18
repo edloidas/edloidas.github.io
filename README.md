@@ -5,4 +5,4 @@ edloidas
 
 ## License ##
 
-[MIT](LICENSE) © [Mikita Taukachou](https://edloidas.com)
+[MIT](LICENSE) © [Mikita Taukachou](https://edloidas.io)

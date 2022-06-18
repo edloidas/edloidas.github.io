@@ -3,10 +3,10 @@ Color pallet
 stylelint-disable declaration-block-semicolon-newline-after
 */
 
-$color__bg:             hsla(240, 10%, 15%, 1);
-$color__title:          hsla(20, 70%, 50%, 1);
-$color__text:           hsla(220, 60%, 96%, 1);
-$color__icon:           hsla(230, 60%, 92%, 1);
-$color__link:           hsla(220, 25%, 65%, 1);
-$color__shadow--hover:  hsla(240, 10%, 18%, 1);
-$color__shadow--active: hsla(240, 10%, 22%, 1);
+$color__bg:             hsl(240deg 10% 15%);
+$color__title:          hsl(20deg 70% 50%);
+$color__text:           hsl(220deg 60% 96%);
+$color__icon:           hsl(230deg 60% 92%);
+$color__link:           hsl(220deg 25% 65%);
+$color__shadow--hover:  hsl(240deg 10% 18%);
+$color__shadow--active: hsl(240deg 10% 22%);
