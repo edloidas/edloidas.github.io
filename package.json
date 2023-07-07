@@ -56,7 +56,7 @@
     "rollup-plugin-pug": "^1.1.1",
     "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-terser": "^7.0.2",
-    "stylelint": "^14.9.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard": "^26.0.0",
     "yaspeller": "^8.0.1"
   },
