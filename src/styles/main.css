@@ -1,29 +1,51 @@
-@import "normalize.css";
-@import "colors.css";
-@import "fonts.css";
-@import "icons.css";
+@import 'modern-normalize';
 
-$font__size: 16px;
-$meta__width: 328px;
-$border__radius: 8px;
+:root {
+  /* Colors - from original design */
+  --color-bg: hsl(240deg 10% 15%);
+  --color-title: hsl(20deg 70% 50%);
+  --color-text: hsl(220deg 60% 96%);
+  --color-icon: hsl(230deg 60% 92%);
+  --color-link: hsl(220deg 25% 65%);
+  --color-shadow-hover: hsl(240deg 10% 18%);
+  --color-shadow-active: hsl(240deg 10% 22%);
 
+  /* Fonts */
+  --font-title: 'Permanent Marker', cursive;
+  --font-text: 'Ubuntu', arial, helvetica, sans-serif;
+
+  /* Spacing */
+  --meta-width: 328px;
+  --border-radius: 8px;
+}
+
+/* Base styles */
 html,
 body {
   min-width: 100%;
   min-height: 100%;
   margin: 0;
-}
-
-html {
-  font-size: $font__size;
+  font-size: 16px;
 }
 
 body {
-  background: $color__bg;
+  background: var(--color-bg);
 }
 
+/* Canvas background - fullscreen behind content */
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Main container */
 .container {
   position: fixed;
+  inset: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -31,77 +53,101 @@ body {
   overflow: auto;
 }
 
+/* Links */
 .link {
-  color: $color__link;
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
+.link:hover {
+  color: hsl(220deg 45% 75%);
+}
+
+.link:active {
+  color: hsl(220deg 65% 85%);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Name header */
 .name {
   display: inline-block;
   box-sizing: border-box;
-  border-radius: $border__radius;
-  font-family: $font__title;
+  border-radius: var(--border-radius);
+  font-family: var(--font-title);
   font-size: 3rem;
   font-weight: bold;
-  color: $color__title;
+  color: var(--color-title);
   text-transform: uppercase;
   text-align: center;
 }
 
-.name__first-name,
-.name__last-name {
+.name__first,
+.name__last {
   display: block;
 }
 
-.name__first-name {
+.name__first {
   letter-spacing: 0.25em;
   margin-right: -0.25em;
 }
 
-.name__last-name {
+.name__last {
   letter-spacing: 0.1em;
   margin-right: -0.1em;
 }
 
+/* Meta section */
 .meta,
 .links {
-  font-family: $font__text;
+  font-family: var(--font-text);
   font-size: 1.5rem;
-  color: $color__text;
+  color: var(--color-text);
 }
 
 .meta {
   text-align: center;
-
-  &__about {
-    line-height: 1.25em;
-  }
 }
 
+.meta__about {
+  line-height: 1.25em;
+}
+
+/* Social links */
 .links {
   display: flex;
-  width: $meta__width;
+  width: var(--meta-width);
   flex-wrap: wrap;
   justify-content: space-around;
+}
 
-  &__entry {
-    display: inline-block;
-    position: relative;
-    flex: 1 1 calc($meta__width / 2);
-    padding: 0.25em 0.5em 0.25em 1.75em;
-    box-sizing: border-box;
-    border-radius: $border__radius;
-    line-height: 1.5em;
+.links__entry {
+  display: inline-block;
+  position: relative;
+  flex: 1 1 calc(var(--meta-width) / 2);
+  padding: 0.25em 0.5em 0.25em 1.75em;
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  line-height: 1.5em;
+  transition: background-color 0.2s ease;
+}
 
-    /* stylelint-disable number-leading-zero */
-    &:hover {
-      background-color: $color__shadow--hover;
-    }
+.links__entry:hover {
+  background-color: var(--color-shadow-hover);
+}
 
-    &:active {
-      background-color: $color__shadow--active;
-    }
-    /* stylelint-enable */
-  }
+.links__entry:active {
+  background-color: var(--color-shadow-active);
+}
+
+.links__entry:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
 }
 
 .link__icon {
@@ -110,15 +156,13 @@ body {
   top: 0.5em;
   width: 1em;
   height: 1em;
-  fill: $color__icon;
+  fill: var(--color-icon);
 }
 
-/*
-Mobile devices, iPhone 5 and smaller
-*/
+/* Responsive: Small phones (iPhone 5 and smaller) */
 @media (max-width: 360px) {
   html {
-    font-size: calc($font__size - 2px);
+    font-size: 14px;
   }
 
   .link__icon {
@@ -129,9 +173,7 @@ Mobile devices, iPhone 5 and smaller
   }
 }
 
-/*
-Mobile devices, minimized view
-*/
+/* Responsive: Mobile portrait */
 @media (max-width: 480px) {
   .container {
     justify-content: start;
@@ -145,18 +187,16 @@ Mobile devices, minimized view
   }
 }
 
-/*
-Mobile devices in landscape
-*/
+/* Responsive: Mobile landscape */
 @media (max-height: 400px) {
   .links {
     width: 100%;
     justify-content: center;
+  }
 
-    &__entry {
-      flex-grow: 0;
-      flex-basis: auto;
-    }
+  .links__entry {
+    flex-grow: 0;
+    flex-basis: auto;
   }
 
   .meta__about,
@@ -165,9 +205,7 @@ Mobile devices in landscape
   }
 }
 
-/*
-Mobile devices in landscape with browser bar
-*/
+/* Responsive: Mobile landscape with browser bar */
 @media (max-height: 340px) {
   .meta__about,
   .meta__email {
@@ -175,24 +213,35 @@ Mobile devices in landscape with browser bar
   }
 }
 
-/*
-Large screens, scale x1.5
-*/
+/* Responsive: Large screens (1.5x scale) */
 @media (min-width: 1921px) {
   html {
-    font-size: calc($font__size * 1.5);
+    font-size: 24px;
   }
 
   .links {
     width: 512px;
+  }
 
-    &__entry {
-      padding: 0.25em 0.5em 0.25em 2em;
-    }
+  .links__entry {
+    padding: 0.25em 0.5em 0.25em 2.25em;
   }
 
   .link__icon {
     left: 0.5em;
-    transform: scale(1.5);
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .links__entry {
+    transition: none;
+  }
+
+  #background {
+    display: none;
   }
 }

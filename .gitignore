@@ -1,17 +1,29 @@
-# Directories #
+# AI Assistant
+.claude/plans/
+.codex/
+.cursor/commands/
+.cursor/mcp.json
+.mcp.json
+settings.local.json
 
+# Build files
+dist/
+build/
+
+# Build tools
 node_modules/
-coverage/
-#public/
-temp/
-public/*.map
+.pnpm-store/
 
-# Files #
-
-#index.html
-
-npm-debug.log
-yarn-error.log
-
+# OS files
 .DS_Store
-Desktop.ini
+Thumbs.db
+
+# Logs
+logs/
+*.log
+pnpm-debug.log*
+
+# Misc
+.cache/
+.temp/
+.tmp/
