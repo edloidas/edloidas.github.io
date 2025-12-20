@@ -1,7 +1,7 @@
-import {writeFileSync} from 'node:fs';
-import {resolve} from 'node:path';
-import type {Plugin} from 'vite';
-import {data, type PersonalData} from './src/data';
+import { writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import type { Plugin } from 'vite';
+import { data, type PersonalData } from '../src/data';
 
 function generateJsonLd(d: PersonalData): string {
   const jsonLd = {
@@ -17,24 +17,26 @@ function generateJsonLd(d: PersonalData): string {
       name: d.company,
       url: d.companyUrl,
     },
-    sameAs: d.links.map((link) => link.url),
+    sameAs: d.links.map(link => link.url),
   };
   return JSON.stringify(jsonLd, null, 2).replace(/^/gm, '      ').trim();
 }
 
 function generateWebManifest(d: PersonalData): string {
   const manifest = {
-    name: d.nickname,
+    name: `${d.name} ${d.surname}`,
     short_name: d.nickname,
-    description: `${d.name} ${d.surname}. ${d.position} and ${d.hobby}.`,
+    description: `${d.position} and ${d.hobby}.`,
     start_url: '/',
     display: 'standalone',
+    orientation: 'any',
+    lang: 'en',
     background_color: '#181c25',
     theme_color: '#181c25',
     icons: [
-      {src: '/favicon-192.png', sizes: '192x192', type: 'image/png'},
-      {src: '/favicon-512.png', sizes: '512x512', type: 'image/png'},
-      {src: '/favicon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable'},
+      { src: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
+      { src: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
+      { src: '/favicon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
     ],
   };
   return JSON.stringify(manifest, null, 2);
@@ -42,7 +44,7 @@ function generateWebManifest(d: PersonalData): string {
 
 export function personalDataPlugin(): Plugin {
   const fullName = `${data.name} ${data.surname}`;
-  const description = `${fullName}. ${data.position} and ${data.hobby}.`;
+  const description = `${data.position} and ${data.hobby}.`;
 
   const replacements: Record<string, string> = {
     '{{name}}': data.name,
@@ -81,10 +83,7 @@ export function personalDataPlugin(): Plugin {
       });
     },
     transformIndexHtml(html) {
-      return Object.entries(replacements).reduce(
-        (result, [key, value]) => result.replaceAll(key, value),
-        html,
-      );
+      return Object.entries(replacements).reduce((result, [key, value]) => result.replaceAll(key, value), html);
     },
     writeBundle(options) {
       const outDir = options.dir ?? 'dist';

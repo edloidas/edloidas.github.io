@@ -11,6 +11,8 @@
       "**/*.config.ts",
       "**/*.json",
       "**/src/**/*.css",
+      "utils/**/*.ts",
+      "vite.config.ts",
       "!**/node_modules",
       "!**/dist",
       "!**/*.d.ts",

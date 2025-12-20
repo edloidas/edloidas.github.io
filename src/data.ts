@@ -22,7 +22,7 @@ export const data: PersonalData = {
   surname: 'Taukachou',
   nickname: 'edloidas',
   email: 'edloidas@gmail.com',
-  position: 'Frontend architect',
+  position: 'Frontend Architect',
   company: 'Enonic',
   companyUrl: 'https://enonic.com',
   hobby: 'AI & 3D graphics enthusiast',

@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import glsl from 'vite-plugin-glsl';
-import { personalDataPlugin } from './vite-plugin-personal-data';
+import { personalDataPlugin } from './utils/vite-plugin-personal-data';
 
 export default defineConfig({
   plugins: [glsl(), personalDataPlugin()],
