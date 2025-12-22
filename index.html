@@ -53,13 +53,16 @@
     <!-- Prevent Flash of Unstyled Content -->
     <style>
     @layer base {
-      body {
+      :root {
         background-color: #ffffff;
       }
       @media (prefers-color-scheme: dark) {
-        body {
+        :root {
           background-color: #060606;
         }
+      }
+      body {
+        visibility: hidden;
       }
     }
     </style>
