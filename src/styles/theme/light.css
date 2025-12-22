@@ -1,0 +1,28 @@
+:root {
+  /* Core colors */
+  --color-bg: oklch(1 0 0);
+  --color-text: oklch(0.21 0.034 264);
+  --color-text-secondary: oklch(0.39 0.03 264);
+  --color-text-muted: oklch(0.55 0.025 255);
+  --color-accent: oklch(0.58 0.2 38);
+  --color-accent-hover: oklch(0.5 0.18 38);
+
+  /* Glass button */
+  --btn-bg: oklch(1 0 0 / 0.3);
+  --btn-border: oklch(0 0 0 / 0.1);
+  --btn-hover-bg: oklch(0.15 0 0);
+  --btn-hover-text: oklch(1 0 0);
+  --btn-shadow: oklch(0 0 0 / 0.3);
+
+  /* Selection */
+  --selection-bg: oklch(0.58 0.2 38 / 0.3);
+
+  /* Theme toggle */
+  --toggle-bg: oklch(1 0 0 / 0.6);
+  --toggle-border: oklch(0 0 0 / 0.1);
+  --toggle-hover-bg: oklch(0 0 0 / 0.05);
+
+  /* Browser color scheme */
+  color-scheme: light;
+  background-color: var(--color-bg);
+}

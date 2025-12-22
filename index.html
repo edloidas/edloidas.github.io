@@ -56,8 +56,11 @@
       :root {
         background-color: #ffffff;
       }
+      :root.dark {
+        background-color: #060606;
+      }
       @media (prefers-color-scheme: dark) {
-        :root {
+        :root:not(.light) {
           background-color: #060606;
         }
       }

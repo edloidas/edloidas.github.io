@@ -2,10 +2,10 @@
    CSS Layer Definitions
    ============================================
    Order determines cascade priority (later = higher)
-   1. reset     - Normalize/reset styles
-   2. tokens    - Design tokens (CSS custom properties)
-   3. base      - Base element styles
-   4. layout    - Page structure and sections
+   1. reset      - Normalize/reset styles
+   2. tokens     - Design tokens (CSS custom properties)
+   3. base       - Base element styles
+   4. layout     - Page structure and sections
    5. components - Interactive UI components
    ============================================ */
 
@@ -16,6 +16,8 @@
 
 /* Tokens layer - design system variables */
 @import './tokens.css' layer(tokens);
+@import './theme/light.css' layer(tokens);
+@import './theme/dark.css' layer(tokens);
 
 /* Base layer - typography, selection, accessibility */
 @import './base.css' layer(base);
