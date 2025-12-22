@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#181c25" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#060606" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
 
     <title>{{nickname}}</title>
 
@@ -22,7 +23,7 @@
 
     <!-- Apple Mobile Web App -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="{{nickname}}" />
 
     <!-- Meta Open Graph -->
@@ -49,6 +50,20 @@
     <meta name="twitter:image:alt" content="{{nickname}} avatar" />
     <meta name="twitter:description" content="{{description}}" />
 
+    <!-- Prevent Flash of Unstyled Content -->
+    <style>
+    @layer base {
+      body {
+        background-color: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #060606;
+        }
+      }
+    }
+    </style>
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
 {{jsonLd}}
@@ -58,7 +73,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Ubuntu:wght@400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -68,81 +83,65 @@
   <body>
     <canvas id="background" aria-hidden="true"></canvas>
 
-    <div class="container">
-      <header class="name">
-        <span class="name__first">{{name}}</span>
-        <span class="name__last">{{surname}}</span>
-      </header>
+    <button
+      type="button"
+      class="theme-toggle"
+      id="theme-toggle"
+      aria-label="Toggle theme"
+      title="Toggle theme"
+    >
+      <svg class="theme-icon theme-icon--auto" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2v2"/><path d="M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715"/><path d="M16 12a4 4 0 0 0-4-4"/><path d="m19 5-1.256 1.256"/><path d="M20 12h2"/></svg>
+      <svg class="theme-icon theme-icon--light" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2" />
+        <path d="M12 20v2" />
+        <path d="m4.93 4.93 1.41 1.41" />
+        <path d="m17.66 17.66 1.41 1.41" />
+        <path d="M2 12h2" />
+        <path d="M20 12h2" />
+        <path d="m6.34 17.66-1.41 1.41" />
+        <path d="m19.07 4.93-1.41 1.41" />
+      </svg>
+      <svg class="theme-icon theme-icon--dark" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </svg>
+    </button>
 
-      <main class="meta">
-        <p class="meta__about">
-          {{position}} at
-          <a href="{{companyUrl}}" class="link">{{company}}</a><br />
-          {{hobby}}
-        </p>
+    <div class="page">
+      <main class="content">
+        <header class="header">
+          <h1 class="name">
+            <span class="name__line">{{name}}</span>
+            <span class="name__line">{{surname}}</span>
+          </h1>
 
-        <p class="meta__email">
-          <a href="mailto:{{email}}" class="link">{{email}}</a>
-        </p>
+          <div class="bio">
+            <p class="bio__title">
+              {{position}} at <a href="{{companyUrl}}" class="bio__accent" target="_blank" rel="noopener noreferrer">{{company}}</a>.
+            </p>
+            <p class="bio__description">{{hobby}}.</p>
+          </div>
+
+          <div class="cta" role="group" aria-label="Contact">
+            <a href="mailto:{{email}}" class="cta__button" aria-label="Send email to {{email}}">
+              <span>{{email}}</span>
+              <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" stroke-linejoin="round"></line>
+                <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"></polyline>
+              </svg>
+            </a>
+          </div>
+        </header>
+
+        <footer class="footer">
+          <nav class="social" aria-label="Social links">
+            <a href="{{githubUrl}}" class="social__link" rel="noopener noreferrer">GitHub</a>
+            <a href="{{instagramUrl}}" class="social__link" rel="noopener noreferrer">Instagram</a>
+            <a href="{{xUrl}}" class="social__link" rel="noopener noreferrer" aria-label="X (formerly Twitter)">X</a>
+          </nav>
+        </footer>
       </main>
-
-      <nav class="links" aria-label="Social links">
-        <a
-          href="{{githubUrl}}"
-          class="links__entry link"
-          aria-label="GitHub profile"
-        >
-          <svg class="link__icon" viewBox="0 0 24 24" width="48" height="48" aria-hidden="true">
-            <path
-              d="M12 .5C5.37.5 0 5.78 0 12.292c0 5.211 3.438 9.63 8.205 11.188.6.111.82-.254.82-.567 0-.28-.01-1.022-.015-2.005-3.338.711-4.042-1.582-4.042-1.582-.546-1.361-1.335-1.725-1.335-1.725-1.087-.731.084-.716.084-.716 1.205.082 1.838 1.215 1.838 1.215 1.07 1.803 2.809 1.282 3.495.981.108-.763.417-1.282.76-1.577-2.665-.295-5.466-1.309-5.466-5.827 0-1.287.465-2.339 1.235-3.164-.135-.298-.54-1.497.105-3.121 0 0 1.005-.316 3.3 1.209.96-.262 1.98-.392 3-.398 1.02.006 2.04.136 3 .398 2.28-1.525 3.285-1.209 3.285-1.209.645 1.624.24 2.823.12 3.121.765.825 1.23 1.877 1.23 3.164 0 4.53-2.805 5.527-5.475 5.817.42.354.81 1.077.81 2.182 0 1.578-.015 2.846-.015 3.229 0 .309.21.678.825.56C20.565 21.917 24 17.495 24 12.292 24 5.78 18.627.5 12 .5z"
-            />
-          </svg>
-          <span class="link__desc">GitHub</span>
-        </a>
-
-        <a
-          href="{{instagramUrl}}"
-          class="links__entry link"
-          aria-label="Instagram profile"
-        >
-          <svg class="link__icon" viewBox="0 0 512 512" width="48" height="48" aria-hidden="true">
-            <path
-              d="M352 0H160C71.648 0 0 71.648 0 160v192c0 88.352 71.648 160 160 160h192c88.352 0 160-71.648 160-160V160C512 71.648 440.352 0 352 0zm112 352c0 61.76-50.24 112-112 112H160c-61.76 0-112-50.24-112-112V160C48 98.24 98.24 48 160 48h192c61.76 0 112 50.24 112 112v192z"
-            />
-            <path
-              d="M256 128c-70.688 0-128 57.312-128 128s57.312 128 128 128 128-57.312 128-128-57.312-128-128-128zm0 208c-44.096 0-80-35.904-80-80 0-44.128 35.904-80 80-80s80 35.872 80 80c0 44.096-35.904 80-80 80z"
-            />
-            <circle cx="393.6" cy="118.4" r="17.056" />
-          </svg>
-          <span class="link__desc">Instagram</span>
-        </a>
-
-        <a
-          href="{{twitterUrl}}"
-          class="links__entry link"
-          aria-label="X (Twitter) profile"
-        >
-          <svg class="link__icon" viewBox="0 0 512 512" width="48" height="48" aria-hidden="true">
-            <path
-              d="M512 97.248c-19.04 8.352-39.328 13.888-60.48 16.576 21.76-12.992 38.368-33.408 46.176-58.016-20.288 12.096-42.688 20.64-66.56 25.408C411.872 60.704 384.416 48 354.464 48c-58.112 0-104.896 47.168-104.896 104.992 0 8.32.704 16.32 2.432 23.936-87.264-4.256-164.48-46.08-216.352-109.792-9.056 15.712-14.368 33.696-14.368 53.056 0 36.352 18.72 68.576 46.624 87.232-16.864-.32-33.408-5.216-47.424-12.928v1.152c0 51.008 36.384 93.376 84.096 103.136-8.544 2.336-17.856 3.456-27.52 3.456-6.72 0-13.504-.384-19.872-1.792 13.6 41.568 52.192 72.128 98.08 73.12-35.712 27.936-81.056 44.768-130.144 44.768-8.608 0-16.864-.384-25.12-1.44C46.496 446.88 101.6 464 161.024 464c193.152 0 298.752-160 298.752-298.688 0-4.64-.16-9.12-.384-13.568 20.832-14.784 38.336-33.248 52.608-54.496z"
-            />
-          </svg>
-          <span class="link__desc">Twitter</span>
-        </a>
-
-        <a
-          href="{{telegramUrl}}"
-          class="links__entry link"
-          aria-label="Telegram profile"
-        >
-          <svg class="link__icon" viewBox="0 0 24 24" width="48" height="48" aria-hidden="true">
-            <path
-              d="M9.417 15.181l-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L23.93 3.821l.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693L18.953 5.78c.595-.394 1.136-.176.691.218z"
-            />
-          </svg>
-          <span class="link__desc">Telegram</span>
-        </a>
-      </nav>
     </div>
   </body>
 </html>

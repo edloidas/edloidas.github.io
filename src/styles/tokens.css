@@ -1,0 +1,60 @@
+/* ============================================
+   Design Tokens
+   ============================================ */
+
+:root {
+  /* Color scheme - enables light-dark() */
+  --color-bg: light-dark(oklch(1 0 0), oklch(0.12 0 0));
+  --color-text: light-dark(oklch(0.21 0.034 264), oklch(1 0 0));
+  --color-text-secondary: light-dark(oklch(0.39 0.03 264), oklch(0.85 0.02 250));
+  --color-text-muted: light-dark(oklch(0.55 0.025 255), oklch(0.7 0.025 255));
+  --color-accent: light-dark(oklch(0.58 0.2 38), oklch(0.63 0.22 25));
+  --color-accent-hover: light-dark(oklch(0.5 0.18 38), oklch(0.55 0.22 25));
+
+  /* Glass button */
+  --btn-bg: light-dark(oklch(1 0 0 / 0.3), oklch(1 0 0 / 0.03));
+  --btn-border: light-dark(oklch(0 0 0 / 0.1), oklch(0.65 0.2 25 / 0.15));
+  --btn-hover-bg: light-dark(oklch(0.15 0 0), oklch(0.6 0.25 25));
+  --btn-hover-text: oklch(1 0 0);
+  --btn-shadow: light-dark(oklch(0 0 0 / 0.3), oklch(0.5 0.25 25 / 0.5));
+
+  /* Selection */
+  --selection-bg: light-dark(oklch(0.58 0.2 38 / 0.3), oklch(0.5 0.2 25 / 0.4));
+
+  /* Theme toggle */
+  --toggle-bg: light-dark(oklch(1 0 0 / 0.6), oklch(1 0 0 / 0.03));
+  --toggle-border: light-dark(oklch(0 0 0 / 0.1), oklch(1 0 0 / 0.1));
+  --toggle-hover-bg: light-dark(oklch(0 0 0 / 0.05), oklch(1 0 0 / 0.08));
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 6rem;
+
+  /* Layout */
+  --page-padding: clamp(1.5rem, 4vw, 6rem);
+  --content-max-width: 56rem;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.3s;
+  /* Color scheme - enables light-dark() */
+  color-scheme: light dark;
+}
+
+/* Manual theme overrides */
+:root.light {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}

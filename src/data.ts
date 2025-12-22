@@ -31,7 +31,6 @@ export const data: PersonalData = {
   links: [
     { name: 'GitHub', url: 'https://github.com/edloidas' },
     { name: 'Instagram', url: 'https://www.instagram.com/edloidas' },
-    { name: 'Twitter', url: 'https://x.com/edloidas' },
-    { name: 'Telegram', url: 'https://t.me/edloidas' },
+    { name: 'X', url: 'https://x.com/edloidas' },
   ],
 };

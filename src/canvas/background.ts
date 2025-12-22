@@ -38,11 +38,16 @@ function createProgram(
   return program;
 }
 
-export function initBackground(canvas: HTMLCanvasElement): void {
+export interface BackgroundController {
+  setTheme: (isDark: boolean) => void;
+  destroy: () => void;
+}
+
+export function initBackground(canvas: HTMLCanvasElement): BackgroundController | null {
   const gl = canvas.getContext('webgl2');
   if (!gl) {
     console.warn('WebGL2 not supported');
-    return;
+    return null;
   }
 
   // Create shaders
@@ -51,20 +56,21 @@ export function initBackground(canvas: HTMLCanvasElement): void {
 
   if (!vertexShader || !fragmentShader) {
     console.error('Failed to create shaders');
-    return;
+    return null;
   }
 
   // Create program
   const program = createProgram(gl, vertexShader, fragmentShader);
   if (!program) {
     console.error('Failed to create program');
-    return;
+    return null;
   }
 
   // Get attribute and uniform locations
   const positionLocation = gl.getAttribLocation(program, 'a_position');
   const timeLocation = gl.getUniformLocation(program, 'u_time');
   const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+  const themeLocation = gl.getUniformLocation(program, 'u_theme');
 
   // Create fullscreen quad
   const positions = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
@@ -78,6 +84,24 @@ export function initBackground(canvas: HTMLCanvasElement): void {
   gl.bindVertexArray(vao);
   gl.enableVertexAttribArray(positionLocation);
   gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+  // Theme state (0.0 = light, 1.0 = dark)
+  let currentTheme = 0.0;
+  let targetTheme = 0.0;
+
+  // Detect initial theme from stored preference or system
+  const storedTheme = localStorage.getItem('theme-preference');
+  const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  if (storedTheme === 'dark') {
+    targetTheme = 1.0;
+  } else if (storedTheme === 'light') {
+    targetTheme = 0.0;
+  } else {
+    // Auto mode - use system preference
+    targetTheme = darkModeQuery.matches ? 1.0 : 0.0;
+  }
+  currentTheme = targetTheme;
 
   // Resize handler
   function resize() {
@@ -95,9 +119,20 @@ export function initBackground(canvas: HTMLCanvasElement): void {
   // Animation loop
   let startTime = performance.now();
   let animationId: number;
+  let isRunning = true;
 
   function render() {
+    if (!isRunning) return;
+
     resize();
+
+    // Smooth theme transition
+    const themeDiff = targetTheme - currentTheme;
+    if (Math.abs(themeDiff) > 0.001) {
+      currentTheme += themeDiff * 0.05; // Smooth interpolation
+    } else {
+      currentTheme = targetTheme;
+    }
 
     const time = (performance.now() - startTime) / 1000;
 
@@ -106,6 +141,7 @@ export function initBackground(canvas: HTMLCanvasElement): void {
 
     gl?.uniform1f(timeLocation, time);
     gl?.uniform2f(resolutionLocation, canvas.width, canvas.height);
+    gl?.uniform1f(themeLocation, currentTheme);
 
     gl?.drawArrays(gl.TRIANGLES, 0, 6);
 
@@ -117,13 +153,43 @@ export function initBackground(canvas: HTMLCanvasElement): void {
 
   // Handle visibility change to pause when hidden
   let pausedElapsed = 0;
-  document.addEventListener('visibilitychange', () => {
+
+  function handleVisibilityChange() {
     if (document.hidden) {
       cancelAnimationFrame(animationId);
       pausedElapsed = performance.now() - startTime;
-    } else {
+    } else if (isRunning) {
       startTime = performance.now() - pausedElapsed;
       render();
     }
-  });
+  }
+
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+
+  // Handle system theme change
+  function handleThemeChange(e: MediaQueryListEvent) {
+    targetTheme = e.matches ? 1.0 : 0.0;
+  }
+
+  darkModeQuery.addEventListener('change', handleThemeChange);
+
+  // Return controller
+  return {
+    setTheme(isDark: boolean) {
+      targetTheme = isDark ? 1.0 : 0.0;
+    },
+    destroy() {
+      isRunning = false;
+      cancelAnimationFrame(animationId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      darkModeQuery.removeEventListener('change', handleThemeChange);
+
+      // Clean up WebGL resources
+      gl?.deleteBuffer(positionBuffer);
+      gl?.deleteVertexArray(vao);
+      gl?.deleteProgram(program);
+      gl?.deleteShader(vertexShader);
+      gl?.deleteShader(fragmentShader);
+    },
+  };
 }

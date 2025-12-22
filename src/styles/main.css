@@ -1,247 +1,27 @@
-@import 'modern-normalize';
+/* ============================================
+   CSS Layer Definitions
+   ============================================
+   Order determines cascade priority (later = higher)
+   1. reset     - Normalize/reset styles
+   2. tokens    - Design tokens (CSS custom properties)
+   3. base      - Base element styles
+   4. layout    - Page structure and sections
+   5. components - Interactive UI components
+   ============================================ */
 
-:root {
-  /* Colors - from original design */
-  --color-bg: hsl(240deg 10% 15%);
-  --color-title: hsl(20deg 70% 50%);
-  --color-text: hsl(220deg 60% 96%);
-  --color-icon: hsl(230deg 60% 92%);
-  --color-link: hsl(220deg 25% 65%);
-  --color-shadow-hover: hsl(240deg 10% 18%);
-  --color-shadow-active: hsl(240deg 10% 22%);
+@layer reset, tokens, base, layout, components;
 
-  /* Fonts */
-  --font-title: 'Permanent Marker', cursive;
-  --font-text: 'Ubuntu', arial, helvetica, sans-serif;
+/* Reset layer - external normalize */
+@import 'modern-normalize' layer(reset);
 
-  /* Spacing */
-  --meta-width: 328px;
-  --border-radius: 8px;
-}
+/* Tokens layer - design system variables */
+@import './tokens.css' layer(tokens);
 
-/* Base styles */
-html,
-body {
-  min-width: 100%;
-  min-height: 100%;
-  margin: 0;
-  font-size: 16px;
-}
+/* Base layer - typography, selection, accessibility */
+@import './base.css' layer(base);
 
-body {
-  background: var(--color-bg);
-}
+/* Layout layer - page structure */
+@import './layout.css' layer(layout);
 
-/* Canvas background - fullscreen behind content */
-#background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-/* Main container */
-.container {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
-}
-
-/* Links */
-.link {
-  color: var(--color-link);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.link:hover {
-  color: hsl(220deg 45% 75%);
-}
-
-.link:active {
-  color: hsl(220deg 65% 85%);
-}
-
-.link:focus-visible {
-  outline: 2px solid var(--color-link);
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
-/* Name header */
-.name {
-  display: inline-block;
-  box-sizing: border-box;
-  border-radius: var(--border-radius);
-  font-family: var(--font-title);
-  font-size: 3rem;
-  font-weight: bold;
-  color: var(--color-title);
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.name__first,
-.name__last {
-  display: block;
-}
-
-.name__first {
-  letter-spacing: 0.25em;
-  margin-right: -0.25em;
-}
-
-.name__last {
-  letter-spacing: 0.1em;
-  margin-right: -0.1em;
-}
-
-/* Meta section */
-.meta,
-.links {
-  font-family: var(--font-text);
-  font-size: 1.5rem;
-  color: var(--color-text);
-}
-
-.meta {
-  text-align: center;
-}
-
-.meta__about {
-  line-height: 1.25em;
-}
-
-/* Social links */
-.links {
-  display: flex;
-  width: var(--meta-width);
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.links__entry {
-  display: inline-block;
-  position: relative;
-  flex: 1 1 calc(var(--meta-width) / 2);
-  padding: 0.25em 0.5em 0.25em 1.75em;
-  box-sizing: border-box;
-  border-radius: var(--border-radius);
-  line-height: 1.5em;
-  transition: background-color 0.2s ease;
-}
-
-.links__entry:hover {
-  background-color: var(--color-shadow-hover);
-}
-
-.links__entry:active {
-  background-color: var(--color-shadow-active);
-}
-
-.links__entry:focus-visible {
-  outline: 2px solid var(--color-link);
-  outline-offset: 2px;
-}
-
-.link__icon {
-  position: absolute;
-  left: 0.375em;
-  top: 0.5em;
-  width: 1em;
-  height: 1em;
-  fill: var(--color-icon);
-}
-
-/* Responsive: Small phones (iPhone 5 and smaller) */
-@media (max-width: 360px) {
-  html {
-    font-size: 14px;
-  }
-
-  .link__icon {
-    top: 0.425em;
-    left: 0.2em;
-    width: 1.1em;
-    height: 1.1em;
-  }
-}
-
-/* Responsive: Mobile portrait */
-@media (max-width: 480px) {
-  .container {
-    justify-content: start;
-  }
-
-  .name {
-    width: 100%;
-    margin-top: 0;
-    padding: 0.5em 0.25em 0;
-    border-radius: 0;
-  }
-}
-
-/* Responsive: Mobile landscape */
-@media (max-height: 400px) {
-  .links {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .links__entry {
-    flex-grow: 0;
-    flex-basis: auto;
-  }
-
-  .meta__about,
-  .meta__email {
-    margin: 0.75em 0;
-  }
-}
-
-/* Responsive: Mobile landscape with browser bar */
-@media (max-height: 340px) {
-  .meta__about,
-  .meta__email {
-    margin: 0.5em 0;
-  }
-}
-
-/* Responsive: Large screens (1.5x scale) */
-@media (min-width: 1921px) {
-  html {
-    font-size: 24px;
-  }
-
-  .links {
-    width: 512px;
-  }
-
-  .links__entry {
-    padding: 0.25em 0.5em 0.25em 2.25em;
-  }
-
-  .link__icon {
-    left: 0.5em;
-    width: 1.5em;
-    height: 1.5em;
-  }
-}
-
-/* Reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .link,
-  .links__entry {
-    transition: none;
-  }
-
-  #background {
-    display: none;
-  }
-}
+/* Components layer - UI components */
+@import './components.css' layer(components);

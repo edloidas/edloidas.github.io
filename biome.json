@@ -42,11 +42,22 @@
     }
   },
   "css": {
+    "parser": {
+      "tailwindDirectives": true
+    },
     "formatter": {
       "quoteStyle": "single"
     }
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedProperties": "on",
+        "useSortedAttributes": "on"
+      }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
@@ -62,7 +73,11 @@
       },
       "suspicious": {
         "noExplicitAny": "error",
-        "noVar": "error"
+        "noVar": "error",
+        "noDuplicateProperties": "off"
+      },
+      "complexity": {
+        "noImportantStyles": "off"
       }
     }
   }
