@@ -7,9 +7,10 @@
    3. base       - Base element styles
    4. layout     - Page structure and sections
    5. components - Interactive UI components
+   6. views     - View-specific styles and transitions
    ============================================ */
 
-@layer reset, tokens, base, layout, components;
+@layer reset, tokens, base, layout, components, views;
 
 /* Reset layer - external normalize */
 @import 'modern-normalize' layer(reset);
@@ -27,3 +28,6 @@
 
 /* Components layer - UI components */
 @import './components.css' layer(components);
+
+/* Views layer - tabs, view transitions, content views */
+@import './views.css' layer(views);

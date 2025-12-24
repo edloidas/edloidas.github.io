@@ -8,6 +8,7 @@ out vec4 fragColor;
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform float u_theme; // 0.0 = light, 1.0 = dark
+uniform float u_dimness; // 0.0 = vibrant, 1.0 = dimmed
 
 // ============================================
 // Simplex 3D Noise
@@ -105,20 +106,23 @@ void main() {
   float aspect = u_resolution.x / u_resolution.y;
   vec2 adjustedUV = vec2(uv.x * aspect, uv.y);
 
-  // Center position for the blob (bottom-right)
-  // Light theme: more centered, Dark theme: slightly more to the edge
+  // Center position for the blob (bottom-right in vibrant, more centered when dim)
   vec2 centerLight = vec2(aspect * 0.85, 0.05);
   vec2 centerDark = vec2(aspect * 0.9, 0.1);
-  vec2 center = mix(centerLight, centerDark, u_theme);
+  vec2 centerVibrant = mix(centerLight, centerDark, u_theme);
+  vec2 centerDim = vec2(aspect * 0.5, 0.5); // Screen center
+  vec2 center = mix(centerVibrant, centerDim, u_dimness);
 
-  // Noise layers
-  float slowNoise = snoise(vec3(adjustedUV * 1.6, u_time * 0.1));
-  float detailNoise = snoise(vec3(adjustedUV * 3.2, u_time * 0.15 + 10.0));
+  // Noise layers - slow down when dimmed
+  float timeScale = mix(1.0, 0.5, u_dimness);
+  float slowNoise = snoise(vec3(adjustedUV * 1.6, u_time * 0.1 * timeScale));
+  float detailNoise = snoise(vec3(adjustedUV * 3.2, u_time * 0.15 * timeScale + 10.0));
   float combinedNoise = slowNoise * 0.6 + detailNoise * 0.4;
 
-  // Distance from center with noise distortion
+  // Distance from center with noise distortion - reduce distortion when dimmed
   float dist = distance(adjustedUV, center);
-  float distortedDist = dist + combinedNoise * 0.12;
+  float noiseAmount = mix(0.12, 0.06, u_dimness);
+  float distortedDist = dist + combinedNoise * noiseAmount;
 
   // Masks for main blob and core
   float mainMask = smoothstep(0.65, 0.23, distortedDist);
@@ -156,7 +160,12 @@ void main() {
   colorDark += (scarlet * 0.1) * pow(mainMask, 3.0);
 
   // Mix based on theme
-  vec3 finalColor = mix(colorLight, colorDark, u_theme);
+  vec3 vibrantColor = mix(colorLight, colorDark, u_theme);
+
+  // Apply dimness - reduce saturation and move toward background
+  vec3 bgColor = mix(bgLight, bgDark, u_theme);
+  float dimFactor = u_dimness * 0.7; // Max 70% dim
+  vec3 finalColor = mix(vibrantColor, bgColor, dimFactor);
 
   fragColor = vec4(finalColor, 1.0);
 }

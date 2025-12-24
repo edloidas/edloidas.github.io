@@ -114,7 +114,7 @@
       </svg>
     </button>
 
-    <div class="page">
+    <div class="page" data-view="about">
       <main class="content">
         <header class="header">
           <h1 class="name">
@@ -122,31 +122,38 @@
             <span class="name__line">{{surname}}</span>
           </h1>
 
-          <div class="bio">
-            <p class="bio__title">
-              {{position}} at <a href="{{companyUrl}}" class="bio__accent" target="_blank" rel="noopener noreferrer">{{company}}</a>.
-            </p>
-            <p class="bio__description">{{hobby}}.</p>
-          </div>
-
-          <div class="cta" role="group" aria-label="Contact">
-            <a href="mailto:{{email}}" class="cta__button" aria-label="Send email to {{email}}">
-              <span>{{email}}</span>
-              <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" stroke-linejoin="round"></line>
-                <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"></polyline>
-              </svg>
-            </a>
-          </div>
+          <nav class="tabs" aria-label="Main navigation">
+            <a href="#" class="tabs__item tabs__item--active" data-tab="about">About</a>
+            <a href="#career" class="tabs__item" data-tab="career">Career</a>
+            <a href="#projects" class="tabs__item" data-tab="projects">Projects</a>
+            <span class="tabs__indicator" aria-hidden="true"></span>
+          </nav>
         </header>
 
-        <footer class="footer">
-          <nav class="social" aria-label="Social links">
-            <a href="{{githubUrl}}" class="social__link" rel="noopener noreferrer">GitHub</a>
-            <a href="{{instagramUrl}}" class="social__link" rel="noopener noreferrer">Instagram</a>
-            <a href="{{xUrl}}" class="social__link" rel="noopener noreferrer" aria-label="X (formerly Twitter)">X</a>
-          </nav>
-        </footer>
+        <section class="view" data-view-content="about" aria-labelledby="about-heading">
+          <h2 id="about-heading" class="sr-only">About</h2>
+          <div id="about-content" class="view__content">
+            <!-- About content rendered by JS -->
+          </div>
+        </section>
+
+        <section class="view" data-view-content="career" hidden aria-labelledby="career-heading">
+          <h2 id="career-heading" class="sr-only">Career</h2>
+          <div class="view__scroll">
+            <div id="career-content" class="view__content">
+              <!-- Career timeline rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view-content="projects" hidden aria-labelledby="projects-heading">
+          <h2 id="projects-heading" class="sr-only">Projects</h2>
+          <div class="view__scroll">
+            <div id="projects-content" class="view__content">
+              <!-- Projects grid rendered by JS -->
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   </body>

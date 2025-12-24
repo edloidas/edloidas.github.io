@@ -38,8 +38,11 @@ function createProgram(
   return program;
 }
 
+export type BackgroundMode = 'vibrant' | 'dim';
+
 export interface BackgroundController {
   setTheme: (isDark: boolean) => void;
+  setMode: (mode: BackgroundMode) => void;
   destroy: () => void;
 }
 
@@ -71,6 +74,7 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   const timeLocation = gl.getUniformLocation(program, 'u_time');
   const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
   const themeLocation = gl.getUniformLocation(program, 'u_theme');
+  const dimnessLocation = gl.getUniformLocation(program, 'u_dimness');
 
   // Create fullscreen quad
   const positions = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
@@ -88,6 +92,10 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   // Theme state (0.0 = light, 1.0 = dark)
   let currentTheme = 0.0;
   let targetTheme = 0.0;
+
+  // Dimness state (0.0 = vibrant, 1.0 = dim)
+  let currentDimness = 0.0;
+  let targetDimness = 0.0;
 
   // Detect initial theme from stored preference or system
   const storedTheme = localStorage.getItem('theme-preference');
@@ -134,6 +142,14 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
       currentTheme = targetTheme;
     }
 
+    // Smooth dimness transition
+    const dimnessDiff = targetDimness - currentDimness;
+    if (Math.abs(dimnessDiff) > 0.001) {
+      currentDimness += dimnessDiff * 0.08; // Slightly faster for view transitions
+    } else {
+      currentDimness = targetDimness;
+    }
+
     const time = (performance.now() - startTime) / 1000;
 
     gl?.useProgram(program);
@@ -142,6 +158,7 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     gl?.uniform1f(timeLocation, time);
     gl?.uniform2f(resolutionLocation, canvas.width, canvas.height);
     gl?.uniform1f(themeLocation, currentTheme);
+    gl?.uniform1f(dimnessLocation, currentDimness);
 
     gl?.drawArrays(gl.TRIANGLES, 0, 6);
 
@@ -177,6 +194,9 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   return {
     setTheme(isDark: boolean) {
       targetTheme = isDark ? 1.0 : 0.0;
+    },
+    setMode(mode: BackgroundMode) {
+      targetDimness = mode === 'dim' ? 1.0 : 0.0;
     },
     destroy() {
       isRunning = false;

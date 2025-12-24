@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+/* Ensure hidden attribute works with display properties */
+[hidden] {
+  display: none !important;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
