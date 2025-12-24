@@ -145,7 +145,7 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     // Smooth dimness transition
     const dimnessDiff = targetDimness - currentDimness;
     if (Math.abs(dimnessDiff) > 0.001) {
-      currentDimness += dimnessDiff * 0.08; // Slightly faster for view transitions
+      currentDimness += dimnessDiff * 0.04; // Slower to avoid chaotic shaking
     } else {
       currentDimness = targetDimness;
     }

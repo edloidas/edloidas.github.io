@@ -107,16 +107,20 @@ void main() {
   vec2 adjustedUV = vec2(uv.x * aspect, uv.y);
 
   // Center position for the blob (bottom-right in vibrant, more centered when dim)
-  vec2 centerLight = vec2(aspect * 0.85, 0.05);
-  vec2 centerDark = vec2(aspect * 0.9, 0.1);
+  // Ultrawide: aspect > 2.0 AND width > 1920px (avoids mobile landscape)
+  bool isUltrawide = aspect > 2.0 && u_resolution.x > 1920.0;
+  float clampedAspect = isUltrawide ? 2.0 : aspect;
+
+  vec2 centerLight = vec2(clampedAspect * 0.85, 0.05);
+  vec2 centerDark = vec2(clampedAspect * 0.9, 0.1);
   vec2 centerVibrant = mix(centerLight, centerDark, u_theme);
-  vec2 centerDim = vec2(aspect * 0.5, 0.5); // Screen center
+  vec2 centerDim = vec2(aspect * 0.5, 0.5); // Screen center (uses real aspect)
   vec2 center = mix(centerVibrant, centerDim, u_dimness);
 
   // Noise layers - slow down when dimmed
   float timeScale = mix(1.0, 0.5, u_dimness);
-  float slowNoise = snoise(vec3(adjustedUV * 1.6, u_time * 0.1 * timeScale));
-  float detailNoise = snoise(vec3(adjustedUV * 3.2, u_time * 0.15 * timeScale + 10.0));
+  float slowNoise = snoise(vec3(adjustedUV * 1.6, u_time * 0.15 * timeScale));
+  float detailNoise = snoise(vec3(adjustedUV * 3.2, u_time * 0.22 * timeScale + 10.0));
   float combinedNoise = slowNoise * 0.6 + detailNoise * 0.4;
 
   // Distance from center with noise distortion - reduce distortion when dimmed
@@ -140,8 +144,8 @@ void main() {
 
   // Dark theme: Crimson/Scarlet on near-black
   vec3 bgDark = vec3(0.012, 0.012, 0.012);
-  vec3 crimson = vec3(0.6, 0.0, 0.05);
-  vec3 scarlet = vec3(1.0, 0.1, 0.1);
+  vec3 crimson = vec3(0.55, 0.0, 0.05);
+  vec3 scarlet = vec3(0.92, 0.08, 0.08);
 
   // ============================================
   // Color Mixing
@@ -157,7 +161,7 @@ void main() {
   vec3 fluidDark = mix(crimson, scarlet, coreMask + detailNoise * 0.2);
   vec3 colorDark = mix(bgDark, fluidDark, mainMask);
   // Additive glow for dark theme (bloom simulation)
-  colorDark += (scarlet * 0.1) * pow(mainMask, 3.0);
+  colorDark += (scarlet * 0.08) * pow(mainMask, 3.0);
 
   // Mix based on theme
   vec3 vibrantColor = mix(colorLight, colorDark, u_theme);
