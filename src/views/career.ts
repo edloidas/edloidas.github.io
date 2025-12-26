@@ -7,7 +7,9 @@ function renderCareerEntry(entry: CareerEntry): string {
 
   const locationHtml = entry.location ? `<span class="timeline__location">${entry.location}</span>` : '';
 
-  const descriptionHtml = entry.description ? `<p class="timeline__description">${entry.description}</p>` : '';
+  const descriptionHtml = entry.description
+    ? `<p class="timeline__description">${entry.description.replace(/\n/g, '<br>')}</p>`
+    : '';
 
   return `
     <article class="timeline__entry${entry.current ? ' timeline__entry--current' : ''}">

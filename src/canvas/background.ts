@@ -183,9 +183,13 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
 
   document.addEventListener('visibilitychange', handleVisibilityChange);
 
-  // Handle system theme change
+  // Handle system theme change (only when in auto mode)
   function handleThemeChange(e: MediaQueryListEvent) {
-    targetTheme = e.matches ? 1.0 : 0.0;
+    const storedTheme = localStorage.getItem('theme-preference');
+    // Only react to system changes if in auto mode (or no preference stored)
+    if (storedTheme !== 'light' && storedTheme !== 'dark') {
+      targetTheme = e.matches ? 1.0 : 0.0;
+    }
   }
 
   darkModeQuery.addEventListener('change', handleThemeChange);

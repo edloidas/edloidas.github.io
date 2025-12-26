@@ -18,7 +18,7 @@ export interface Project {
   url?: string;
   description: string;
   tech: string[];
-  featured?: boolean;
+  status?: 'development' | 'mvp';
 }
 
 export interface TechCategory {
@@ -63,70 +63,89 @@ export const data: PersonalData = {
   ],
   career: [
     {
-      company: 'Enonic',
+      company: 'Enonic AS',
       companyUrl: 'https://enonic.com',
       position: 'Frontend Architect',
-      period: '2020 — Present',
-      location: 'Barcelona, Spain',
-      description:
-        'Leading frontend architecture for headless CMS platform. Building design systems, developer tools, and modern web experiences.',
+      period: '2024 — Present',
+      location: 'Alicante, Spain',
+      description: `Shipped AI features inside Content Studio (Content Operator, Content Translator) — from architecture to integration layer to UX. Cut build times 3–5×. Leading UI modernization: component library, incremental migration, no Big Rewrite drama. Team of 5. Mentoring juniors. Driving AI adoption across the company.
+I build frontend platforms: design systems, tooling, and reliability at scale — with incremental migration instead of rewrites. Recently: making AI actually useful inside content tools.`,
       current: true,
     },
     {
-      company: 'Previous Company',
-      position: 'Senior Frontend Developer',
-      period: '2018 — 2020',
-      location: 'Minsk, Belarus',
-      description: 'Developed scalable web applications using React and TypeScript. Led frontend team of 5 engineers.',
+      company: 'Enonic AS',
+      companyUrl: 'https://enonic.com',
+      position: 'Senior Software Engineer',
+      period: 'Q4 2017 — 2024',
+      location: 'Remote (Belarus → Georgia → Spain)',
+      description: `Seven years of kill-team delivery (yes, like Warhammer 40K): small, high-trust squads assembled to solve one problem and move on. Led some, executed in others.
+Shipped typed API surface for the platform (led team of 4). Designed WebSocket layer that killed a whole class of auth and connectivity bugs. Built Enonic Cloud self-service frontend. Started the AI push that became Juke AI.`,
     },
     {
-      company: 'Another Company',
-      position: 'Frontend Developer',
-      period: '2015 — 2018',
+      company: 'ScienceSoft',
+      companyUrl: 'https://www.scnsoft.com',
+      position: 'Fullstack Developer',
+      period: '2014 — Q3 2017',
       location: 'Minsk, Belarus',
-      description: 'Built interactive web experiences and single-page applications. Introduced modern build tooling.',
+      description: `Joined Enonic XP platform team. Built core parts of Content Studio — the content tree and management workflows that users interact with daily. Became the go-to person for build tooling and TypeScript adoption before it was mainstream.`,
+    },
+    {
+      company: 'SaM Solutions',
+      companyUrl: 'https://www.sam-solutions.com',
+      position: 'Junior Java Developer',
+      period: '2012 — 2013',
+      location: 'Minsk, Belarus',
+      description: `My tutorial level. Built frontend for Siemens server management system, got thrown into security implementation, learned how enterprise teams actually ship software.`,
     },
   ],
   projects: [
     {
-      name: 'edloidas.io',
-      url: 'https://github.com/edloidas/edloidas.github.io',
-      description: 'Personal landing page with WebGL shader background and View Transition API.',
-      tech: ['TypeScript', 'WebGL', 'Vite'],
-      featured: true,
+      name: 'Order of Lust',
+      url: 'https://orderoflust.com',
+      description:
+        'Narrative RPG set in a cyberpunk world with neo-classical aesthetic. Built with React Three Fiber for 3D rendering and React for UI.',
+      tech: ['React', 'Three.js', 'React Three Fiber'],
+      status: 'development',
     },
     {
-      name: 'Project Alpha',
-      url: 'https://github.com/edloidas',
-      description: 'A creative coding experiment exploring generative art and procedural graphics.',
-      tech: ['Three.js', 'GLSL', 'React'],
-      featured: true,
+      name: 'Scriptorium',
+      description:
+        'Visual dialog editor for game narratives. Node-based workflow, AI-assisted text generation, JSON export for game engines.',
+      tech: ['Next.js', 'React Three Fiber', 'Bun', 'Effect'],
+      status: 'mvp',
     },
     {
-      name: 'Project Beta',
-      url: 'https://github.com/edloidas',
-      description: 'Developer toolkit for automating common frontend tasks and workflows.',
-      tech: ['Node.js', 'TypeScript', 'CLI'],
-      featured: true,
+      name: 'Enonic UI',
+      url: 'https://github.com/enonic/enonic-ui',
+      description:
+        'Composable React/Preact component library built from scratch. Zero dependencies, full control over styling and behavior.',
+      tech: ['React', 'Preact', 'Tailwind CSS'],
+      status: 'development',
     },
     {
-      name: 'Project Gamma',
-      description: 'Experimental AI-powered code generation tool for rapid prototyping.',
-      tech: ['Python', 'OpenAI', 'FastAPI'],
+      name: 'Roll Parser',
+      url: 'https://github.com/edloidas/roll-parser',
+      description:
+        'Library and CLI for parsing dice roll notation. Supports D&D, World of Darkness, and custom formats.',
+      tech: ['Bun', 'TypeScript'],
     },
   ],
   techStack: [
     {
       name: 'Languages',
-      items: ['TypeScript', 'JavaScript', 'HTML', 'CSS', 'GLSL', 'Python'],
+      items: ['TypeScript', 'Go', 'Java'],
     },
     {
       name: 'Frameworks',
-      items: ['React', 'Next.js', 'Node.js', 'Three.js', 'Vite'],
+      items: ['React', 'Next.js', 'Three.js'],
     },
     {
       name: 'Tools',
-      items: ['Git', 'Docker', 'Figma', 'VS Code', 'Linux'],
+      items: ['Git', 'Docker', 'Figma'],
+    },
+    {
+      name: 'AI',
+      items: ['Claude Code', 'AI SDK', 'Vertex AI'],
     },
   ],
 };

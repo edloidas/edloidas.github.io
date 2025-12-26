@@ -22,6 +22,10 @@
   --toggle-border: oklch(1 0 0 / 0.1);
   --toggle-hover-bg: oklch(1 0 0 / 0.08);
 
+  /* Tags */
+  --tag-bg: oklch(1 0 0 / 0.05);
+  --tag-border: oklch(1 0 0 / 0.1);
+
   /* Browser color scheme */
   color-scheme: dark;
   background-color: var(--color-bg);
@@ -52,6 +56,10 @@
     --toggle-bg: oklch(1 0 0 / 0.03);
     --toggle-border: oklch(1 0 0 / 0.1);
     --toggle-hover-bg: oklch(1 0 0 / 0.08);
+
+    /* Tags */
+    --tag-bg: oklch(1 0 0 / 0.05);
+    --tag-border: oklch(1 0 0 / 0.1);
 
     /* Browser color scheme */
     color-scheme: dark;

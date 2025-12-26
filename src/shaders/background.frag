@@ -107,15 +107,26 @@ void main() {
   vec2 adjustedUV = vec2(uv.x * aspect, uv.y);
 
   // Center position for the blob (bottom-right in vibrant, more centered when dim)
-  // Ultrawide: aspect > 2.0 AND width > 1920px (avoids mobile landscape)
-  bool isUltrawide = aspect > 2.0 && u_resolution.x > 1920.0;
-  float clampedAspect = isUltrawide ? 2.0 : aspect;
+  // Ultrawide detection: wide aspect + large screen (not mobile landscape or half-height window)
+  bool isLargeScreen = u_resolution.x > 2560.0 && u_resolution.y > 1080.0;
+  float ultrawideBlend = smoothstep(2.4, 2.5, aspect) * (isLargeScreen ? 1.0 : 0.0);
 
-  vec2 centerLight = vec2(clampedAspect * 0.85, 0.05);
-  vec2 centerDark = vec2(clampedAspect * 0.9, 0.1);
-  vec2 centerVibrant = mix(centerLight, centerDark, u_theme);
-  vec2 centerDim = vec2(aspect * 0.5, 0.5); // Screen center (uses real aspect)
-  vec2 center = mix(centerVibrant, centerDim, u_dimness);
+  // Corner positions (bottom-right area)
+  vec2 cornerLight = vec2(aspect * 0.85, 0.05);
+  vec2 cornerDark = vec2(aspect * 0.9, 0.1);
+  vec2 cornerPos = mix(cornerLight, cornerDark, u_theme);
+
+  // Center of right half for ultrawide vibrant mode (avoids text overlap)
+  vec2 ultrawidePos = vec2(aspect * 0.75, 0.5);
+
+  // True center for dim mode (all screens)
+  vec2 centerPos = vec2(aspect * 0.5, 0.5);
+
+  // Vibrant mode: corner → ultrawide position (right half center)
+  vec2 centerVibrant = mix(cornerPos, ultrawidePos, ultrawideBlend);
+
+  // Final position: blend between vibrant and dim
+  vec2 center = mix(centerVibrant, centerPos, u_dimness);
 
   // Noise layers - slow down when dimmed
   float timeScale = mix(1.0, 0.5, u_dimness);

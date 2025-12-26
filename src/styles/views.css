@@ -368,7 +368,7 @@
   margin: var(--space-xs) 0 0;
   font-size: 0.875rem;
   line-height: 1.6;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 /* ============================================
@@ -376,20 +376,34 @@
    ============================================ */
 
 .tech-stack {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
   gap: var(--space-xl);
+  justify-content: start;
   padding-top: var(--space-xl);
+  padding-left: var(--space-md);
   margin-top: var(--space-xl);
   border-top: 1px solid var(--color-text-muted);
-  opacity: 0.3;
+  opacity: 0.5;
+}
+
+@media (width <= 640px) {
+  .tech-stack {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+@media (width <= 360px) {
+  .tech-stack {
+    grid-template-columns: auto;
+  }
 }
 
 .tech-stack__category {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  min-width: 120px;
 }
 
 .tech-stack__title {
@@ -425,7 +439,7 @@
 .project {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   padding: var(--space-md);
   background: var(--btn-bg);
   border: 1px solid var(--btn-border);
@@ -463,8 +477,8 @@
 }
 
 .project__icon {
-  width: 1rem;
-  height: 1rem;
+  width: 0.75rem;
+  height: 0.75rem;
   color: var(--color-text-muted);
 }
 
@@ -473,13 +487,13 @@
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 .project__tech {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
 }
 
 .project__tag {
@@ -487,7 +501,21 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-text-secondary);
-  background: var(--toggle-bg);
+  white-space: nowrap;
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  border-radius: 0.25rem;
+}
+
+.project__badge {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: transparent;
+  border: 1px solid var(--tag-border);
   border-radius: 0.25rem;
 }
 
@@ -516,10 +544,6 @@
 
   .timeline__entry {
     padding-left: var(--space-md);
-  }
-
-  .tech-stack {
-    gap: var(--space-lg);
   }
 
   .projects {

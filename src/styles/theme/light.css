@@ -1,4 +1,5 @@
-:root {
+:root,
+:root.light {
   /* Core colors */
   --color-bg: oklch(1 0 0);
   --color-text: oklch(0.21 0.034 264);
@@ -21,6 +22,10 @@
   --toggle-bg: oklch(1 0 0 / 0.6);
   --toggle-border: oklch(0 0 0 / 0.1);
   --toggle-hover-bg: oklch(0 0 0 / 0.05);
+
+  /* Tags */
+  --tag-bg: transparent;
+  --tag-border: oklch(0 0 0 / 0.15);
 
   /* Browser color scheme */
   color-scheme: light;
