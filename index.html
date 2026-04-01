@@ -121,23 +121,21 @@
             <span class="name__line">{{surname}}</span>
           </h1>
 
-          <nav class="tabs" aria-label="Main navigation">
-            <a href="#" class="tabs__item tabs__item--active" data-tab="about">About</a>
-            <a href="#career" class="tabs__item" data-tab="career">Career</a>
-            <a href="#projects" class="tabs__item" data-tab="projects">Projects</a>
+          <nav class="tabs" role="tablist" aria-label="Main navigation">
+            <a href="#" id="tab-about" class="tabs__item tabs__item--active" role="tab" aria-selected="true" tabindex="0" data-tab="about">About<kbd class="tabs__hint" aria-hidden="true">1</kbd></a>
+            <a href="#career" id="tab-career" class="tabs__item" role="tab" aria-selected="false" tabindex="-1" data-tab="career">Career<kbd class="tabs__hint" aria-hidden="true">2</kbd></a>
+            <a href="#projects" id="tab-projects" class="tabs__item" role="tab" aria-selected="false" tabindex="-1" data-tab="projects">Projects<kbd class="tabs__hint" aria-hidden="true">3</kbd></a>
             <span class="tabs__indicator" aria-hidden="true"></span>
           </nav>
         </header>
 
-        <section class="view" data-view-content="about" aria-labelledby="about-heading">
-          <h2 id="about-heading" class="sr-only">About</h2>
+        <section class="view" role="tabpanel" data-view-content="about" aria-labelledby="tab-about">
           <div id="about-content" class="view__content">
             <!-- About content rendered by JS -->
           </div>
         </section>
 
-        <section class="view" data-view-content="career" hidden aria-labelledby="career-heading">
-          <h2 id="career-heading" class="sr-only">Career</h2>
+        <section class="view" role="tabpanel" data-view-content="career" hidden aria-labelledby="tab-career">
           <div class="view__scroll">
             <div id="career-content" class="view__content">
               <!-- Career timeline rendered by JS -->
@@ -145,8 +143,7 @@
           </div>
         </section>
 
-        <section class="view" data-view-content="projects" hidden aria-labelledby="projects-heading">
-          <h2 id="projects-heading" class="sr-only">Projects</h2>
+        <section class="view" role="tabpanel" data-view-content="projects" hidden aria-labelledby="tab-projects">
           <div class="view__scroll">
             <div id="projects-content" class="view__content">
               <!-- Projects grid rendered by JS -->

@@ -35,7 +35,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: var(--space-2xl);
+  gap: var(--space-3xl);
   justify-content: space-between;
   width: 100%;
   max-width: var(--content-max-width);
@@ -49,7 +49,7 @@
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
 }
 
 .name {
@@ -79,6 +79,6 @@
   .page {
     align-items: flex-start;
     min-height: auto;
-    padding-top: var(--space-2xl);
+    padding-top: var(--space-3xl);
   }
 }

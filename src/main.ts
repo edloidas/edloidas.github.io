@@ -96,6 +96,38 @@ function initTheme(backgroundController: BackgroundController | null) {
 }
 
 // ============================================
+// Tab Hints
+// ============================================
+
+function initTabHints() {
+  const tabs = document.querySelector('.tabs');
+  if (!tabs) return;
+
+  let timer: ReturnType<typeof setTimeout> | null = null;
+
+  const show = () => tabs.classList.add('tabs--hints-visible');
+  const hide = () => {
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    tabs.classList.remove('tabs--hints-visible');
+  };
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Control' && !e.repeat && timer === null) {
+      timer = setTimeout(show, 150);
+    }
+  });
+
+  document.addEventListener('keyup', e => {
+    if (e.key === 'Control') hide();
+  });
+
+  window.addEventListener('blur', hide);
+}
+
+// ============================================
 // Tab Indicator
 // ============================================
 
@@ -165,10 +197,13 @@ function updateActiveView(viewId: ViewId) {
     element.hidden = contentView !== viewId;
   });
 
-  // Update tab active states
+  // Update tab active states and ARIA attributes
   document.querySelectorAll('.tabs__item').forEach(tab => {
-    const tabView = (tab as HTMLElement).dataset.tab;
-    tab.classList.toggle('tabs__item--active', tabView === viewId);
+    const tabEl = tab as HTMLElement;
+    const isActive = tabEl.dataset.tab === viewId;
+    tabEl.classList.toggle('tabs__item--active', isActive);
+    tabEl.setAttribute('aria-selected', String(isActive));
+    tabEl.setAttribute('tabindex', isActive ? '0' : '-1');
   });
 
   // Update tab indicator position
@@ -212,6 +247,43 @@ function initRouter(backgroundController: BackgroundController | null) {
     });
   });
 
+  // Arrow key navigation (roving tabindex pattern)
+  const tabsEl = document.querySelector('.tabs');
+  if (tabsEl) {
+    tabsEl.addEventListener('keydown', e => {
+      const key = (e as KeyboardEvent).key;
+      if (key !== 'ArrowLeft' && key !== 'ArrowRight' && key !== 'Home' && key !== 'End') return;
+
+      const tabs = Array.from(document.querySelectorAll<HTMLElement>('.tabs__item'));
+      const currentIndex = tabs.findIndex(t => t.dataset.tab === router.current);
+      let nextIndex: number;
+
+      if (key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+      else if (key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+      else if (key === 'Home') nextIndex = 0;
+      else nextIndex = tabs.length - 1;
+
+      e.preventDefault();
+      const nextTab = tabs[nextIndex];
+      router.navigate(nextTab.dataset.tab as ViewId);
+      nextTab.focus();
+    });
+  }
+
+  // Global Ctrl+number tab switching
+  document.addEventListener('keydown', e => {
+    if (!e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+    const index = Number(e.key) - 1;
+    const tabs = Array.from(document.querySelectorAll<HTMLElement>('.tabs__item'));
+    if (index < 0 || index >= tabs.length) return;
+    e.preventDefault();
+    const target = tabs[index].dataset.tab as ViewId;
+    if (target && target !== router.current) {
+      router.navigate(target);
+      tabs[index].focus();
+    }
+  });
+
   router.init();
 }
 
@@ -224,6 +296,7 @@ const backgroundController = canvas ? initBackground(canvas) : null;
 
 initTheme(backgroundController);
 initRouter(backgroundController);
+initTabHints();
 
 // Update tab indicator on resize
 window.addEventListener('resize', updateTabIndicator);

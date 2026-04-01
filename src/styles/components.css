@@ -4,8 +4,8 @@
 
 .theme-toggle {
   position: fixed;
-  top: var(--space-lg);
-  right: var(--space-lg);
+  top: var(--space-xl);
+  right: var(--space-xl);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -14,6 +14,8 @@
   height: 2.75rem;
   padding: 0;
   cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 4px;
   background: var(--toggle-bg);
   border: 1px solid var(--toggle-border);
   border-radius: 50%;
@@ -21,7 +23,9 @@
   transition:
     background-color var(--duration-fast) ease,
     border-color var(--duration-fast) ease,
-    transform var(--duration-fast) ease;
+    transform var(--duration-fast) ease,
+    outline-color var(--duration-fast) ease,
+    outline-offset var(--duration-fast) ease;
 }
 
 .theme-toggle:hover {
@@ -30,7 +34,7 @@
 }
 
 .theme-toggle:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline-color: var(--color-accent);
   outline-offset: 2px;
 }
 
