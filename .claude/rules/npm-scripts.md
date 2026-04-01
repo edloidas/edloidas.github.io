@@ -1,9 +1,3 @@
----
-description: pnpm scripts reference
-globs:
-alwaysApply: true
----
-
 # pnpm Scripts
 
 Use `pnpm`, never `npm` or `yarn`. Use `pnpm dlx` instead of `npx`.
@@ -31,12 +25,12 @@ pnpm fix       # Auto-fix lint/format issues
 Individual commands:
 
 ```bash
-pnpm typecheck # TypeScript type checking only
-pnpm lint      # Biome check only (read-only)
+pnpm typecheck # TypeScript type checking
+pnpm lint      # Biome check (read-only)
 pnpm lint:fix  # Biome check with auto-fix
 ```
 
-## Linting
+## Tooling
 
 Single tool: **Biome** handles TS lint, format, import sorting, JSON, and CSS.
 
