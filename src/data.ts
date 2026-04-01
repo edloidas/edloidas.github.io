@@ -67,7 +67,7 @@ export const data: PersonalData = {
       companyUrl: 'https://enonic.com',
       position: 'Frontend Architect',
       period: '2024 — Present',
-      location: 'Alicante, Spain',
+      location: 'Alicante → Barcelona, Spain',
       description: `Shipped AI features inside Content Studio (Content Operator, Content Translator) — from architecture to integration layer to UX. Cut build times 3–5×. Leading UI modernization: component library, incremental migration, no Big Rewrite drama. Team of 5. Mentoring juniors. Driving AI adoption across the company.
 I build frontend platforms: design systems, tooling, and reliability at scale — with incremental migration instead of rewrites. Recently: making AI actually useful inside content tools.`,
       current: true,
