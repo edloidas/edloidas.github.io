@@ -108,10 +108,11 @@ Shipped typed API surface for the platform (led team of 4). Designed WebSocket l
       status: 'development',
     },
     {
-      name: 'Scriptorium',
+      name: 'Lorequary',
+      url: 'https://github.com/lorequary',
       description:
         'Visual dialog editor for game narratives. Node-based workflow, AI-assisted text generation, JSON export for game engines.',
-      tech: ['Next.js', 'React Three Fiber', 'Bun', 'Effect'],
+      tech: ['AI', 'React Flow', 'Elysia', 'Bun', 'Effect'],
       status: 'mvp',
     },
     {
