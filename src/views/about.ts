@@ -7,7 +7,7 @@ const ARROW_ICON = `<svg class="about__cta-icon" viewBox="0 0 24 24" aria-hidden
 
 function renderSocialLink(link: SocialLink): string {
   const ariaLabel = link.name === 'X' ? 'X (formerly Twitter)' : link.name;
-  return `<a href="${link.url}" class="about__social-link" rel="noopener noreferrer" aria-label="${ariaLabel}">${link.name}</a>`;
+  return `<a href="${link.url}" class="about__social-link" tabindex="0" rel="noopener noreferrer" aria-label="${ariaLabel}">${link.name}</a>`;
 }
 
 export function renderAboutView(container: HTMLElement, data: PersonalData): void {
@@ -15,12 +15,12 @@ export function renderAboutView(container: HTMLElement, data: PersonalData): voi
     <div class="about">
       <div class="about__bio">
         <p class="about__title">
-          ${data.position} at <a href="${data.companyUrl}" class="about__accent" target="_blank" rel="noopener noreferrer">${data.company}</a>.
+          ${data.position} at <a href="${data.companyUrl}" class="about__accent" tabindex="0" target="_blank" rel="noopener noreferrer">${data.company}</a>.
         </p>
         <p class="about__description">${data.hobby}.</p>
       </div>
 
-      <a href="mailto:${data.email}" class="about__cta" aria-label="Send email to ${data.email}">
+      <a href="mailto:${data.email}" class="about__cta" tabindex="0" aria-label="Send email to ${data.email}">
         <span>${data.email}</span>
         ${ARROW_ICON}
       </a>

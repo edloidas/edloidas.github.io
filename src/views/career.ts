@@ -2,7 +2,7 @@ import type { CareerEntry, TechCategory } from '../data';
 
 function renderCareerEntry(entry: CareerEntry): string {
   const companyHtml = entry.companyUrl
-    ? `<a href="${entry.companyUrl}" class="timeline__company-link" target="_blank" rel="noopener noreferrer">${entry.company}</a>`
+    ? `<a href="${entry.companyUrl}" class="timeline__company-link" tabindex="0" target="_blank" rel="noopener noreferrer">${entry.company}</a>`
     : `<span>${entry.company}</span>`;
 
   const locationHtml = entry.location ? `<span class="timeline__location">${entry.location}</span>` : '';

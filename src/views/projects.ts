@@ -14,7 +14,7 @@ function renderBadge(status: Project['status']): string {
 
 function renderProject(project: Project): string {
   const nameHtml = project.url
-    ? `<a href="${project.url}" class="project__link" target="_blank" rel="noopener noreferrer">
+    ? `<a href="${project.url}" class="project__link" tabindex="0" target="_blank" rel="noopener noreferrer">
         ${project.name}
         ${EXTERNAL_LINK_ICON}
        </a>`

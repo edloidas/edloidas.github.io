@@ -43,6 +43,10 @@ src/
     └── background.frag  # Fragment shader
 ```
 
+## Accessibility
+
+- Keep an explicit `tabindex="0"` on every interactive element (links, buttons). Safari's "Press Tab to highlight each item on a webpage" setting is off by default and drops native focusables from the Tab order unless they carry an explicit tabindex. When adding a new link/button to `index.html` or a view template, add `tabindex="0"` too. (The `.tabs__item` links use a roving `0`/`-1` tabindex instead — leave those alone.)
+
 ## Deployment
 
 Automatic deployment to GitHub Pages on push to `master` branch.
