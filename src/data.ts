@@ -39,6 +39,7 @@ export interface PersonalData {
   twitterHandle: string;
   location: string;
   links: SocialLink[];
+  intro: string;
   career: CareerEntry[];
   projects: Project[];
   techStack: TechCategory[];
@@ -61,6 +62,8 @@ export const data: PersonalData = {
     { name: 'Instagram', url: 'https://www.instagram.com/edloidas' },
     { name: 'X', url: 'https://x.com/edloidas' },
   ],
+  intro:
+    'Outside work, I build for the love of it — games most of all, plus 3D and the game systems behind them. Parsers are a separate itch.',
   career: [
     {
       company: 'Enonic AS',
@@ -68,8 +71,7 @@ export const data: PersonalData = {
       position: 'Frontend Architect',
       period: '2024 — Present',
       location: 'Alicante → Barcelona, Spain',
-      description: `Shipped AI features inside Content Studio (Content Operator, Content Translator) — from architecture to integration layer to UX. Cut build times 3–5×. Leading UI modernization: component library, incremental migration, no Big Rewrite drama. Team of 5. Mentoring juniors. Driving AI adoption across the company.
-I build frontend platforms: design systems, tooling, and reliability at scale — with incremental migration instead of rewrites. Recently: making AI actually useful inside content tools.`,
+      description: `My most productive stretch yet — and the first role with both the authority and the capacity to fix things at the root. I own the modernization of a 300k-line codebase: rebuilt the architecture, added unit, integration, and Storybook tests, moved error handling to the Result pattern, migrated the apps to Preact and a new UI, and cut build times 3–5×. I designed and shipped the Enonic UI component library, and built the cross-frame sync and editing overlay behind Content Studio's live page editor — keeping a live page and its editor in sync across the iframe boundary. On the AI side, I shipped features inside Content Studio and now lead adoption across the company. I run a team of five, and mentor throughout.`,
       current: true,
     },
     {
@@ -78,8 +80,7 @@ I build frontend platforms: design systems, tooling, and reliability at scale �
       position: 'Senior Software Engineer',
       period: 'Q4 2017 — 2024',
       location: 'Remote (Belarus → Georgia → Spain)',
-      description: `Seven years of kill-team delivery (yes, like Warhammer 40K): small, high-trust squads assembled to solve one problem and move on. Led some, executed in others.
-Shipped typed API surface for the platform (led team of 4). Designed WebSocket layer that killed a whole class of auth and connectivity bugs. Built Enonic Cloud self-service frontend. Started the AI push that became Juke AI.`,
+      description: `Seven years — less one long chapter than a run of small, cross-functional squads, spanning all kinds of projects in a mix of languages and technologies. I led some, delivered in others, usually the frontend one at the table. I owned the frontend tooling, tech choices, and build systems, kept trying new things, and tuned UI performance. But the squads pulled me across the stack too — our Cloud platform and its Google Cloud integration, even the Enonic CLI in Go. I moved our WebSocket layer into a Shared Worker for always-on, cross-tab sync. Near the end, I started the AI integration into Enonic products with Vertex AI — the work that became Juke.`,
     },
     {
       company: 'ScienceSoft',
@@ -87,7 +88,7 @@ Shipped typed API surface for the platform (led team of 4). Designed WebSocket l
       position: 'Fullstack Developer',
       period: '2014 — Q3 2017',
       location: 'Minsk, Belarus',
-      description: `Joined Enonic XP platform team. Built core parts of Content Studio — the content tree and management workflows that users interact with daily. Became the go-to person for build tooling and TypeScript adoption before it was mainstream.`,
+      description: `A few smaller projects first, including a proof-of-concept transport system where I did the Node.js work. Then I moved to Enonic's CMS, Content Studio, where I wrote the frontend, set up all the build systems, and pushed for TypeScript before it was mainstream.`,
     },
     {
       company: 'SaM Solutions',
@@ -95,7 +96,7 @@ Shipped typed API surface for the platform (led team of 4). Designed WebSocket l
       position: 'Junior Java Developer',
       period: '2012 — 2013',
       location: 'Minsk, Belarus',
-      description: `My tutorial level. Built frontend for Siemens server management system, got thrown into security implementation, learned how enterprise teams actually ship software.`,
+      description: `My tutorial level. Built the frontend for a Siemens server-management system, got thrown into security work, learned how enterprise teams actually ship software — most of it on tech that's half-dead now: Tomcat, SVN, jQuery.`,
     },
   ],
   projects: [
@@ -117,15 +118,14 @@ Shipped typed API surface for the platform (led team of 4). Designed WebSocket l
     },
     {
       name: 'Enonic UI',
-      url: 'https://github.com/enonic/enonic-ui',
+      url: 'https://github.com/enonic/npm-enonic-ui',
       description:
-        'Composable React/Preact component library built from scratch. Zero dependencies, full control over styling and behavior.',
+        'UI component library for Enonic projects. Radix-style composability, built mostly from scratch, works with React or Preact.',
       tech: ['React', 'Preact', 'Tailwind CSS'],
-      status: 'development',
     },
     {
       name: 'Roll Parser',
-      url: 'https://github.com/edloidas/roll-parser',
+      url: '/roll-parser/',
       description:
         'Library and CLI for parsing dice roll notation. Supports D&D, World of Darkness, and custom formats.',
       tech: ['Bun', 'TypeScript'],

@@ -170,7 +170,7 @@ function renderViewContent(viewId: ViewId) {
   if (viewId === 'career' && !viewsRendered.career) {
     const container = document.getElementById('career-content');
     if (container) {
-      renderCareerView(container, data.career, data.techStack);
+      renderCareerView(container, data.intro, data.career, data.techStack);
       viewsRendered.career = true;
     }
   }

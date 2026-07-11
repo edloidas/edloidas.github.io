@@ -429,6 +429,27 @@
   color: var(--color-text-secondary);
 }
 
+.timeline__intro {
+  position: relative;
+  max-width: 40rem;
+  margin: 0;
+  padding-left: var(--space-xl);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.timeline__intro::before {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  content: '';
+  background: var(--color-text-muted);
+  border-radius: 50%;
+}
+
 /* ============================================
    Tech Stack
    ============================================ */
@@ -612,7 +633,8 @@
     padding: var(--space-sm) 0;
   }
 
-  .timeline__entry {
+  .timeline__entry,
+  .timeline__intro {
     padding-left: var(--space-md);
   }
 

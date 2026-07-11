@@ -43,9 +43,15 @@ function renderTechStack(categories: TechCategory[]): string {
   `;
 }
 
-export function renderCareerView(container: HTMLElement, career: CareerEntry[], techStack: TechCategory[]): void {
+export function renderCareerView(
+  container: HTMLElement,
+  intro: string,
+  career: CareerEntry[],
+  techStack: TechCategory[],
+): void {
   container.innerHTML = `
     <div class="timeline">
+      <p class="timeline__intro">${intro}</p>
       ${career.map(renderCareerEntry).join('')}
     </div>
     ${renderTechStack(techStack)}
