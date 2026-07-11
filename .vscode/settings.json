@@ -1,28 +1,30 @@
 {
   "editor.defaultFormatter": "prettier.prettier-vscode",
-  // Biome for supported files
+  // Oxc (Oxlint + Oxfmt, via Vite+) for supported files
   "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[css]": {
-    "editor.defaultFormatter": "biomejs.biome",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.biome": "never"
-    }
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "editor.codeActionsOnSave": {
-    "source.action.useSortedProperties.biome": "never",
-    "source.fixAll.biome": "always",
-    // Disable editor's organize imports (Biome handles it)
+    "source.fixAll.oxc": "explicit",
+    // Oxfmt handles import sorting; disable the editor's built-in organizers
     "source.organizeImports": "never",
     "source.sortImports": "never"
   }

@@ -14,10 +14,8 @@
     view-transition-name: name;
   }
 
-  /* biome-ignore lint/correctness/noUnknownTypeSelector: View Transition API */
   ::view-transition-old(name),
-  /* biome-ignore lint/correctness/noUnknownTypeSelector: View Transition API */
-    ::view-transition-new(name) {
+  ::view-transition-new(name) {
     animation-duration: 0.3s;
   }
 }

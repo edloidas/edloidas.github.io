@@ -5,28 +5,30 @@ Personal landing page with WebGL shader background.
 ## Commands
 
 ```bash
-pnpm dev       # Start dev server (port 5173)
+pnpm dev       # Start dev server (Vite+, port 5173)
 pnpm build     # Build for production
 pnpm preview   # Preview production build
-pnpm check     # All checks (typecheck + lint)
-pnpm fix       # Auto-fix lint/format issues
+pnpm check     # All checks: format + lint + types (`vp check`)
+pnpm fix       # Auto-fix: format + lint (`vp fmt` + `vp lint --fix`)
 ```
 
 Individual commands:
 
 ```bash
-pnpm typecheck # TypeScript type checking
-pnpm lint      # Biome check (read-only)
-pnpm lint:fix  # Biome check with auto-fix
+pnpm typecheck # TypeScript type checking (tsc --noEmit, TS 7)
+pnpm lint      # Lint (Oxlint via `vp lint`)
+pnpm lint:fix  # Lint with auto-fix
+pnpm format    # Format (Oxfmt via `vp fmt`)
 ```
 
 ## Tech Stack
 
-- **Build**: Vite 6 + pnpm
-- **Language**: TypeScript (ES2022)
+- **Toolchain**: Vite+ (`vp`) — unifies Vite 8 (Rolldown), Oxlint, Oxfmt; config in `vite.config.ts` (`lint`/`fmt` keys)
+- **Build**: Vite 8 (via Vite+) + pnpm 11
+- **Language**: TypeScript 7 (native compiler, ES2022)
 - **Styling**: Plain CSS + PostCSS (autoprefixer, modern-normalize)
 - **Graphics**: Raw WebGL2 shaders
-- **Linting**: Biome
+- **Lint/Format**: Oxlint + Oxfmt (replaces Biome)
 
 ## Project Structure
 
