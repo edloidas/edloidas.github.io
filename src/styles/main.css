@@ -15,6 +15,9 @@
 /* Reset layer - external normalize */
 @import 'modern-normalize' layer(reset);
 
+/* Fonts - self-hosted @font-face (unlayered; descriptor rule, not cascaded) */
+@import './fonts.css';
+
 /* Tokens layer - design system variables */
 @import './tokens.css' layer(tokens);
 @import './theme/light.css' layer(tokens);
