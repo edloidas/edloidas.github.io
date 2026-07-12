@@ -27,22 +27,17 @@
     "format": "vp fmt",
     "check": "vp check",
     "fix": "vp fmt && vp lint --fix",
-    "prepare": "husky"
+    "prepare": "vp config"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
     "autoprefixer": "^10.5.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.0.8",
     "modern-normalize": "^3.0.1",
     "postcss": "^8.5.16",
     "typescript": "^7.0.2",
     "vite": "catalog:",
     "vite-plugin-glsl": "^1.6.0",
     "vite-plus": "catalog:"
-  },
-  "lint-staged": {
-    "*.{ts,json,css}": "vp fmt"
   },
   "browserslist": [
     "defaults and fully supports es6-module"

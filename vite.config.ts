@@ -26,6 +26,9 @@ export default defineConfig({
     },
     options: { typeAware: true, typeCheck: true },
   },
+  staged: {
+    '*.{ts,json,css}': 'vp check --fix',
+  },
   plugins: lazyPlugins(() => [glsl(), personalDataPlugin()]),
   build: {
     target: 'es2022',
