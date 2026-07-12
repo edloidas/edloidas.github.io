@@ -134,19 +134,19 @@ export const data: PersonalData = {
   techStack: [
     {
       name: 'Languages',
-      items: ['TypeScript', 'Go', 'Java'],
+      items: ['TypeScript', 'Go', 'Rust'],
     },
     {
-      name: 'Frameworks',
-      items: ['React', 'Next.js', 'Three.js'],
+      name: 'Frontend',
+      items: ['React', 'Svelte', 'Next.js'],
     },
     {
-      name: 'Tools',
-      items: ['Git', 'Docker', 'Figma'],
+      name: '3D & Graphics',
+      items: ['Three.js', 'React Three Fiber', 'WebGL'],
     },
     {
       name: 'AI',
-      items: ['Claude Code', 'AI SDK', 'Vertex AI'],
+      items: ['Claude Code', 'Vertex AI', 'AI SDK'],
     },
   ],
 };
