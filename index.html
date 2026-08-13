@@ -51,6 +51,11 @@
 
     <!-- Prevent Flash of Unstyled Content -->
     <style>
+    /* Layer order is fixed by first appearance, and this style block is parsed
+       before the bundled CSS. Repeat the full order from src/styles/main.css so
+       `base` does not register ahead of `reset` and `tokens`. */
+    @layer reset, tokens, base, layout, components, views;
+
     @layer base {
       :root {
         background-color: #ffffff;
