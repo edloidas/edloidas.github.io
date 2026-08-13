@@ -164,9 +164,14 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     gl?.bindVertexArray(vao);
 
     gl?.uniform1f(phaseLocation, phase);
-    // ? CSS pixels, not the drawing buffer: the shader's ultrawide check uses an
-    // ? absolute pixel threshold that must not shift with DPR or RENDER_SCALE.
-    gl?.uniform2f(resolutionLocation, canvas.clientWidth, canvas.clientHeight);
+    // ? Physical pixels, not the drawing buffer. The shader gates its ultrawide
+    // ? layout on an absolute 2560x1080 threshold, and CSS px * devicePixelRatio
+    // ? is the only form of that number which zoom and OS scaling leave alone —
+    // ? zoom shrinks clientWidth and raises the ratio by the same factor. The
+    // ? buffer itself is no longer usable here, since MAX_DPR and RENDER_SCALE
+    // ? shrink it.
+    const devicePixels = window.devicePixelRatio || 1;
+    gl?.uniform2f(resolutionLocation, canvas.clientWidth * devicePixels, canvas.clientHeight * devicePixels);
     gl?.uniform1f(themeLocation, currentTheme);
     gl?.uniform1f(dimnessLocation, currentDimness);
 
