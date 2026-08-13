@@ -2,6 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { data, type PersonalData } from '../src/data';
+import { aboutViewHtml } from '../src/views/about';
 
 function generateJsonLd(d: PersonalData): string {
   const jsonLd = {
@@ -61,6 +62,8 @@ export function personalDataPlugin(): Plugin {
     '{{domainUrl}}': `https://${data.domain}`,
     '{{twitterHandle}}': data.twitterHandle,
     '{{jsonLd}}': generateJsonLd(data),
+    // Prerendered so the landing view has real content without JavaScript
+    '{{aboutView}}': aboutViewHtml(data),
   };
 
   // Add social link URLs

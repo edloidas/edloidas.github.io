@@ -10,8 +10,12 @@ function renderSocialLink(link: SocialLink): string {
   return `<a href="${link.url}" class="about__social-link" tabindex="0" rel="noopener noreferrer" aria-label="${ariaLabel}">${link.name}</a>`;
 }
 
-export function renderAboutView(container: HTMLElement, data: PersonalData): void {
-  container.innerHTML = `
+/**
+ * Markup for the about view. Kept free of DOM APIs so the build-time plugin can
+ * inline it into index.html (see utils/vite-plugin-personal-data.ts).
+ */
+export function aboutViewHtml(data: PersonalData): string {
+  return `
     <div class="about">
       <div class="about__bio">
         <p class="about__title">
@@ -30,4 +34,8 @@ export function renderAboutView(container: HTMLElement, data: PersonalData): voi
       </nav>
     </div>
   `;
+}
+
+export function renderAboutView(container: HTMLElement, data: PersonalData): void {
+  container.innerHTML = aboutViewHtml(data);
 }

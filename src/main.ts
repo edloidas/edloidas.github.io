@@ -152,8 +152,10 @@ function updateTabIndicator() {
 // View Management
 // ============================================
 
+// About is inlined into index.html at build time, so it only needs rendering
+// here if the placeholder was not substituted for some reason.
 const viewsRendered = {
-  about: false,
+  about: (document.getElementById('about-content')?.childElementCount ?? 0) > 0,
   career: false,
   projects: false,
 };
