@@ -43,6 +43,28 @@ function generateWebManifest(d: PersonalData): string {
   return JSON.stringify(manifest, null, 2);
 }
 
+/**
+ * The site loads nothing cross-origin, so everything can be locked to 'self'.
+ * `style-src` keeps 'unsafe-inline' for the FOUC block in index.html; there is
+ * no untrusted input anywhere on the page, so hashing it would buy nothing.
+ *
+ * A meta policy cannot express frame-ancestors, HSTS, nosniff or reporting —
+ * those need real headers, which GitHub Pages does not allow.
+ */
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self'",
+  "font-src 'self'",
+  "connect-src 'none'",
+  "object-src 'none'",
+  "base-uri 'none'",
+  "form-action 'none'",
+].join('; ');
+
+const CSP_META = `<meta http-equiv="Content-Security-Policy" content="${CONTENT_SECURITY_POLICY}" />`;
+
 export function personalDataPlugin(): Plugin {
   const fullName = `${data.name} ${data.surname}`;
   const description = `${data.position} and ${data.hobby}.`;
@@ -85,8 +107,12 @@ export function personalDataPlugin(): Plugin {
         next();
       });
     },
-    transformIndexHtml(html) {
-      return Object.entries(replacements).reduce((result, [key, value]) => result.replaceAll(key, value), html);
+    transformIndexHtml(html, ctx) {
+      // ? Build only: the dev server needs its HMR websocket and inline client,
+      // ? which connect-src 'none' and script-src 'self' would block.
+      const withCsp = html.replace('{{csp}}', ctx.server ? '' : CSP_META);
+
+      return Object.entries(replacements).reduce((result, [key, value]) => result.replaceAll(key, value), withCsp);
     },
     writeBundle(options) {
       const outDir = options.dir ?? 'dist';
