@@ -31,8 +31,8 @@ function generateWebManifest(d: PersonalData): string {
     display: 'standalone',
     orientation: 'any',
     lang: 'en',
-    background_color: '#181c25',
-    theme_color: '#181c25',
+    background_color: '#030303',
+    theme_color: '#030303',
     icons: [
       { src: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
       { src: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
