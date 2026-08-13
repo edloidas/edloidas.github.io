@@ -273,6 +273,11 @@ function initRouter(backgroundController: BackgroundController | null) {
   // Global Ctrl+number tab switching
   document.addEventListener('keydown', e => {
     if (!e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+    // ! Must reject non-digit keys before Number(): NaN passes both range
+    // ! checks below, which used to preventDefault() and throw on every
+    // ! Ctrl combo (breaking Ctrl+A select-all).
+    if (!/^\d$/.test(e.key)) return;
+
     const index = Number(e.key) - 1;
     const tabs = Array.from(document.querySelectorAll<HTMLElement>('.tabs__item'));
     if (index < 0 || index >= tabs.length) return;
