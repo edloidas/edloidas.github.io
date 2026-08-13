@@ -153,7 +153,33 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   let phase = 0;
   let lastFrameTime = performance.now();
   let animationId: number;
-  let isRunning = true;
+  let isRunning = false;
+
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function drawFrame() {
+    resize();
+
+    gl?.useProgram(program);
+    gl?.bindVertexArray(vao);
+
+    gl?.uniform1f(phaseLocation, phase);
+    // ? CSS pixels, not the drawing buffer: the shader's ultrawide check uses an
+    // ? absolute pixel threshold that must not shift with DPR or RENDER_SCALE.
+    gl?.uniform2f(resolutionLocation, canvas.clientWidth, canvas.clientHeight);
+    gl?.uniform1f(themeLocation, currentTheme);
+    gl?.uniform1f(dimnessLocation, currentDimness);
+
+    gl?.drawArrays(gl.TRIANGLES, 0, 6);
+  }
+
+  // Reduced motion keeps the artwork but drops every transition, so state snaps
+  // to its target and a single frame is drawn on demand.
+  function drawStaticFrame() {
+    currentTheme = targetTheme;
+    currentDimness = targetDimness;
+    drawFrame();
+  }
 
   function render(now: number) {
     if (!isRunning) return;
@@ -165,8 +191,6 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
 
     lastFrameTime = now;
     const delta = Math.min(elapsed, MAX_FRAME_DELTA);
-
-    resize();
 
     // Smooth theme transition
     const themeDiff = targetTheme - currentTheme;
@@ -187,33 +211,51 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     // Dimmed views animate at half speed
     phase += delta * (1.0 - currentDimness * 0.5);
 
-    gl?.useProgram(program);
-    gl?.bindVertexArray(vao);
-
-    gl?.uniform1f(phaseLocation, phase);
-    // ? CSS pixels, not the drawing buffer: the shader's ultrawide check uses an
-    // ? absolute pixel threshold that must not shift with DPR or RENDER_SCALE.
-    gl?.uniform2f(resolutionLocation, canvas.clientWidth, canvas.clientHeight);
-    gl?.uniform1f(themeLocation, currentTheme);
-    gl?.uniform1f(dimnessLocation, currentDimness);
-
-    gl?.drawArrays(gl.TRIANGLES, 0, 6);
+    drawFrame();
   }
 
-  function start() {
+  function startAnimation() {
+    if (isRunning) return;
+    isRunning = true;
     lastFrameTime = performance.now();
     animationId = window.requestAnimationFrame(render);
   }
 
+  function stopAnimation() {
+    isRunning = false;
+    cancelAnimationFrame(animationId);
+  }
+
+  function applyMotionPreference() {
+    if (reducedMotionQuery.matches) {
+      stopAnimation();
+      drawStaticFrame();
+    } else {
+      startAnimation();
+    }
+  }
+
   // Start rendering
-  start();
+  applyMotionPreference();
+
+  reducedMotionQuery.addEventListener('change', applyMotionPreference);
+
+  // A resize reallocates the drawing buffer and clears it, so the static frame
+  // has to be redrawn; the animation loop repaints on its own.
+  function handleResize() {
+    if (reducedMotionQuery.matches) drawStaticFrame();
+  }
+
+  window.addEventListener('resize', handleResize);
 
   // Handle visibility change to pause when hidden
   function handleVisibilityChange() {
+    if (reducedMotionQuery.matches) return;
+
     if (document.hidden) {
-      cancelAnimationFrame(animationId);
-    } else if (isRunning) {
-      start();
+      stopAnimation();
+    } else {
+      startAnimation();
     }
   }
 
@@ -225,6 +267,7 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     // Only react to system changes if in auto mode (or no preference stored)
     if (storedTheme !== 'light' && storedTheme !== 'dark') {
       targetTheme = e.matches ? 1.0 : 0.0;
+      if (reducedMotionQuery.matches) drawStaticFrame();
     }
   }
 
@@ -234,15 +277,18 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   return {
     setTheme(isDark: boolean) {
       targetTheme = isDark ? 1.0 : 0.0;
+      if (reducedMotionQuery.matches) drawStaticFrame();
     },
     setMode(mode: BackgroundMode) {
       targetDimness = mode === 'dim' ? 1.0 : 0.0;
+      if (reducedMotionQuery.matches) drawStaticFrame();
     },
     destroy() {
-      isRunning = false;
-      cancelAnimationFrame(animationId);
+      stopAnimation();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       darkModeQuery.removeEventListener('change', handleThemeChange);
+      reducedMotionQuery.removeEventListener('change', applyMotionPreference);
+      window.removeEventListener('resize', handleResize);
 
       // Clean up WebGL resources
       gl?.deleteBuffer(positionBuffer);

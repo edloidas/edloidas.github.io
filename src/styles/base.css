@@ -55,6 +55,8 @@ body {
    Accessibility
    ============================================ */
 
+/* The background canvas is kept but frozen to a single static frame; the
+   animation loop checks the same query (see src/canvas/background.ts). */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -63,9 +65,5 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-
-  #background {
-    display: none;
   }
 }
