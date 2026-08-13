@@ -5,7 +5,7 @@ precision highp float;
 in vec2 v_uv;
 out vec4 fragColor;
 
-uniform float u_time;
+uniform float u_phase; // accumulated animation phase in seconds (rate-adjusted)
 uniform vec2 u_resolution;
 uniform float u_theme; // 0.0 = light, 1.0 = dark
 uniform float u_dimness; // 0.0 = vibrant, 1.0 = dimmed
@@ -128,10 +128,9 @@ void main() {
   // Final position: blend between vibrant and dim
   vec2 center = mix(centerVibrant, centerPos, u_dimness);
 
-  // Noise layers - slow down when dimmed
-  float timeScale = mix(1.0, 0.5, u_dimness);
-  float slowNoise = snoise(vec3(adjustedUV * 1.6, u_time * 0.15 * timeScale));
-  float detailNoise = snoise(vec3(adjustedUV * 3.2, u_time * 0.22 * timeScale + 10.0));
+  // Noise layers - the dimmed slowdown is applied to the phase on the CPU side
+  float slowNoise = snoise(vec3(adjustedUV * 1.6, u_phase * 0.15));
+  float detailNoise = snoise(vec3(adjustedUV * 3.2, u_phase * 0.22 + 10.0));
   float combinedNoise = slowNoise * 0.6 + detailNoise * 0.4;
 
   // Distance from center with noise distortion - reduce distortion when dimmed
