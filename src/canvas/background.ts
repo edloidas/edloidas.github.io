@@ -71,7 +71,7 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
 
   // Get attribute and uniform locations
   const positionLocation = gl.getAttribLocation(program, 'a_position');
-  const timeLocation = gl.getUniformLocation(program, 'u_time');
+  const phaseLocation = gl.getUniformLocation(program, 'u_phase');
   const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
   const themeLocation = gl.getUniformLocation(program, 'u_theme');
   const dimnessLocation = gl.getUniformLocation(program, 'u_dimness');
@@ -124,15 +124,25 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     }
   }
 
+  // ? Animation phase is accumulated per frame instead of derived from absolute
+  // ? elapsed time. u_dimness scales the animation rate, and scaling absolute
+  // ? time rewrites the whole noise history retroactively — after an idle hour
+  // ? a view switch would replay minutes of movement in a single transition.
+  const MAX_FRAME_DELTA = 1 / 30;
+
   // Animation loop
-  let startTime = performance.now();
+  let phase = 0;
+  let lastFrameTime = performance.now();
   let animationId: number;
   let isRunning = true;
 
-  function render() {
+  function render(now: number) {
     if (!isRunning) return;
 
     resize();
+
+    const delta = Math.min((now - lastFrameTime) / 1000, MAX_FRAME_DELTA);
+    lastFrameTime = now;
 
     // Smooth theme transition
     const themeDiff = targetTheme - currentTheme;
@@ -150,12 +160,13 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
       currentDimness = targetDimness;
     }
 
-    const time = (performance.now() - startTime) / 1000;
+    // Dimmed views animate at half speed
+    phase += delta * (1.0 - currentDimness * 0.5);
 
     gl?.useProgram(program);
     gl?.bindVertexArray(vao);
 
-    gl?.uniform1f(timeLocation, time);
+    gl?.uniform1f(phaseLocation, phase);
     gl?.uniform2f(resolutionLocation, canvas.width, canvas.height);
     gl?.uniform1f(themeLocation, currentTheme);
     gl?.uniform1f(dimnessLocation, currentDimness);
@@ -165,19 +176,20 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     animationId = window.requestAnimationFrame(render);
   }
 
+  function start() {
+    lastFrameTime = performance.now();
+    animationId = window.requestAnimationFrame(render);
+  }
+
   // Start rendering
-  render();
+  start();
 
   // Handle visibility change to pause when hidden
-  let pausedElapsed = 0;
-
   function handleVisibilityChange() {
     if (document.hidden) {
       cancelAnimationFrame(animationId);
-      pausedElapsed = performance.now() - startTime;
     } else if (isRunning) {
-      startTime = performance.now() - pausedElapsed;
-      render();
+      start();
     }
   }
 
