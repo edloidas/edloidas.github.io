@@ -1,6 +1,26 @@
 import fragmentShaderSource from '../shaders/background.frag';
 import vertexShaderSource from '../shaders/background.vert';
 
+// The background is a soft out-of-focus gradient, so it survives a much smaller
+// drawing buffer than the display offers. Fragment cost scales with the product
+// of these two, and the shader runs two 3D simplex noise evaluations per pixel.
+const MAX_DPR = 1.5;
+const RENDER_SCALE = 0.5;
+
+// Movement is slow enough that 30fps is indistinguishable from 60fps here.
+const TARGET_FPS = 30;
+const FRAME_INTERVAL = 1 / TARGET_FPS;
+const FRAME_TOLERANCE = 0.001;
+
+// Guards the phase against long stalls (background tab, sleep) without
+// affecting normal frame jitter.
+const MAX_FRAME_DELTA = 0.1;
+
+// Continuous decay rates matching the previous per-frame factors at 60fps
+// (0.05 and 0.04), so transitions feel the same at any frame rate.
+const THEME_DECAY = 3.08;
+const DIMNESS_DECAY = 2.45;
+
 function createShader(gl: WebGL2RenderingContext, type: number, source: string): WebGLShader | null {
   const shader = gl.createShader(type);
   if (!shader) return null;
@@ -113,9 +133,9 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
 
   // Resize handler
   function resize() {
-    const dpr = window.devicePixelRatio || 1;
-    const width = canvas.clientWidth * dpr;
-    const height = canvas.clientHeight * dpr;
+    const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+    const width = Math.round(canvas.clientWidth * dpr * RENDER_SCALE);
+    const height = Math.round(canvas.clientHeight * dpr * RENDER_SCALE);
 
     if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
@@ -128,7 +148,6 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   // ? elapsed time. u_dimness scales the animation rate, and scaling absolute
   // ? time rewrites the whole noise history retroactively — after an idle hour
   // ? a view switch would replay minutes of movement in a single transition.
-  const MAX_FRAME_DELTA = 1 / 30;
 
   // Animation loop
   let phase = 0;
@@ -139,15 +158,20 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   function render(now: number) {
     if (!isRunning) return;
 
-    resize();
+    animationId = window.requestAnimationFrame(render);
 
-    const delta = Math.min((now - lastFrameTime) / 1000, MAX_FRAME_DELTA);
+    const elapsed = (now - lastFrameTime) / 1000;
+    if (elapsed + FRAME_TOLERANCE < FRAME_INTERVAL) return;
+
     lastFrameTime = now;
+    const delta = Math.min(elapsed, MAX_FRAME_DELTA);
+
+    resize();
 
     // Smooth theme transition
     const themeDiff = targetTheme - currentTheme;
     if (Math.abs(themeDiff) > 0.001) {
-      currentTheme += themeDiff * 0.05; // Smooth interpolation
+      currentTheme += themeDiff * (1 - Math.exp(-THEME_DECAY * delta));
     } else {
       currentTheme = targetTheme;
     }
@@ -155,7 +179,7 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     // Smooth dimness transition
     const dimnessDiff = targetDimness - currentDimness;
     if (Math.abs(dimnessDiff) > 0.001) {
-      currentDimness += dimnessDiff * 0.04; // Slower to avoid chaotic shaking
+      currentDimness += dimnessDiff * (1 - Math.exp(-DIMNESS_DECAY * delta));
     } else {
       currentDimness = targetDimness;
     }
@@ -167,13 +191,13 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
     gl?.bindVertexArray(vao);
 
     gl?.uniform1f(phaseLocation, phase);
-    gl?.uniform2f(resolutionLocation, canvas.width, canvas.height);
+    // ? CSS pixels, not the drawing buffer: the shader's ultrawide check uses an
+    // ? absolute pixel threshold that must not shift with DPR or RENDER_SCALE.
+    gl?.uniform2f(resolutionLocation, canvas.clientWidth, canvas.clientHeight);
     gl?.uniform1f(themeLocation, currentTheme);
     gl?.uniform1f(dimnessLocation, currentDimness);
 
     gl?.drawArrays(gl.TRIANGLES, 0, 6);
-
-    animationId = window.requestAnimationFrame(render);
   }
 
   function start() {
