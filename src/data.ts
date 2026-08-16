@@ -125,10 +125,16 @@ export const data: PersonalData = {
     },
     {
       name: 'Roll Parser',
-      url: '/roll-parser/',
+      url: 'https://roll-parser.edloidas.io/',
       description:
         'Library and CLI for parsing dice roll notation. Supports D&D, World of Darkness, and custom formats.',
       tech: ['Bun', 'TypeScript'],
+    },
+    {
+      name: 'RollRobot',
+      url: 'https://rollrobot.edloidas.io/',
+      description: 'Telegram bot that rolls dice for tabletop games in any chat.',
+      tech: ['Bun', 'Cloudflare'],
     },
   ],
   techStack: [
