@@ -29,7 +29,7 @@ function generateWebManifest(d: PersonalData): string {
   const manifest = {
     name: `${d.name} ${d.surname}`,
     short_name: d.nickname,
-    description: `${d.position} and ${d.hobby}.`,
+    description: d.description,
     start_url: '/',
     display: 'standalone',
     orientation: 'any',
@@ -69,7 +69,6 @@ const CSP_META = `<meta http-equiv="Content-Security-Policy" content="${CONTENT_
 
 export function personalDataPlugin(): Plugin {
   const fullName = `${data.name} ${data.surname}`;
-  const description = `${data.position} and ${data.hobby}.`;
 
   const replacements: Record<string, string> = {
     '{{name}}': data.name,
@@ -81,7 +80,7 @@ export function personalDataPlugin(): Plugin {
     '{{company}}': data.company,
     '{{companyUrl}}': data.companyUrl,
     '{{hobby}}': data.hobby,
-    '{{description}}': description,
+    '{{description}}': data.description,
     '{{domain}}': data.domain,
     '{{domainUrl}}': `https://${data.domain}`,
     '{{twitterHandle}}': data.twitterHandle,
