@@ -3,6 +3,8 @@ import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { data, type PersonalData } from '../src/data';
 import { aboutViewHtml } from '../src/views/about';
+import { careerViewHtml } from '../src/views/career';
+import { projectsViewHtml } from '../src/views/projects';
 
 function generateJsonLd(d: PersonalData): string {
   const jsonLd = {
@@ -84,8 +86,10 @@ export function personalDataPlugin(): Plugin {
     '{{domainUrl}}': `https://${data.domain}`,
     '{{twitterHandle}}': data.twitterHandle,
     '{{jsonLd}}': generateJsonLd(data),
-    // Prerendered so the landing view has real content without JavaScript
+    // Prerendered so every view has real content without JavaScript, which is all most crawlers ever read.
     '{{aboutView}}': aboutViewHtml(data),
+    '{{careerView}}': careerViewHtml(data),
+    '{{projectsView}}': projectsViewHtml(data),
   };
 
   // Add social link URLs

@@ -1,4 +1,4 @@
-import type { CareerEntry, TechCategory } from '../data';
+import type { CareerEntry, PersonalData, TechCategory } from '../data';
 
 function renderCareerEntry(entry: CareerEntry): string {
   const companyHtml = entry.companyUrl
@@ -43,17 +43,16 @@ function renderTechStack(categories: TechCategory[]): string {
   `;
 }
 
-export function renderCareerView(
-  container: HTMLElement,
-  intro: string,
-  career: CareerEntry[],
-  techStack: TechCategory[],
-): void {
-  container.innerHTML = `
+/**
+ * Markup for the career view. Kept free of DOM APIs so the build-time plugin can
+ * inline it into index.html (see utils/vite-plugin-personal-data.ts).
+ */
+export function careerViewHtml(data: PersonalData): string {
+  return `
     <div class="timeline">
-      <p class="timeline__intro">${intro}</p>
-      ${career.map(renderCareerEntry).join('')}
+      <p class="timeline__intro">${data.intro}</p>
+      ${data.career.map(renderCareerEntry).join('')}
     </div>
-    ${renderTechStack(techStack)}
+    ${renderTechStack(data.techStack)}
   `;
 }

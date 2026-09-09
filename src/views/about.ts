@@ -35,7 +35,3 @@ export function aboutViewHtml(data: PersonalData): string {
     </div>
   `;
 }
-
-export function renderAboutView(container: HTMLElement, data: PersonalData): void {
-  container.innerHTML = aboutViewHtml(data);
-}

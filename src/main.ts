@@ -1,10 +1,6 @@
 import './styles/main.css';
 import { type BackgroundController, initBackground } from './canvas/background';
-import { data } from './data';
 import { createRouter, type ViewId } from './router';
-import { renderAboutView } from './views/about';
-import { renderCareerView } from './views/career';
-import { renderProjectsView } from './views/projects';
 
 type ThemeMode = 'auto' | 'light' | 'dark';
 
@@ -152,40 +148,6 @@ function updateTabIndicator() {
 // View Management
 // ============================================
 
-// About is inlined into index.html at build time, so it only needs rendering
-// here if the placeholder was not substituted for some reason.
-const viewsRendered = {
-  about: (document.getElementById('about-content')?.childElementCount ?? 0) > 0,
-  career: false,
-  projects: false,
-};
-
-function renderViewContent(viewId: ViewId) {
-  if (viewId === 'about' && !viewsRendered.about) {
-    const container = document.getElementById('about-content');
-    if (container) {
-      renderAboutView(container, data);
-      viewsRendered.about = true;
-    }
-  }
-
-  if (viewId === 'career' && !viewsRendered.career) {
-    const container = document.getElementById('career-content');
-    if (container) {
-      renderCareerView(container, data.intro, data.career, data.techStack);
-      viewsRendered.career = true;
-    }
-  }
-
-  if (viewId === 'projects' && !viewsRendered.projects) {
-    const container = document.getElementById('projects-content');
-    if (container) {
-      renderProjectsView(container, data.projects);
-      viewsRendered.projects = true;
-    }
-  }
-}
-
 function updateActiveView(viewId: ViewId) {
   const page = document.querySelector('.page');
   if (page) {
@@ -210,9 +172,6 @@ function updateActiveView(viewId: ViewId) {
 
   // Update tab indicator position
   updateTabIndicator();
-
-  // Render view content (lazy loading)
-  renderViewContent(viewId);
 }
 
 function switchView(viewId: ViewId, backgroundController: BackgroundController | null) {
