@@ -35,6 +35,7 @@ export interface PersonalData {
   company: string;
   companyUrl: string;
   hobby: string;
+  description: string;
   domain: string;
   twitterHandle: string;
   location: string;
@@ -54,6 +55,7 @@ export const data: PersonalData = {
   company: 'Enonic',
   companyUrl: 'https://enonic.com',
   hobby: 'AI & 3D graphics enthusiast',
+  description: 'Frontend Architect at Enonic in Barcelona, shipping UI and AI. Games, 3D, and parsers on the side.',
   domain: 'edloidas.io',
   twitterHandle: '@edloidas',
   location: 'Barcelona, Spain',
