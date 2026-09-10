@@ -30,10 +30,10 @@
     "prepare": "vp config"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
-    "autoprefixer": "^10.5.4",
+    "@types/node": "^26.5.1",
+    "autoprefixer": "^10.5.6",
     "modern-normalize": "^3.0.1",
-    "postcss": "^8.5.26",
+    "postcss": "^8.5.28",
     "typescript": "^7.0.2",
     "vite": "catalog:",
     "vite-plugin-glsl": "^1.6.1",
@@ -43,8 +43,8 @@
     "defaults and fully supports es6-module"
   ],
   "engines": {
-    "node": ">=26.5.0",
-    "pnpm": ">=11"
+    "node": ">=26.8.2",
+    "pnpm": ">=12"
   },
-  "packageManager": "pnpm@11.21.0"
+  "packageManager": "pnpm@12.3.4"
 }
