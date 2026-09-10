@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import type { Plugin } from 'vite';
 import { data, type PersonalData, type Project } from '../src/data';
 import { aboutViewHtml } from '../src/views/about';
@@ -117,6 +118,48 @@ function generateWebManifest(d: PersonalData): string {
   return JSON.stringify(manifest, null, 2);
 }
 
+// Files whose changes are the page's changes. A lockfile bump or a workflow
+// edit is not a content update and must not move `lastmod`.
+const CONTENT_PATHS = ['index.html', 'src/data.ts', 'src/views'];
+
+/**
+ * Date of the last commit touching page content, as YYYY-MM-DD.
+ *
+ * Returns undefined rather than today's date when git cannot answer: a
+ * `lastmod` that moves on every deploy is worse than none, and Google ignores
+ * the field entirely once it stops matching reality. Needs full history —
+ * under a shallow clone a path filter matches HEAD unconditionally, because
+ * there is no parent to diff against.
+ */
+function getContentLastModified(): string | undefined {
+  try {
+    const stdout = execFileSync('git', ['log', '-1', '--format=%cI', '--', ...CONTENT_PATHS], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    return stdout.trim().slice(0, 10) || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function generateSitemap(d: PersonalData): string {
+  const lastModified = getContentLastModified();
+  const url = [
+    `    <loc>https://${d.domain}/</loc>`,
+    // `changefreq` and `priority` are omitted deliberately: Google ignores both.
+    ...(lastModified == null ? [] : [`    <lastmod>${lastModified}</lastmod>`]),
+  ].join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+${url}
+  </url>
+</urlset>
+`;
+}
+
 /**
  * The site loads nothing cross-origin, so everything can be locked to 'self'.
  * `style-src` keeps 'unsafe-inline' for the FOUC block in index.html; there is
@@ -168,6 +211,7 @@ export function personalDataPlugin(): Plugin {
   }
 
   const webManifestContent = generateWebManifest(data);
+  const sitemapContent = generateSitemap(data);
 
   return {
     name: 'personal-data',
@@ -176,6 +220,11 @@ export function personalDataPlugin(): Plugin {
         if (req.originalUrl === '/site.webmanifest') {
           res.setHeader('Content-Type', 'application/manifest+json');
           res.end(webManifestContent);
+          return;
+        }
+        if (req.originalUrl === '/sitemap.xml') {
+          res.setHeader('Content-Type', 'application/xml');
+          res.end(sitemapContent);
           return;
         }
         next();
@@ -190,6 +239,7 @@ export function personalDataPlugin(): Plugin {
     },
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'site.webmanifest', source: webManifestContent });
+      this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemapContent });
     },
   };
 }
