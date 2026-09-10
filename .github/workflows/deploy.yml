@@ -25,8 +25,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
-          # The sitemap's lastmod comes from the last commit touching page
-          # content; a shallow clone would report HEAD for any path.
+          # Full history: a shallow clone reports HEAD for any path, faking the sitemap's lastmod.
           fetch-depth: 0
 
       - name: Setup pnpm

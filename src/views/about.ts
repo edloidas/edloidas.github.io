@@ -11,10 +11,7 @@ function renderSocialLink(link: SocialLink): string {
   return `<a href="${escapeHtml(link.url)}" class="about__social-link" tabindex="0" rel="me noopener noreferrer" aria-label="${escapeHtml(ariaLabel)}">${escapeHtml(link.name)}</a>`;
 }
 
-/**
- * Markup for the about view. Kept free of DOM APIs so the build-time plugin can
- * inline it into index.html (see utils/vite-plugin-personal-data.ts).
- */
+/** Inlined into index.html at build time, so no DOM APIs here. */
 export function aboutViewHtml(data: PersonalData): string {
   return `
     <div class="about">
