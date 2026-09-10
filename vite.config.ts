@@ -36,7 +36,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [(await import('autoprefixer')).default],
+      plugins: [(await import('autoprefixer')).default()],
     },
   },
 });

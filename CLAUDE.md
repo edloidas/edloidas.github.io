@@ -24,7 +24,7 @@ pnpm format    # Format (Oxfmt via `vp fmt`)
 ## Tech Stack
 
 - **Toolchain**: Vite+ (`vp`) — unifies Vite 8 (Rolldown), Oxlint, Oxfmt; config in `vite.config.ts` (`lint`/`fmt` keys)
-- **Build**: Vite 8 (via Vite+) + pnpm 11
+- **Build**: Vite 8 (via Vite+) + pnpm 12
 - **Language**: TypeScript 7 (native compiler, ES2022)
 - **Styling**: Plain CSS + PostCSS (autoprefixer, modern-normalize)
 - **Graphics**: Raw WebGL2 shaders
