@@ -95,7 +95,8 @@ function generateJsonLd(d: PersonalData): string {
     '@graph': [person, profilePage, website, ...projects],
   };
 
-  return JSON.stringify(graph, null, 2);
+  // `\u003c` parses back to `<`, so a `</script>` in the data cannot close the tag early.
+  return JSON.stringify(graph, null, 2).replaceAll('<', '\\u003c');
 }
 
 function generateWebManifest(d: PersonalData): string {
@@ -235,7 +236,11 @@ export function personalDataPlugin(): Plugin {
       // ? which connect-src 'none' and script-src 'self' would block.
       const withCsp = html.replace('{{csp}}', ctx.server ? '' : CSP_META);
 
-      return Object.entries(replacements).reduce((result, [key, value]) => result.replaceAll(key, value), withCsp);
+      // A string replacement would interpret `$&` and `$$` in the data; a function does not.
+      return Object.entries(replacements).reduce(
+        (result, [key, value]) => result.replaceAll(key, () => value),
+        withCsp,
+      );
     },
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'site.webmanifest', source: webManifestContent });
