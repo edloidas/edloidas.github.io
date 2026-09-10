@@ -18,6 +18,7 @@ export interface Project {
   url?: string;
   description: string;
   tech: string[];
+  kind: 'game' | 'app' | 'library';
   status?: 'development' | 'mvp';
 }
 
@@ -108,6 +109,7 @@ export const data: PersonalData = {
       description:
         'Narrative RPG set in a cyberpunk world with neo-classical aesthetic. Built with React Three Fiber for 3D rendering and React for UI.',
       tech: ['React', 'Three.js', 'React Three Fiber'],
+      kind: 'game',
       status: 'development',
     },
     {
@@ -116,6 +118,7 @@ export const data: PersonalData = {
       description:
         'Visual dialog editor for game narratives. Node-based workflow, AI-assisted text generation, JSON export for game engines.',
       tech: ['AI', 'React Flow', 'Elysia', 'Bun', 'Effect'],
+      kind: 'app',
       status: 'mvp',
     },
     {
@@ -124,6 +127,7 @@ export const data: PersonalData = {
       description:
         'UI component library for Enonic projects. Radix-style composability, built mostly from scratch, works with React or Preact.',
       tech: ['React', 'Preact', 'Tailwind CSS'],
+      kind: 'library',
     },
     {
       name: 'Roll Parser',
@@ -131,12 +135,14 @@ export const data: PersonalData = {
       description:
         'Library and CLI for parsing dice roll notation. Supports D&D, World of Darkness, and custom formats.',
       tech: ['Bun', 'TypeScript'],
+      kind: 'library',
     },
     {
       name: 'RollRobot',
       url: 'https://rollrobot.edloidas.io/',
       description: 'Telegram bot that rolls dice for tabletop games in any chat.',
       tech: ['Bun', 'Cloudflare'],
+      kind: 'app',
     },
   ],
   techStack: [

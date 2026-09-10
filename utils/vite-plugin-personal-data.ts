@@ -1,28 +1,102 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
-import { data, type PersonalData } from '../src/data';
+import { data, type PersonalData, type Project } from '../src/data';
 import { aboutViewHtml } from '../src/views/about';
 import { careerViewHtml } from '../src/views/career';
 import { projectsViewHtml } from '../src/views/projects';
 
+const PROJECT_SCHEMA_TYPES = {
+  game: 'VideoGame',
+  app: 'SoftwareApplication',
+  library: 'SoftwareSourceCode',
+} satisfies Record<Project['kind'], string>;
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/**
+ * One `@graph` sharing a stable `@id` for the person, so anything off-site — a
+ * project page, a repository README — can reference the same entity instead of
+ * describing a lookalike.
+ */
 function generateJsonLd(d: PersonalData): string {
-  const jsonLd = {
-    '@context': 'https://schema.org',
+  const origin = `https://${d.domain}`;
+  const personId = `${origin}/#me`;
+  const author = { '@id': personId };
+  const [city, country] = d.location.split(',').map(part => part.trim());
+
+  const organization = { '@type': 'Organization', name: d.company, url: d.companyUrl };
+  const startYear = d.career.find(entry => entry.current)?.period.match(/\d{4}/)?.[0];
+
+  const person = {
     '@type': 'Person',
+    '@id': personId,
     name: `${d.name} ${d.surname}`,
     alternateName: d.nickname,
-    url: `https://${d.domain}`,
-    image: `https://${d.domain}/favicon-512.png`,
-    jobTitle: d.position,
-    worksFor: {
-      '@type': 'Organization',
-      name: d.company,
-      url: d.companyUrl,
+    description: d.description,
+    url: `${origin}/`,
+    image: {
+      '@type': 'ImageObject',
+      url: `${origin}/avatar.png`,
+      width: 512,
+      height: 512,
     },
+    jobTitle: d.position,
+    // A Role wrapper only earns its place when it carries dates the plain
+    // Organization cannot.
+    worksFor: startYear
+      ? { '@type': 'OrganizationRole', roleName: d.position, startDate: startYear, worksFor: organization }
+      : organization,
+    homeLocation: {
+      '@type': 'Place',
+      address: { '@type': 'PostalAddress', addressLocality: city, addressCountry: country },
+    },
+    knowsAbout: d.techStack.flatMap(category => category.items),
     sameAs: d.links.map(link => link.url),
   };
-  return JSON.stringify(jsonLd, null, 2).replace(/^/gm, '      ').trim();
+
+  const websiteId = `${origin}/#website`;
+
+  const profilePage = {
+    '@type': 'ProfilePage',
+    '@id': `${origin}/#page`,
+    url: `${origin}/`,
+    mainEntity: author,
+    isPartOf: { '@id': websiteId },
+  };
+
+  const website = {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: `${origin}/`,
+    name: d.domain,
+    inLanguage: 'en',
+    about: author,
+    author,
+  };
+
+  const projects = d.projects.map(project => ({
+    '@type': PROJECT_SCHEMA_TYPES[project.kind],
+    '@id': `${origin}/#${slugify(project.name)}`,
+    name: project.name,
+    description: project.description,
+    url: project.url,
+    codeRepository: project.kind === 'library' && project.url?.includes('github.com') ? project.url : undefined,
+    keywords: project.tech,
+    author,
+  }));
+
+  const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [person, profilePage, website, ...projects],
+  };
+
+  return JSON.stringify(graph, null, 2);
 }
 
 function generateWebManifest(d: PersonalData): string {
