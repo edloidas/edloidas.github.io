@@ -1,3 +1,4 @@
+import { escapeHtml } from '../escape';
 import type { PersonalData, SocialLink } from '../data';
 
 const ARROW_ICON = `<svg class="about__cta-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -7,7 +8,7 @@ const ARROW_ICON = `<svg class="about__cta-icon" viewBox="0 0 24 24" aria-hidden
 
 function renderSocialLink(link: SocialLink): string {
   const ariaLabel = link.name === 'X' ? 'X (formerly Twitter)' : link.name;
-  return `<a href="${link.url}" class="about__social-link" tabindex="0" rel="me noopener noreferrer" aria-label="${ariaLabel}">${link.name}</a>`;
+  return `<a href="${escapeHtml(link.url)}" class="about__social-link" tabindex="0" rel="me noopener noreferrer" aria-label="${escapeHtml(ariaLabel)}">${escapeHtml(link.name)}</a>`;
 }
 
 /**
@@ -19,13 +20,13 @@ export function aboutViewHtml(data: PersonalData): string {
     <div class="about">
       <div class="about__bio">
         <p class="about__title">
-          ${data.position} at <a href="${data.companyUrl}" class="about__accent" tabindex="0" target="_blank" rel="noopener noreferrer">${data.company}</a>.
+          ${escapeHtml(data.position)} at <a href="${escapeHtml(data.companyUrl)}" class="about__accent" tabindex="0" target="_blank" rel="noopener noreferrer">${escapeHtml(data.company)}</a>.
         </p>
-        <p class="about__description">${data.hobby}.</p>
+        <p class="about__description">${escapeHtml(data.hobby)}.</p>
       </div>
 
-      <a href="mailto:${data.email}" class="about__cta" tabindex="0" aria-label="Send email to ${data.email}">
-        <span>${data.email}</span>
+      <a href="mailto:${escapeHtml(data.email)}" class="about__cta" tabindex="0" aria-label="Send email to ${escapeHtml(data.email)}">
+        <span>${escapeHtml(data.email)}</span>
         ${ARROW_ICON}
       </a>
 

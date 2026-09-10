@@ -1,3 +1,4 @@
+import { escapeHtml } from '../escape';
 import type { PersonalData, Project } from '../data';
 
 const EXTERNAL_LINK_ICON = `<svg class="project__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -16,11 +17,11 @@ function renderProject(project: Project): string {
   // Unlike the career and social links, these carry a referrer on purpose: the
   // destinations are ours, so the traffic shows up in their analytics.
   const nameHtml = project.url
-    ? `<a href="${project.url}" class="project__link" tabindex="0" target="_blank" rel="noopener">
-        ${project.name}
+    ? `<a href="${escapeHtml(project.url)}" class="project__link" tabindex="0" target="_blank" rel="noopener">
+        ${escapeHtml(project.name)}
         ${EXTERNAL_LINK_ICON}
        </a>`
-    : project.name;
+    : escapeHtml(project.name);
 
   return `
     <article class="project">
@@ -28,9 +29,9 @@ function renderProject(project: Project): string {
         <h3 class="project__name">${nameHtml}</h3>
         ${renderBadge(project.status)}
       </div>
-      <p class="project__description">${project.description}</p>
+      <p class="project__description">${escapeHtml(project.description)}</p>
       <div class="project__tech">
-        ${project.tech.map(tech => `<span class="project__tag">${tech}</span>`).join('')}
+        ${project.tech.map(tech => `<span class="project__tag">${escapeHtml(tech)}</span>`).join('')}
       </div>
     </article>
   `;

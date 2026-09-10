@@ -1,20 +1,21 @@
+import { escapeHtml } from '../escape';
 import type { CareerEntry, PersonalData, TechCategory } from '../data';
 
 function renderCareerEntry(entry: CareerEntry): string {
   const companyHtml = entry.companyUrl
-    ? `<a href="${entry.companyUrl}" class="timeline__company-link" tabindex="0" target="_blank" rel="noopener noreferrer">${entry.company}</a>`
-    : `<span>${entry.company}</span>`;
+    ? `<a href="${escapeHtml(entry.companyUrl)}" class="timeline__company-link" tabindex="0" target="_blank" rel="noopener noreferrer">${escapeHtml(entry.company)}</a>`
+    : `<span>${escapeHtml(entry.company)}</span>`;
 
-  const locationHtml = entry.location ? `<span class="timeline__location">${entry.location}</span>` : '';
+  const locationHtml = entry.location ? `<span class="timeline__location">${escapeHtml(entry.location)}</span>` : '';
 
   const descriptionHtml = entry.description
-    ? `<p class="timeline__description">${entry.description.replace(/\n/g, '<br>')}</p>`
+    ? `<p class="timeline__description">${escapeHtml(entry.description).replace(/\n/g, '<br>')}</p>`
     : '';
 
   return `
     <article class="timeline__entry${entry.current ? ' timeline__entry--current' : ''}">
-      <span class="timeline__period">${entry.period}</span>
-      <h3 class="timeline__position">${entry.position}</h3>
+      <span class="timeline__period">${escapeHtml(entry.period)}</span>
+      <h3 class="timeline__position">${escapeHtml(entry.position)}</h3>
       <div class="timeline__company">
         ${companyHtml}
         ${locationHtml}
@@ -31,9 +32,9 @@ function renderTechStack(categories: TechCategory[]): string {
         .map(
           category => `
         <div class="tech-stack__category">
-          <h4 class="tech-stack__title">${category.name}</h4>
+          <h4 class="tech-stack__title">${escapeHtml(category.name)}</h4>
           <ul class="tech-stack__items">
-            ${category.items.map(item => `<li>${item}</li>`).join('')}
+            ${category.items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
         </div>
       `,
@@ -50,7 +51,7 @@ function renderTechStack(categories: TechCategory[]): string {
 export function careerViewHtml(data: PersonalData): string {
   return `
     <div class="timeline">
-      <p class="timeline__intro">${data.intro}</p>
+      <p class="timeline__intro">${escapeHtml(data.intro)}</p>
       ${data.career.map(renderCareerEntry).join('')}
     </div>
     ${renderTechStack(data.techStack)}
