@@ -114,7 +114,7 @@ export const data: PersonalData = {
     },
     {
       name: 'Lorequary',
-      url: 'https://github.com/lorequary',
+      url: 'https://github.com/edloidas/lorequary',
       description:
         'Visual dialog editor for game narratives. Node-based workflow, AI-assisted text generation, JSON export for game engines.',
       tech: ['AI', 'React Flow', 'Elysia', 'Bun', 'Effect'],
