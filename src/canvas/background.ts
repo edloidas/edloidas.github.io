@@ -1,5 +1,6 @@
 import fragmentShaderSource from '../shaders/background.frag';
 import vertexShaderSource from '../shaders/background.vert';
+import { getEffectiveTheme, getStoredTheme } from '../theme';
 
 // The background is a soft out-of-focus gradient, so it survives a much smaller
 // drawing buffer than the display offers. Fragment cost scales with the product
@@ -118,17 +119,9 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
   let targetDimness = 0.0;
 
   // Detect initial theme from stored preference or system
-  const storedTheme = localStorage.getItem('theme-preference');
   const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-  if (storedTheme === 'dark') {
-    targetTheme = 1.0;
-  } else if (storedTheme === 'light') {
-    targetTheme = 0.0;
-  } else {
-    // Auto mode - use system preference
-    targetTheme = darkModeQuery.matches ? 1.0 : 0.0;
-  }
+  targetTheme = getEffectiveTheme(getStoredTheme()) === 'dark' ? 1.0 : 0.0;
   currentTheme = targetTheme;
 
   // Resize handler
@@ -268,9 +261,8 @@ export function initBackground(canvas: HTMLCanvasElement): BackgroundController 
 
   // Handle system theme change (only when in auto mode)
   function handleThemeChange(e: MediaQueryListEvent) {
-    const storedTheme = localStorage.getItem('theme-preference');
     // Only react to system changes if in auto mode (or no preference stored)
-    if (storedTheme !== 'light' && storedTheme !== 'dark') {
+    if (getStoredTheme() === 'auto') {
       targetTheme = e.matches ? 1.0 : 0.0;
       if (reducedMotionQuery.matches) drawStaticFrame();
     }
