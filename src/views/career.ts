@@ -3,7 +3,7 @@ import type { CareerEntry, PersonalData, TechCategory } from '../data';
 
 function renderCareerEntry(entry: CareerEntry): string {
   const companyHtml = entry.companyUrl
-    ? `<a href="${escapeHtml(entry.companyUrl)}" class="timeline__company-link" tabindex="0" target="_blank" rel="noopener noreferrer">${escapeHtml(entry.company)}</a>`
+    ? `<a href="${escapeHtml(entry.companyUrl)}" class="timeline__company-link" tabindex="0" rel="noopener noreferrer">${escapeHtml(entry.company)}</a>`
     : `<span>${escapeHtml(entry.company)}</span>`;
 
   const locationHtml = entry.location ? `<span class="timeline__location">${escapeHtml(entry.location)}</span>` : '';
