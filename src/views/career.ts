@@ -28,6 +28,7 @@ function renderCareerEntry(entry: CareerEntry): string {
 function renderTechStack(categories: TechCategory[]): string {
   return `
     <div class="tech-stack">
+      <h3 class="sr-only">Tech Stack</h3>
       ${categories
         .map(
           category => `
