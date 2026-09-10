@@ -38,7 +38,7 @@ function generateJsonLd(d: PersonalData): string {
     url: `${origin}/`,
     image: {
       '@type': 'ImageObject',
-      url: `${origin}/avatar.png`,
+      url: `${origin}/avatar.jpg`,
       width: 512,
       height: 512,
     },
