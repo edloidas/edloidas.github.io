@@ -7,7 +7,7 @@ const ARROW_ICON = `<svg class="about__cta-icon" viewBox="0 0 24 24" aria-hidden
 
 function renderSocialLink(link: SocialLink): string {
   const ariaLabel = link.name === 'X' ? 'X (formerly Twitter)' : link.name;
-  return `<a href="${link.url}" class="about__social-link" tabindex="0" rel="noopener noreferrer" aria-label="${ariaLabel}">${link.name}</a>`;
+  return `<a href="${link.url}" class="about__social-link" tabindex="0" rel="me noopener noreferrer" aria-label="${ariaLabel}">${link.name}</a>`;
 }
 
 /**
