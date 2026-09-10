@@ -13,8 +13,10 @@ function renderBadge(status: Project['status']): string {
 }
 
 function renderProject(project: Project): string {
+  // Unlike the career and social links, these carry a referrer on purpose: the
+  // destinations are ours, so the traffic shows up in their analytics.
   const nameHtml = project.url
-    ? `<a href="${project.url}" class="project__link" tabindex="0" target="_blank" rel="noopener noreferrer">
+    ? `<a href="${project.url}" class="project__link" tabindex="0" target="_blank" rel="noopener">
         ${project.name}
         ${EXTERNAL_LINK_ICON}
        </a>`
