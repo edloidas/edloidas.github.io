@@ -14,8 +14,7 @@ function renderBadge(status: Project['status']): string {
 }
 
 function renderProject(project: Project): string {
-  // Unlike the career and social links, these carry a referrer on purpose: the
-  // destinations are ours, so the traffic shows up in their analytics.
+  // Referrer flows on purpose: unlike the career and social links, these destinations are ours.
   const nameHtml = project.url
     ? `<a href="${escapeHtml(project.url)}" class="project__link" tabindex="0" rel="noopener">
         ${escapeHtml(project.name)}
@@ -37,10 +36,7 @@ function renderProject(project: Project): string {
   `;
 }
 
-/**
- * Markup for the projects view. Kept free of DOM APIs so the build-time plugin
- * can inline it into index.html (see utils/vite-plugin-personal-data.ts).
- */
+/** Inlined into index.html at build time, so no DOM APIs here. */
 export function projectsViewHtml(data: PersonalData): string {
   return `
     <div class="projects">

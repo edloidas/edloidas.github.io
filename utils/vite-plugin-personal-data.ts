@@ -19,11 +19,7 @@ function slugify(value: string): string {
     .replace(/^-|-$/g, '');
 }
 
-/**
- * One `@graph` sharing a stable `@id` for the person, so anything off-site — a
- * project page, a repository README — can reference the same entity instead of
- * describing a lookalike.
- */
+/** The stable `@id` is what lets off-site pages reference this person, not a lookalike. */
 function generateJsonLd(d: PersonalData): string {
   const origin = `https://${d.domain}`;
   const personId = `${origin}/#me`;
@@ -47,8 +43,7 @@ function generateJsonLd(d: PersonalData): string {
       height: 512,
     },
     jobTitle: d.position,
-    // A Role wrapper only earns its place when it carries dates the plain
-    // Organization cannot.
+    // A Role wrapper earns its place only by carrying dates a plain Organization cannot.
     worksFor: startYear
       ? { '@type': 'OrganizationRole', roleName: d.position, startDate: startYear, worksFor: organization }
       : organization,
@@ -120,18 +115,12 @@ function generateWebManifest(d: PersonalData): string {
   return JSON.stringify(manifest, null, 2);
 }
 
-// Files whose changes are the page's changes. A lockfile bump or a workflow
-// edit is not a content update and must not move `lastmod`.
+// A lockfile bump or a workflow edit is not a content change and must not move `lastmod`.
 const CONTENT_PATHS = ['index.html', 'src/data.ts', 'src/views'];
 
 /**
- * Date of the last commit touching page content, as YYYY-MM-DD.
- *
- * Returns undefined rather than today's date when git cannot answer: a
- * `lastmod` that moves on every deploy is worse than none, and Google ignores
- * the field entirely once it stops matching reality. Needs full history —
- * under a shallow clone a path filter matches HEAD unconditionally, because
- * there is no parent to diff against.
+ * Returns undefined rather than today's date when git cannot answer: a `lastmod`
+ * that moves on every deploy is worse than none.
  */
 function getContentLastModified(): string | undefined {
   try {
@@ -200,7 +189,6 @@ export function personalDataPlugin(): Plugin {
 
   const markupTokens: Record<string, string> = {
     '{{jsonLd}}': generateJsonLd(data),
-    // Prerendered so every view has real content without JavaScript, which is all most crawlers ever read.
     '{{aboutView}}': aboutViewHtml(data),
     '{{careerView}}': careerViewHtml(data),
     '{{projectsView}}': projectsViewHtml(data),

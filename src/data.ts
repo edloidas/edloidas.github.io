@@ -148,7 +148,7 @@ export const data: PersonalData = {
   techStack: [
     {
       name: 'Languages',
-      items: ['TypeScript', 'Go', 'Rust'],
+      items: ['TypeScript', 'Go'],
     },
     {
       name: 'Frontend',

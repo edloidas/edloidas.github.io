@@ -45,10 +45,7 @@ function renderTechStack(categories: TechCategory[]): string {
   `;
 }
 
-/**
- * Markup for the career view. Kept free of DOM APIs so the build-time plugin can
- * inline it into index.html (see utils/vite-plugin-personal-data.ts).
- */
+/** Inlined into index.html at build time, so no DOM APIs here. */
 export function careerViewHtml(data: PersonalData): string {
   return `
     <div class="timeline">
