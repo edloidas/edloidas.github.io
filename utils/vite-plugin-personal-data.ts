@@ -1,5 +1,3 @@
-import { writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { data, type PersonalData, type Project } from '../src/data';
 import { aboutViewHtml } from '../src/views/about';
@@ -165,7 +163,6 @@ export function personalDataPlugin(): Plugin {
     '{{projectsView}}': projectsViewHtml(data),
   };
 
-  // Add social link URLs
   for (const link of data.links) {
     replacements[`{{${link.name.toLowerCase()}Url}}`] = link.url;
   }
@@ -191,10 +188,8 @@ export function personalDataPlugin(): Plugin {
 
       return Object.entries(replacements).reduce((result, [key, value]) => result.replaceAll(key, value), withCsp);
     },
-    writeBundle(options) {
-      const outDir = options.dir ?? 'dist';
-      const manifestPath = resolve(outDir, 'site.webmanifest');
-      writeFileSync(manifestPath, webManifestContent);
+    generateBundle() {
+      this.emitFile({ type: 'asset', fileName: 'site.webmanifest', source: webManifestContent });
     },
   };
 }
