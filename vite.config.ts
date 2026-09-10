@@ -1,3 +1,4 @@
+import { Features } from 'lightningcss';
 import { defineConfig, lazyPlugins } from 'vite-plus';
 import glsl from 'vite-plugin-glsl';
 import { personalDataPlugin } from './utils/vite-plugin-personal-data';
@@ -29,7 +30,7 @@ export default defineConfig({
   staged: {
     '*.{ts,json,css}': 'vp check --fix',
   },
-  plugins: lazyPlugins(() => [glsl(), personalDataPlugin()]),
+  plugins: lazyPlugins(() => [glsl({ minify: true }), personalDataPlugin()]),
   build: {
     target: 'es2022',
     outDir: 'dist',
@@ -38,5 +39,8 @@ export default defineConfig({
     postcss: {
       plugins: [(await import('autoprefixer')).default()],
     },
+    // oklch() and lab() shipped in the same browser releases, so lightningcss
+    // lowering oklch to a lab() fallback costs 2.1 kB and buys no coverage.
+    lightningcss: { exclude: Features.OklabColors | Features.LabColors },
   },
 });
