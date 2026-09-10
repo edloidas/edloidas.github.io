@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import type { Plugin } from 'vite';
 import { data, type PersonalData, type Project } from '../src/data';
+import { escapeHtml } from '../src/escape';
 import { aboutViewHtml } from '../src/views/about';
 import { careerViewHtml } from '../src/views/career';
 import { projectsViewHtml } from '../src/views/projects';
@@ -186,20 +187,18 @@ const CSP_META = `<meta http-equiv="Content-Security-Policy" content="${CONTENT_
 export function personalDataPlugin(): Plugin {
   const fullName = `${data.name} ${data.surname}`;
 
-  const replacements: Record<string, string> = {
+  const textTokens: Record<string, string> = {
     '{{name}}': data.name,
     '{{surname}}': data.surname,
     '{{fullName}}': fullName,
     '{{nickname}}': data.nickname,
-    '{{email}}': data.email,
     '{{position}}': data.position,
-    '{{company}}': data.company,
-    '{{companyUrl}}': data.companyUrl,
-    '{{hobby}}': data.hobby,
     '{{description}}': data.description,
-    '{{domain}}': data.domain,
     '{{domainUrl}}': `https://${data.domain}`,
     '{{twitterHandle}}': data.twitterHandle,
+  };
+
+  const markupTokens: Record<string, string> = {
     '{{jsonLd}}': generateJsonLd(data),
     // Prerendered so every view has real content without JavaScript, which is all most crawlers ever read.
     '{{aboutView}}': aboutViewHtml(data),
@@ -207,9 +206,9 @@ export function personalDataPlugin(): Plugin {
     '{{projectsView}}': projectsViewHtml(data),
   };
 
-  for (const link of data.links) {
-    replacements[`{{${link.name.toLowerCase()}Url}}`] = link.url;
-  }
+  const escapedTextTokens = Object.fromEntries(
+    Object.entries(textTokens).map(([token, value]) => [token, escapeHtml(value)]),
+  );
 
   const webManifestContent = generateWebManifest(data);
   const sitemapContent = generateSitemap(data);
@@ -232,15 +231,20 @@ export function personalDataPlugin(): Plugin {
       });
     },
     transformIndexHtml(html, ctx) {
-      // ? Build only: the dev server needs its HMR websocket and inline client,
-      // ? which connect-src 'none' and script-src 'self' would block.
-      const withCsp = html.replace('{{csp}}', ctx.server ? '' : CSP_META);
+      const replacements: Record<string, string> = {
+        ...escapedTextTokens,
+        ...markupTokens,
+        // ? Build only: the dev server needs its HMR websocket and inline client,
+        // ? which connect-src 'none' and script-src 'self' would block.
+        '{{csp}}': ctx.server ? '' : CSP_META,
+      };
 
-      // A string replacement would interpret `$&` and `$$` in the data; a function does not.
-      return Object.entries(replacements).reduce(
-        (result, [key, value]) => result.replaceAll(key, () => value),
-        withCsp,
-      );
+      // One pass, so a token appearing inside a substituted value is left alone.
+      return html.replace(/\{\{\w+\}\}/g, token => {
+        const value = replacements[token];
+        if (value == null) throw new Error(`Unknown token ${token} in index.html`);
+        return value;
+      });
     },
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'site.webmanifest', source: webManifestContent });
