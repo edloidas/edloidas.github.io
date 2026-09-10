@@ -20,7 +20,7 @@ export function aboutViewHtml(data: PersonalData): string {
     <div class="about">
       <div class="about__bio">
         <p class="about__title">
-          ${escapeHtml(data.position)} at <a href="${escapeHtml(data.companyUrl)}" class="about__accent" tabindex="0" target="_blank" rel="noopener noreferrer">${escapeHtml(data.company)}</a>.
+          ${escapeHtml(data.position)} at <a href="${escapeHtml(data.companyUrl)}" class="about__accent" tabindex="0" rel="noopener noreferrer">${escapeHtml(data.company)}</a>.
         </p>
         <p class="about__description">${escapeHtml(data.hobby)}.</p>
       </div>
