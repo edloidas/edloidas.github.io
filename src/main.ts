@@ -1,32 +1,14 @@
 import './styles/main.css';
 import { type BackgroundController, initBackground } from './canvas/background';
 import { createRouter, type ViewId } from './router';
+import { getEffectiveTheme, getStoredTheme, THEME_KEY, type ThemeMode } from './theme';
 
-type ThemeMode = 'auto' | 'light' | 'dark';
-
-const THEME_KEY = 'theme-preference';
 const LIGHT_COLOR = '#ffffff';
 const DARK_COLOR = '#030303';
 
 // ============================================
 // Theme Management
 // ============================================
-
-function getStoredTheme(): ThemeMode {
-  const stored = localStorage.getItem(THEME_KEY);
-  if (stored === 'light' || stored === 'dark' || stored === 'auto') {
-    return stored;
-  }
-  return 'auto';
-}
-
-function getSystemTheme(): 'light' | 'dark' {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-
-function getEffectiveTheme(mode: ThemeMode): 'light' | 'dark' {
-  return mode === 'auto' ? getSystemTheme() : mode;
-}
 
 function updateMetaThemeColor(theme: 'light' | 'dark') {
   const color = theme === 'dark' ? DARK_COLOR : LIGHT_COLOR;
